@@ -7,4 +7,5 @@ module.exports = {
     Point: Point,
     ObservablePoint: ObservablePoint,
     Frame: Frame,
+    Matrix: Matrix,
 };
