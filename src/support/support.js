@@ -1,1 +1,2 @@
-let Point = require("./geometry/Point.js").Point;
+require("./geometry/Point.js");
+require("./geometry/ObservablePoint.js");

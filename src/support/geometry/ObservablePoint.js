@@ -1,40 +1,38 @@
 /*
 |--------------------------------------------------------------------------
-| Point
+| ObservablePoint
 |--------------------------------------------------------------------------
 |
-| This file defines the Point Object.
-| This object build a PIXI.Point for HandyPixi.
+| This file defines the ObservablePoint Object.
+| This object build a PIXI.ObservablePoint for HandyPixi.
 | This package is based on Pixi.js and should not be externalized.
 | http://www.pixijs.com/
 |
 */
 
-Point = class Point
+ObservablePoint = class ObservablePoint
 {
 	/**
 	* constructor
-	* This function is used in order to build a Point.
+	* This function is used in order to build an ObservablePoint.
+	* @param   {Function}   onMove         Callback when the point's position is changed.
+	* @param   {Object}   scope         Owner of callback.
 	* @param   {Number}   x         Position of the point on the x axis.
 	* @param   {Number}   y         Position of the point on the y axis
-	* @param   {PIXI.Point}   x         The Pixi object to build the HandyPixi object.
+	* @param   {PIXI.ObservablePoint}   onMove         The Pixi object to build the HandyPixi object.
 	*/
-	constructor(x, y)
+	constructor(onMove, scope, x, y)
 	{
-		if (x instanceof PIXI.Point)
-		{
-			this._out = x;
-		}
+		if (onMove instanceof PIXI.ObservablePoint)
+			this._out = onMove;
 		else 
-		{
-			this._out = new PIXI.Point(x, y);
-		}
+			this._out = new PIXI.ObservablePoint(onMove, scope, x, y);
 	}
 
 	/**
 	* getOut
 	* This function is a getter for the member _out.
-	* @return  {PIXI.Point} The PIXI Object used by this object. 
+	* @return  {PIXI.ObservablePoint} The PIXI Object used by this object. 
 	*/
 	getOut()
 	{
@@ -74,7 +72,7 @@ Point = class Point
 	/**
 	* setY
 	* This function is a setter for the member y.
-	* @param  {Number}	y 	 Position of the point on the y axis. 
+	* @param  {Number} 	y  Position of the point on the y axis. 
 	*/
 	setY(y)
 	{
@@ -84,8 +82,8 @@ Point = class Point
 	/**
 	* set
 	* This function is a setter for the members x and y.
-	* @param  {Number} 	x 	 Position of the point on the x axis. 
-	* @param  {Number} 	y 	 Position of the point on the y axis.
+	* @param  {Number}	x 	Position of the point on the x axis. 
+	* @param  {Number}	y 	Position of the point on the y axis.
 	*/
 	set(x, y)
 	{
@@ -94,37 +92,18 @@ Point = class Point
 	}
 
 	/**
-	* clone
-	* This function is used in order to clone this Point.
-	* @return {Point} A copy of this Point. 
-	*/
-	clone()
-	{
-		return new Point(this._out.clone());
-	}
-
-	/**
 	* copy
-	* This function is used in order to copy the given Point.
-	* @param {Point} 	point 	 The Point to copy. 
+	* This function is used in order to copy the given ObservablePoint.
+	* @param {ObservablePoint}	point 	The ObservablePoint to copy. 
+	* @param {Point}	point 	The Point to copy. 
 	*/
 	copy(point)
 	{
 		this._out.copy(point.getOut());
 	}
-
-	/**
-	* equals
-	* This function is used in order to know if the given Point is equal to this Point.
-	* @return {Boolean} True if the points are equals. 
-	*/
-	equals(point)
-	{
-		return this._out.equals(point.getOut());
-	}
 }
 
 module.exports = 
 {
-	Point: Point,
+	ObservablePoint: ObservablePoint,
 };
