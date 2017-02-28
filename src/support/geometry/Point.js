@@ -10,11 +10,11 @@
 |
 */
 
-Point = class Point
+class Point
 {
 	/**
 	* constructor
-	* This function is used in order to build a Buffer.
+	* This function is used in order to build a Point.
 	* @param   {Number}   x         Position of the point on the x axis.
 	* @param   {Number}   y         Position of the point on the y axis
 	* @param   {PIXI.Point}   x         The Pixi object to build the HandyPixi object.
@@ -22,9 +22,23 @@ Point = class Point
 	constructor(x, y)
 	{
 		if (x instanceof PIXI.Point)
+		{
 			this._out = x;
+		}
 		else 
+		{
 			this._out = new PIXI.Point(x, y);
+		}
+	}
+
+	/**
+	* getOut
+	* This function is a getter for the member _out.
+	* @return  {PIXI.Point} The PIXI Object used by this object. 
+	*/
+	getOut()
+	{
+		return this._out;
 	}
 
 	/**
@@ -40,7 +54,7 @@ Point = class Point
 	/**
 	* setX
 	* This function is a setter for the member x.
-	* @param  {Number} Position of the point on the x axis. 
+	* @param  {Number} 	x 	 Position of the point on the x axis. 
 	*/
 	setX(x)
 	{
@@ -60,7 +74,7 @@ Point = class Point
 	/**
 	* setY
 	* This function is a setter for the member y.
-	* @param  {Number} Position of the point on the y axis. 
+	* @param  {Number}	y 	 Position of the point on the y axis. 
 	*/
 	setY(y)
 	{
@@ -70,8 +84,8 @@ Point = class Point
 	/**
 	* set
 	* This function is a setter for the members x and y.
-	* @param  {Number} Position of the point on the x axis. 
-	* @param  {Number} Position of the point on the y axis.
+	* @param  {Number} 	x 	 Position of the point on the x axis. 
+	* @param  {Number} 	y 	 Position of the point on the y axis.
 	*/
 	set(x, y)
 	{
@@ -86,28 +100,27 @@ Point = class Point
 	*/
 	clone()
 	{
-		return new Point(this._out);
+		return new Point(this._out.clone());
 	}
 
 	/**
 	* copy
 	* This function is used in order to copy the given Point.
-	* @param {Point} The Point to copy. 
+	* @param {Point} 	point 	 The Point to copy. 
 	*/
 	copy(point)
 	{
-		this._out.x = point.getX();
-		this._out.y = point.getY();
+		this._out.copy(point.getOut());
 	}
 
 	/**
 	* equals
 	* This function is used in order to know if the given Point is equal to this Point.
-	* @param {Boolean} True if the points are equals. 
+	* @return {Boolean} True if the points are equals. 
 	*/
 	equals(point)
 	{
-		return (point.getX() == this.getX() &&  point.getY() == this.getY());
+		return this._out.equals(point.getOut());
 	}
 }
 
