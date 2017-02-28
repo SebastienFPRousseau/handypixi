@@ -124,7 +124,6 @@ Point = class Point
 	}
 }
 
-module.exports = 
-{
+module.exports = {
 	Point: Point,
 };
