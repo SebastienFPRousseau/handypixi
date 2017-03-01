@@ -113,8 +113,8 @@ ObservablePoint = class ObservablePoint
 		if ({}.toString.call(y) !== "[object Number]")
 			throw new TypeError("y must be a number.");
 
-		this._out.x = x;
-		this._out.y = y;
+		this.setX(x);
+		this.setY(y);
 	}
 
 	/**

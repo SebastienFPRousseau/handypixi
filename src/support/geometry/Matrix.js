@@ -38,11 +38,11 @@ Matrix = class Matrix
 		}
 		else 
 		{
-			params.forEach(function(element)
+			for(let i = 0; i < 4; i++)
 			{
-				if ({}.toString.call(element) !== "[object Number]")
+				if ({}.toString.call(params[i]) !== "[object Number]")
 					throw new TypeError("params must be an array of numbers.");
-			});
+			}
 
 			this._out = new PIXI.Matrix(params[0], params[1], params[2], params[3], tx, ty);
 		}
