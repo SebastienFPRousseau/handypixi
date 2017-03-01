@@ -38,7 +38,7 @@ Matrix = class Matrix
 		}
 		else 
 		{
-			for(let i = 0; i < 4; i++)
+			for(let i = 0; l = params.length; i < l; i++)
 			{
 				if ({}.toString.call(params[i]) !== "[object Number]")
 					throw new TypeError("params must be an array of numbers.");

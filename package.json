@@ -1,0 +1,22 @@
+{
+  "name": "handypixi",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/handypixi.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/M4dNation/handypixi.git"
+  },
+  "author": "m4dnation",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/M4dNation/handypixi/issues"
+  },
+  "homepage": "https://github.com/M4dNation/handypixi#readme",
+  "dependencies": {
+    "pixi.js": "^4.4.0"
+  }
+}

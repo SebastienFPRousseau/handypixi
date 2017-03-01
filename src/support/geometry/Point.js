@@ -102,12 +102,6 @@ Point = class Point
 	*/
 	set(x, y)
 	{
-		if ({}.toString.call(x) !== "[object Number]")
-			throw new TypeError("x must be a number.");
-
-		if ({}.toString.call(y) !== "[object Number]")
-			throw new TypeError("y must be a number.");
-
 		this.setX(x);
 		this.setY(y);
 	}
