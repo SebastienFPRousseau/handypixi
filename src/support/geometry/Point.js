@@ -21,14 +21,14 @@ Point = class Point
 	*/
 	constructor(x = 0, y = 0)
 	{
-		if (typeof y != "number")
+		if ({}.toString.call(y) !== "[object Number]")
 			throw new TypeError("y must be a number.");
 
 		if (x instanceof PIXI.Point)
 		{
 			this._out = x;
 		}
-		else if (typeof x != "number")
+		else if ({}.toString.call(x) !== "[object Number]")
 		{
 			throw new TypeError("x must be a number.");
 		}
@@ -65,7 +65,7 @@ Point = class Point
 	*/
 	setX(x)
 	{
-		if (typeof x != "number")
+		if ({}.toString.call(x) !== "[object Number]")
 			throw new TypeError("x must be a number.");
 
 		this._out.x = x;
@@ -88,7 +88,7 @@ Point = class Point
 	*/
 	setY(y)
 	{
-		if (typeof y != "number")
+		if ({}.toString.call(y) !== "[object Number]")
 			throw new TypeError("y must be a number.");
 
 		this._out.y = y;
@@ -102,10 +102,10 @@ Point = class Point
 	*/
 	set(x, y)
 	{
-		if (typeof x != "number")
+		if ({}.toString.call(x) !== "[object Number]")
 			throw new TypeError("x must be a number.");
-		
-		if (typeof y != "number")
+
+		if ({}.toString.call(y) !== "[object Number]")
 			throw new TypeError("y must be a number.");
 
 		this._out.x = x;

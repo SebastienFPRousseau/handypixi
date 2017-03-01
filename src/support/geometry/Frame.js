@@ -23,7 +23,7 @@ Frame = class Frame
 		if (!(point instanceof Texture))
 			throw new TypeError("texture must be a Texture.");
 
-		if (typeof time != "number")
+		if ({}.toString.call(time) !== "[object Number]")
 			throw new TypeError("time must be a number.");
 
 		this._out = 
@@ -52,7 +52,7 @@ Frame = class Frame
 	{
 		if (!(point instanceof Texture))
 			throw new TypeError("texture must be a Texture.");
-		
+
 		this._out.texture = texture;
 	}
 
@@ -73,7 +73,7 @@ Frame = class Frame
 	*/
 	setTime(time)
 	{
-		if (typeof time != "number")
+		if ({}.toString.call(time) !== "[object Number]")
 			throw new TypeError("time must be a number.");
 
 		this._out.time = time;

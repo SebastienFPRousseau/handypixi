@@ -22,10 +22,10 @@ Matrix = class Matrix
 	*/
 	constructor(params = [1, 0, 0, 1], tx = 0, ty = 0)
 	{
-		if (typeof tx != "number")
+		if ({}.toString.call(tx) !== "[object Number]")
 			throw new TypeError("tx must be a number.");
 
-		if (typeof ty != "number")
+		if ({}.toString.call(ty) !== "[object Number]")
 			throw new TypeError("ty must be a number.");
 
 		if (params instanceof PIXI.Matrix)
@@ -40,7 +40,7 @@ Matrix = class Matrix
 		{
 			params.forEach(function(element)
 			{
-				if (typeof element != "number")
+				if ({}.toString.call(element) !== "[object Number]")
 					throw new TypeError("params must be an array of numbers.");
 			});
 
