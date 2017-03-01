@@ -20,6 +20,12 @@ Frame = class Frame
 	*/
 	constructor(texture, time)
 	{
+		if (!(point instanceof Texture))
+			throw new TypeError("texture must be a Texture.");
+
+		if (typeof time != "number")
+			throw new TypeError("time must be a number.");
+
 		this._out = 
 		{
 			texture: texture,
@@ -44,6 +50,9 @@ Frame = class Frame
 	*/
 	setTexture(texture)
 	{
+		if (!(point instanceof Texture))
+			throw new TypeError("texture must be a Texture.");
+		
 		this._out.texture = texture;
 	}
 
@@ -64,6 +73,9 @@ Frame = class Frame
 	*/
 	setTime(time)
 	{
+		if (typeof time != "number")
+			throw new TypeError("time must be a number.");
+
 		this._out.time = time;
 	}
 }

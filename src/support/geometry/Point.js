@@ -19,13 +19,20 @@ Point = class Point
 	* @param   {Number}   y         Position of the point on the y axis
 	* @param   {PIXI.Point}   x         The Pixi object to build the HandyPixi object.
 	*/
-	constructor(x, y)
+	constructor(x = 0, y = 0)
 	{
+		if (typeof y != "number")
+			throw new TypeError("y must be a number.");
+
 		if (x instanceof PIXI.Point)
 		{
 			this._out = x;
 		}
-		else 
+		else if (typeof x != "number")
+		{
+			throw new TypeError("x must be a number.");
+		}
+		else
 		{
 			this._out = new PIXI.Point(x, y);
 		}
@@ -58,6 +65,9 @@ Point = class Point
 	*/
 	setX(x)
 	{
+		if (typeof x != "number")
+			throw new TypeError("x must be a number.");
+
 		this._out.x = x;
 	}
 
@@ -78,6 +88,9 @@ Point = class Point
 	*/
 	setY(y)
 	{
+		if (typeof y != "number")
+			throw new TypeError("y must be a number.");
+
 		this._out.y = y;
 	}
 
@@ -89,6 +102,12 @@ Point = class Point
 	*/
 	set(x, y)
 	{
+		if (typeof x != "number")
+			throw new TypeError("x must be a number.");
+		
+		if (typeof y != "number")
+			throw new TypeError("y must be a number.");
+
 		this._out.x = x;
 		this._out.y = y;
 	}
@@ -110,7 +129,10 @@ Point = class Point
 	*/
 	copy(point)
 	{
-		this._out.copy(point.getOut());
+		if (!(point instanceof Point))
+			throw new TypeError("point must be a Point.");
+
+		this._out.copy(point.getOut());	
 	}
 
 	/**
@@ -120,6 +142,9 @@ Point = class Point
 	*/
 	equals(point)
 	{
+		if (!(point instanceof Point))
+			throw new TypeError("point must be a Point.");
+
 		return this._out.equals(point.getOut());
 	}
 }

@@ -21,12 +21,29 @@ ObservablePoint = class ObservablePoint
 	* @param   {Number}   y         Position of the point on the y axis
 	* @param   {PIXI.ObservablePoint}   onMove         The Pixi object to build the HandyPixi object.
 	*/
-	constructor(onMove, scope, x, y)
+	constructor(onMove, scope = this, x = 0, y = 0)
 	{
+		if (typeof scope != "object")
+			throw new TypeError("scope must be an object.");
+
+		if (typeof x != "number")
+			throw new TypeError("x must be a number.");
+
+		if (typeof y != "number")
+			throw new TypeError("y must be a number.");
+
 		if (onMove instanceof PIXI.ObservablePoint)
+		{
 			this._out = onMove;
+		}
+		else if(typeof onMove != "function")
+		{
+			throw new TypeError("onMove must be a function.");
+		}
 		else 
+		{
 			this._out = new PIXI.ObservablePoint(onMove, scope, x, y);
+		}
 	}
 
 	/**
@@ -56,6 +73,9 @@ ObservablePoint = class ObservablePoint
 	*/
 	setX(x)
 	{
+		if (typeof x != "number")
+			throw new TypeError("x must be a number.");
+
 		this._out.x = x;
 	}
 
@@ -76,6 +96,9 @@ ObservablePoint = class ObservablePoint
 	*/
 	setY(y)
 	{
+		if (typeof y != "number")
+			throw new TypeError("y must be a number.");
+
 		this._out.y = y;
 	}
 
@@ -87,6 +110,12 @@ ObservablePoint = class ObservablePoint
 	*/
 	set(x, y)
 	{
+		if (typeof x != "number")
+			throw new TypeError("x must be a number.");
+
+		if (typeof y != "number")
+			throw new TypeError("y must be a number.");
+
 		this._out.x = x;
 		this._out.y = y;
 	}
@@ -99,6 +128,9 @@ ObservablePoint = class ObservablePoint
 	*/
 	copy(point)
 	{
+		if (!(point instanceof Point || point instanceof ObservablePoint))
+			throw new TypeError("point must be a Point or an ObservablePoint.");
+
 		this._out.copy(point.getOut());
 	}
 }

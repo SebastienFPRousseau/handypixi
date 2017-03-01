@@ -22,12 +22,28 @@ Matrix = class Matrix
 	*/
 	constructor(params = [1, 0, 0, 1], tx = 0, ty = 0)
 	{
+		if (typeof tx != "number")
+			throw new TypeError("tx must be a number.");
+
+		if (typeof ty != "number")
+			throw new TypeError("ty must be a number.");
+
 		if (params instanceof PIXI.Matrix)
 		{
 			this._out = params;
 		}
+		else if (!Array.isArray(params) || params.length != 4)
+		{
+			throw new TypeError("params must be an array, its length must be four.");
+		}
 		else 
 		{
+			params.forEach(function(element)
+			{
+				if (typeof element != "number")
+					throw new TypeError("params must be an array of numbers.");
+			});
+
 			this._out = new PIXI.Matrix(params[0], params[1], params[2], params[3], tx, ty);
 		}
 	}
