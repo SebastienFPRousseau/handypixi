@@ -52,7 +52,7 @@ class Matrix
 	* This function is a getter for the member _out.
 	* @return  {PIXI.Matrix} The PIXI Object used by this object. 
 	*/
-	getOut()
+	get out()
 	{
 		return this._out;
 	}
@@ -68,7 +68,7 @@ class Matrix
 		if (matrix instanceof Matrix)
 			throw new TypeError("matrix must be a Matrix.");
 
-		this._out.append(matrix.getOut());
+		this._out.append(matrix.out);
 		return this;
 	}
 
@@ -87,7 +87,7 @@ class Matrix
 		if (resultingPoint instanceof Point)
 			throw new TypeError("resultingPoint must be a Point.");
 
-		resultingPoint = new Point(this._out.apply(point.getOut()));
+		resultingPoint = new Point(this._out.apply(point.out));
 
 		return resultingPoint;
 	}
@@ -107,7 +107,7 @@ class Matrix
 		if (resultingPoint instanceof Point)
 			throw new TypeError("resultingPoint must be a Point.");
 
-		resultingPoint = new Point(this._out.applyInverse(point.getOut()));
+		resultingPoint = new Point(this._out.applyInverse(point.out));
 
 		return resultingPoint;
 	}
@@ -132,7 +132,7 @@ class Matrix
 		if (!(matrix instanceof Matrix))
 			throw new TypeError("matrix must be a Matrix.");
 
-		this._out.copy(matrix.getOut());	
+		this._out.copy(matrix.out);	
 	}
 
 	/**
@@ -147,11 +147,11 @@ class Matrix
 	{
 		if (transform instanceof Transform)
 		{
-			transform = new Transform(this._out.decompose(transform.getOut()));
+			transform = new Transform(this._out.decompose(transform.out));
 		}
 		else if (transform instanceof TransformStatic)
 		{
-			transform = new TransformStatic(this._out.decompose(transform.getOut()));
+			transform = new TransformStatic(this._out.decompose(transform.out));
 		}
 		else
 		{
@@ -220,7 +220,7 @@ class Matrix
 		if (matrix instanceof Matrix)
 			throw new TypeError("matrix must be a Matrix.");
 
-		this._out.prepend(matrix.getOut());
+		this._out.prepend(matrix.out);
 		return this;
 	}
 
@@ -299,31 +299,31 @@ class Matrix
 		if (typeof transform !== "object" && {}.toString.call(transform) !== "[object Object]")
 			throw new TypeError("transform must be an Object.");
 
-		if ( transform.x === undefined || {}.toString.call(transform.x) !== "[object Number]")
+		if ({}.toString.call(transform.x) !== "[object Number]")
 			throw new TypeError("transform.x must exist and be a number.");
 
-		if ( transform.y === undefined || {}.toString.call(transform.y) !== "[object Number]")
+		if ({}.toString.call(transform.y) !== "[object Number]")
 			throw new TypeError("transform.y must exist and be a number.");
 
-		if ( transform.pivotX === undefined || {}.toString.call(transform.pivotX) !== "[object Number]")
+		if ({}.toString.call(transform.pivotX) !== "[object Number]")
 			throw new TypeError("transform.pivotX must exist and be a number.");
 
-		if ( transform.pivotY === undefined || {}.toString.call(transform.pivotY) !== "[object Number]")
+		if ({}.toString.call(transform.pivotY) !== "[object Number]")
 			throw new TypeError("transform.pivotY must exist and be a number.");
 
-		if ( transform.scaleX === undefined || {}.toString.call(transform.scaleX) !== "[object Number]")
+		if ({}.toString.call(transform.scaleX) !== "[object Number]")
 			throw new TypeError("transform.scaleX must exist and be a number.");
 
-		if ( transform.scaleY === undefined || {}.toString.call(transform.scaleY) !== "[object Number]")
+		if ({}.toString.call(transform.scaleY) !== "[object Number]")
 			throw new TypeError("transform.scaleY must exist and be a number.");
 
-		if ( transform.skewX === undefined || {}.toString.call(transform.skewX) !== "[object Number]")
+		if ({}.toString.call(transform.skewX) !== "[object Number]")
 			throw new TypeError("transform.skewX must exist and be a number.");
 
-		if ( transform.skewY === undefined || {}.toString.call(transform.skewY) !== "[object Number]")
+		if ({}.toString.call(transform.skewY) !== "[object Number]")
 			throw new TypeError("transform.skewY must exist and be a number.");
 
-		if ( transform.rotation === undefined || {}.toString.call(transform.rotation) !== "[object Number]")
+		if ({}.toString.call(transform.rotation) !== "[object Number]")
 			throw new TypeError("transform.rotation must exist and be a number.");
 
 		this._out.setTransform(transform.x, transform.y, 

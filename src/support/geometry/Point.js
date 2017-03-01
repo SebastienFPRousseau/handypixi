@@ -43,7 +43,7 @@ class Point
 	* This function is a getter for the member _out.
 	* @return  {PIXI.Point} The PIXI Object used by this object. 
 	*/
-	getOut()
+	get out()
 	{
 		return this._out;
 	}
@@ -126,7 +126,7 @@ class Point
 		if (!(point instanceof Point))
 			throw new TypeError("point must be a Point.");
 
-		this._out.copy(point.getOut());	
+		this._out.copy(point.out);	
 	}
 
 	/**
@@ -139,7 +139,7 @@ class Point
 		if (!(point instanceof Point))
 			throw new TypeError("point must be a Point.");
 
-		return this._out.equals(point.getOut());
+		return this._out.equals(point.out);
 	}
 }
 

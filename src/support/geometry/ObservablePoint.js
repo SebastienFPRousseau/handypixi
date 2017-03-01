@@ -48,7 +48,7 @@ class ObservablePoint
 	* This function is a getter for the member _out.
 	* @return  {PIXI.ObservablePoint} The PIXI Object used by this object. 
 	*/
-	getOut()
+	get out()
 	{
 		return this._out;
 	}
