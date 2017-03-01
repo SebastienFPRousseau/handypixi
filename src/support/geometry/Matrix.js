@@ -38,12 +38,11 @@ Matrix = class Matrix
 		}
 		else 
 		{
-			for(let i = 0; l = params.length; i < l; i++)
+			for(let i = 0; i < params.length; i++)
 			{
 				if ({}.toString.call(params[i]) !== "[object Number]")
 					throw new TypeError("params must be an array of numbers.");
 			}
-
 			this._out = new PIXI.Matrix(params[0], params[1], params[2], params[3], tx, ty);
 		}
 	}
@@ -78,74 +77,143 @@ Matrix = class Matrix
 
 	/**
 	 * append
-	 * This function is used in order to
+	 * This function is used in order to append the given Matrix to this Matrix.
+	 * @param {Matrix}	matrix 	The matrix to append.
+	 * @return {Matrix} This Matrix. Good for chaining method calls.
 	 */
-	append()
+	append(matrix)
 	{
+		if (matrix instanceof Matrix)
+			throw new TypeError("matrix must be a Matrix.");
 
+		this._out.append(matrix.getOut());
+		return this;
 	}
 
 	/**
 	 * apply
-	 * This function is used in order to
+	 * This function is used in order to apply this Matrix to a point.
+	 * @param {Point}	point  The origin.
+	 * @param {Point}	resultingPoint The container point for the result.
+	 * @return {Point} The new point, transformed through this matrix.
 	 */
-	apply()
+	apply(point, resultingPoint)
 	{
+		if (point instanceof Point)
+			throw new TypeError("point must be a Point.");
 
+		if (resultingPoint instanceof Point)
+			throw new TypeError("resultingPoint must be a Point.");
+
+		resultingPoint = new Point(this._out.apply(point.getOut()));
+
+		return resultingPoint;
 	}
 
 	/**
 	 * applyInverse
-	 * This function is used in order to
+	 * This function is used in order to inverse-apply this Matrix to a point.
+	 * @param {Point}	point  The origin.
+	 * @param {Point}	resultingPoint The container point for the result.
+	 * @return {Point} The new point, inverse-transformed through this matrix.
 	 */
-	applyInverse()
+	applyInverse(point, resultingPoint)
 	{
+		if (point instanceof Point)
+			throw new TypeError("point must be a Point.");
 
+		if (resultingPoint instanceof Point)
+			throw new TypeError("resultingPoint must be a Point.");
+
+		resultingPoint = new Point(this._out.applyInverse(point.getOut()));
+
+		return resultingPoint;
 	}
 
 	/**
-	 * clone
-	 * This function is used in order to
-	 */
+	* clone
+	* This function is used in order to clone this Matrix.
+	* @return {Matrix} A copy of this Matrix. 
+	*/
 	clone()
 	{
-
+		return new Matrix(this._out.clone());
 	}
 
 	/**
-	 * copy
-	 * This function is used in order to
-	 */
-	copy()
+	* copy
+	* This function is used in order to copy this matrix into the given Matrix.
+	* @param {Matrix} 	point 	 The Matrix to change. 
+	*/
+	copy(matrix)
 	{
+		if (!(matrix instanceof Matrix))
+			throw new TypeError("matrix must be a Matrix.");
 
+		this._out.copy(matrix.getOut());	
 	}
 
 	/**
 	 * decompose
-	 * This function is used in order to
+	 * This function is used in order to decompose the matrix into a transform. 
+	 * @param {Transform}  transform  The transform to apply the properties to.
+	 * @param {TransformStatic}  transform  The transform to apply the properties to.
+	 * @return {Transform|TransformStatic} The transform with the newly applied properties.
+	 * 
 	 */
-	decompose()
+	decompose(transform)
 	{
+		if (transform instanceof Transform)
+		{
+			transform = new Transform(this._out.decompose(transform.getOut()));
+		}
+		else if (transform instanceof TransformStatic)
+		{
+			transform = new TransformStatic(this._out.decompose(transform.getOut()));
+		}
+		else
+		{
+			throw new TypeError("transform must be a Transform or a TransformStatic.");
+		}
 
+		return transform;
 	}
 
 	/**
 	 * fromArray
-	 * This function is used in order to
+	 * This function is used in order to build a matrix from an array. Care of the order :
+	 * | array[0] | array[1] | array[2]|
+	 * | array[3] | array[4] | array[5]|
+	 * | 0        | 0        | 1       |
+	 * @param {Number[6]} [varname] [description]
 	 */
-	fromArray()
+	fromArray(array)
 	{
-
+		if (!Array.isArray(array) || array.length != 6)
+		{
+			throw new TypeError("array must be an Array, its length must be four.");
+		}
+		else 
+		{
+			for(let i = 0; i < array.length; i++)
+			{
+				if ({}.toString.call(array[i]) !== "[object Number]")
+					throw new TypeError("array must be an Array of Numbers.");
+			}
+			
+			this._out.fromArray(array);
+		}
 	}
 
 	/**
 	 * identity
-	 * This function is used in order to
+	 * This function is used in order to reset this Matrix to an identity matrix.
+	 * @return {Matrix} This Matrix. Good for chaining method calls.
 	 */
 	identity()
 	{
-
+		this._out.identity();
+		return this;
 	}
 
 	/**

@@ -113,8 +113,8 @@ ObservablePoint = class ObservablePoint
 
 	/**
 	* copy
-	* This function is used in order to copy the given ObservablePoint.
-	* @param {ObservablePoint}	point 	The ObservablePoint to copy. 
+	* This function is used in order to copy this ObservablePoint into the given ObservablePoint.
+	* @param {ObservablePoint}	point 	The ObservablePoint to change. 
 	* @param {Point}	point 	The Point to copy. 
 	*/
 	copy(point)

@@ -118,8 +118,8 @@ Point = class Point
 
 	/**
 	* copy
-	* This function is used in order to copy the given Point.
-	* @param {Point} 	point 	 The Point to copy. 
+	* This function is used in order to copy this Point into the given Point.
+	* @param {Point} 	point 	 The Point to change. 
 	*/
 	copy(point)
 	{
