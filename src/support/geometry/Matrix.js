@@ -10,7 +10,7 @@
 |
 */
 
-Matrix = class Matrix
+class Matrix
 {
 	/**
 	* constructor
@@ -38,7 +38,7 @@ Matrix = class Matrix
 		}
 		else 
 		{
-			for(let i = 0; i < params.length; i++)
+			for(let i = 0, l = params.length; i < l; i++)
 			{
 				if ({}.toString.call(params[i]) !== "[object Number]")
 					throw new TypeError("params must be an array of numbers.");
@@ -55,24 +55,6 @@ Matrix = class Matrix
 	getOut()
 	{
 		return this._out;
-	}
-
-	/**
-	 * getAt
-	 * This function is used in order to
-	 */
-	getAt()
-	{
-
-	}
-
-	/**
-	 * setAt
-	 * This function is used in order to
-	 */
-	setAt()
-	{
-
 	}
 
 	/**
@@ -191,11 +173,11 @@ Matrix = class Matrix
 	{
 		if (!Array.isArray(array) || array.length != 6)
 		{
-			throw new TypeError("array must be an Array, its length must be four.");
+			throw new TypeError("array must be an Array, its length must be six.");
 		}
 		else 
 		{
-			for(let i = 0; i < array.length; i++)
+			for(let i = 0, l = array.length; i < l; i++)
 			{
 				if ({}.toString.call(array[i]) !== "[object Number]")
 					throw new TypeError("array must be an Array of Numbers.");
@@ -218,74 +200,173 @@ Matrix = class Matrix
 
 	/**
 	 * invert
-	 * This function is used in order to
+	 * This function is used in order to invert this Matrix
+	 * @return {Matrix} This Matrix. Good for chaining method calls.
 	 */
 	invert()
 	{
-
+		this._out.invert();
+		return this;
 	}
 
 	/**
 	 * prepend
-	 * This function is used in order to
+	 * This function is used in order to prepend the given Matrix to this Matrix.
+	 * @param {Matrix}	matrix 	The matrix to prepend.
+	 * @return {Matrix} This Matrix. Good for chaining method calls.
 	 */
-	prepend()
+	prepend(matrix)
 	{
+		if (matrix instanceof Matrix)
+			throw new TypeError("matrix must be a Matrix.");
 
+		this._out.prepend(matrix.getOut());
+		return this;
 	}
 
 	/**
 	 * rotate
-	 * This function is used in order to
+	 * This function is used in order to apply a rotation transformation to this matrix.
+	 * @param {Number} angle The angle in radians.
+	 * @return {Matrix} This Matrix. Good for chaining method calls.
 	 */
-	rotate()
+	rotate(angle)
 	{
+		if ({}.toString.call(angle) !== "[object Number]")
+			throw new TypeError("angle must be a number.");
 
+		this._out.rotate(angle);
+		return this;
 	}
 
 	/**
 	 * scale
-	 * This function is used in order to
+	 * This function is used in order to apply a scale transformation to this matrix.
+	 * @param {Number} x The amount to scale horizontally
+	 * @param {Number} y The amount to scale vertically 
+	 * @return {Matrix} This Matrix. Good for chaining method calls.
 	 */
-	scale()
+	scale(x, y)
 	{
+		if ({}.toString.call(x) !== "[object Number]")
+			throw new TypeError("x must be a number.");
 
+		if ({}.toString.call(y) !== "[object Number]")
+			throw new TypeError("y must be a number.");
+
+		this._out.scale(x,y);
+		return this; 
 	}
 
 	/**
 	 * set
-	 * This function is used in order to
+	 * This function is used in order to set matrix properties. 
+	 * @param   {Number[4]}   params         X scale, y skew, x skew, y scale.
+	 * @param   {Number}   tx         X translation.
+	 * @param   {Number}   ty         Y translation.
+	 * @param   {PIXI.Matrix}   params         The Pixi object to build the HandyPixi object.
+	 * @return {Matrix} This Matrix. Good for chaining method calls.
 	 */
-	set()
+	set(params = [1, 0, 0, 1], tx = 0, ty = 0)
 	{
+		if ({}.toString.call(tx) !== "[object Number]")
+			throw new TypeError("tx must be a number.");
 
+		if ({}.toString.call(ty) !== "[object Number]")
+			throw new TypeError("ty must be a number.");
+
+		if (!Array.isArray(params) || params.length != 4)
+			throw new TypeError("params must be an array, its length must be four.");
+
+		for(let i = 0, l = params.length; i < l; i++)
+		{
+			if ({}.toString.call(params[i]) !== "[object Number]")
+				throw new TypeError("params must be an array of numbers.");
+		}
+		this._out.set(params[0], params[1], params[2], params[3], tx, ty);
+
+		return this;
 	}
 
 	/**
 	 * setTransform
-	 * This function is used in order to
+	 * This function is used in order to sets the matrix based on all available properties.
+	 * @param {Object} transform Contains properties x, y, pivotX, pivotY, scaleX, scaleY, rotation, skewX, skewY to set the matrix.
+	 * @return {Matrix} This Matrix. Good for chaining method calls.
 	 */
-	setTransform()
+	setTransform(transform)
 	{
+		if (typeof transform !== "object" && {}.toString.call(transform) !== "[object Object]")
+			throw new TypeError("transform must be an Object.");
 
+		if ( transform.x === undefined || {}.toString.call(transform.x) !== "[object Number]")
+			throw new TypeError("transform.x must exist and be a number.");
+
+		if ( transform.y === undefined || {}.toString.call(transform.y) !== "[object Number]")
+			throw new TypeError("transform.y must exist and be a number.");
+
+		if ( transform.pivotX === undefined || {}.toString.call(transform.pivotX) !== "[object Number]")
+			throw new TypeError("transform.pivotX must exist and be a number.");
+
+		if ( transform.pivotY === undefined || {}.toString.call(transform.pivotY) !== "[object Number]")
+			throw new TypeError("transform.pivotY must exist and be a number.");
+
+		if ( transform.scaleX === undefined || {}.toString.call(transform.scaleX) !== "[object Number]")
+			throw new TypeError("transform.scaleX must exist and be a number.");
+
+		if ( transform.scaleY === undefined || {}.toString.call(transform.scaleY) !== "[object Number]")
+			throw new TypeError("transform.scaleY must exist and be a number.");
+
+		if ( transform.skewX === undefined || {}.toString.call(transform.skewX) !== "[object Number]")
+			throw new TypeError("transform.skewX must exist and be a number.");
+
+		if ( transform.skewY === undefined || {}.toString.call(transform.skewY) !== "[object Number]")
+			throw new TypeError("transform.skewY must exist and be a number.");
+
+		if ( transform.rotation === undefined || {}.toString.call(transform.rotation) !== "[object Number]")
+			throw new TypeError("transform.rotation must exist and be a number.");
+
+		this._out.setTransform(transform.x, transform.y, 
+							   transform.pivotX, transform.pivotY, 
+							   transform.scaleX, transform.scaleY, 
+							   transform.rotation, 
+							   transform.skewX, transform.skewY);
+		return this;
 	}
 
 	/**
 	 * toArray
-	 * This function is used in order to
+	 * This function is used in order to create an array from this Matrix.
+	 * @param {Boolean} transpose Whether we need to transpose the matrix or not.
+	 * @param {Number[9]} out If provided the array will be assigned to out.
+	 * @return {Number[9]} The newly created array which contains the matrix.
 	 */
-	toArray()
+	toArray(transpose, out = [])
 	{
+		if ({}.toString.call(transpose) !== "[object Boolean]")
+			throw new TypeError("transpose must be a Boolean.");
 
+		out = this._out.toArray(transpose);
+		return out;
 	}
 
 	/**
 	 * translate
-	 * This function is used in order to
+	 * This function is used in order to apply a translate transformation to this matrix.
+	 * @param {Number} x How much to translate horizontally
+	 * @param {Number} y How much to translate vertically 
+	 * @return {Matrix} This Matrix. Good for chaining method calls.
 	 */
-	translate()
+	translate(x, y)
 	{
+		if ({}.toString.call(x) !== "[object Number]")
+			throw new TypeError("x must be a number.");
 
+		if ({}.toString.call(y) !== "[object Number]")
+			throw new TypeError("y must be a number.");
+
+		this._out.translate(x,y);
+		return this; 
 	}
 }
 

@@ -10,7 +10,7 @@
 |
 */
 
-Frame = class Frame
+class Frame
 {
 	/**
 	* constructor
@@ -38,7 +38,7 @@ Frame = class Frame
 	* This function is a getter for the member texture.
 	* @return  {Texture} The Texture of the frame. 
 	*/
-	getTexture()
+	get texture()
 	{
 		return this._out.texture;
 	}
@@ -48,7 +48,7 @@ Frame = class Frame
 	* This function is a setter for the member texture.
 	* @param  {Texture} 	texture 	 The Texture of the frame. 
 	*/
-	setTexture(texture)
+	set texture(texture)
 	{
 		if (!(point instanceof Texture))
 			throw new TypeError("texture must be a Texture.");
@@ -61,7 +61,7 @@ Frame = class Frame
 	* This function is a getter for the member time.
 	* @return  {Number} The duration of the frame in ms. 
 	*/
-	getTime()
+	get time()
 	{
 		return this._out.time;
 	}
@@ -71,7 +71,7 @@ Frame = class Frame
 	* This function is a setter for the member time.
 	* @param  {Number}	time 	 The duration of the frame in ms. 
 	*/
-	setTime(time)
+	set time(time)
 	{
 		if ({}.toString.call(time) !== "[object Number]")
 			throw new TypeError("time must be a number.");

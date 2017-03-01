@@ -1,9 +1,9 @@
 require("pixi.js");
-require("./support/support.js");
+const Support = require("./support/support.js");
 
 module.exports = {
-    Point: Point,
-    ObservablePoint: ObservablePoint,
-    Frame: Frame,
-    Matrix: Matrix,
+    Point: Support.Point,
+    ObservablePoint: Support.ObservablePoint,
+    Frame: Support.Frame,
+    Matrix: Support.Matrix,
 };

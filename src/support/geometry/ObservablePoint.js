@@ -10,7 +10,7 @@
 |
 */
 
-ObservablePoint = class ObservablePoint
+class ObservablePoint
 {
 	/**
 	* constructor
@@ -58,7 +58,7 @@ ObservablePoint = class ObservablePoint
 	* This function is a getter for the member x.
 	* @return  {Number} Position of the point on the x axis. 
 	*/
-	getX()
+	get x()
 	{
 		return this._out.x;
 	}
@@ -68,7 +68,7 @@ ObservablePoint = class ObservablePoint
 	* This function is a setter for the member x.
 	* @param  {Number} 	x 	 Position of the point on the x axis. 
 	*/
-	setX(x)
+	set x(x)
 	{
 		if ({}.toString.call(x) !== "[object Number]")
 			throw new TypeError("x must be a number.");
@@ -81,7 +81,7 @@ ObservablePoint = class ObservablePoint
 	* This function is a getter for the member y.
 	* @return  {Number} Position of the point on the y axis. 
 	*/
-	getY()
+	get y()
 	{
 		return this._out.y;
 	}
@@ -91,7 +91,7 @@ ObservablePoint = class ObservablePoint
 	* This function is a setter for the member y.
 	* @param  {Number} 	y  Position of the point on the y axis. 
 	*/
-	setY(y)
+	set y(y)
 	{
 		if ({}.toString.call(y) !== "[object Number]")
 			throw new TypeError("y must be a number.");
