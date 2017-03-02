@@ -39,7 +39,7 @@ class Point
 	}
 
 	/**
-	* getOut
+	* get out
 	* This function is a getter for the member _out.
 	* @return  {PIXI.Point} The PIXI Object used by this object. 
 	*/
@@ -49,7 +49,7 @@ class Point
 	}
 
 	/**
-	* getX
+	* get x
 	* This function is a getter for the member x.
 	* @return  {Number} Position of the point on the x axis. 
 	*/
@@ -59,7 +59,7 @@ class Point
 	}
 
 	/**
-	* setX
+	* set x
 	* This function is a setter for the member x.
 	* @param  {Number} 	x 	 Position of the point on the x axis. 
 	*/
@@ -72,7 +72,7 @@ class Point
 	}
 
 	/**
-	* getY
+	* get y
 	* This function is a getter for the member y.
 	* @return  {Number} Position of the point on the y axis. 
 	*/
@@ -82,7 +82,7 @@ class Point
 	}
 
 	/**
-	* setY
+	* set y
 	* This function is a setter for the member y.
 	* @param  {Number}	y 	 Position of the point on the y axis. 
 	*/

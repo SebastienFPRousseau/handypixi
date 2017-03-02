@@ -48,7 +48,7 @@ class Matrix
 	}
 
 	/**
-	* getOut
+	* get out
 	* This function is a getter for the member _out.
 	* @return  {PIXI.Matrix} The PIXI Object used by this object. 
 	*/
@@ -65,7 +65,7 @@ class Matrix
 	 */
 	append(matrix)
 	{
-		if (matrix instanceof Matrix)
+		if (!(matrix instanceof Matrix))
 			throw new TypeError("matrix must be a Matrix.");
 
 		this._out.append(matrix.out);
@@ -81,10 +81,10 @@ class Matrix
 	 */
 	apply(point, resultingPoint)
 	{
-		if (point instanceof Point)
+		if (!(point instanceof Point))
 			throw new TypeError("point must be a Point.");
 
-		if (resultingPoint instanceof Point)
+		if (!(resultingPoint instanceof Point))
 			throw new TypeError("resultingPoint must be a Point.");
 
 		resultingPoint = new Point(this._out.apply(point.out));
@@ -101,10 +101,10 @@ class Matrix
 	 */
 	applyInverse(point, resultingPoint)
 	{
-		if (point instanceof Point)
+		if (!(point instanceof Point))
 			throw new TypeError("point must be a Point.");
 
-		if (resultingPoint instanceof Point)
+		if (!(resultingPoint instanceof Point))
 			throw new TypeError("resultingPoint must be a Point.");
 
 		resultingPoint = new Point(this._out.applyInverse(point.out));
@@ -145,11 +145,11 @@ class Matrix
 	 */
 	decompose(transform)
 	{
-		if (transform instanceof Transform)
+		if (!(transform instanceof Transform))
 		{
 			transform = new Transform(this._out.decompose(transform.out));
 		}
-		else if (transform instanceof TransformStatic)
+		else if (!(transform instanceof TransformStatic))
 		{
 			transform = new TransformStatic(this._out.decompose(transform.out));
 		}
@@ -217,7 +217,7 @@ class Matrix
 	 */
 	prepend(matrix)
 	{
-		if (matrix instanceof Matrix)
+		if (!(matrix instanceof Matrix))
 			throw new TypeError("matrix must be a Matrix.");
 
 		this._out.prepend(matrix.out);
