@@ -8,4 +8,5 @@ module.exports = {
     Matrix: Support.Matrix,
     //Quad: Support.Quad,
     TransformBase: Support.TransformBase,
+    Transform: Support.Transform,
 };

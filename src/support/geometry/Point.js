@@ -107,8 +107,8 @@ class Point
 	*/
 	set(x, y)
 	{
-		this.setX(x);
-		this.setY(y);
+		this.x = x;
+		this.y = y;
 	}
 
 	/**

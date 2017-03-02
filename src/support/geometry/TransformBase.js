@@ -32,6 +32,17 @@ class TransformBase
 	}
 
 	/**
+	* out
+	* @getter
+	* This function is a getter for the member _out.
+	* @return  {PIXI.TransformBase} The PIXI Object used by this object. 
+	*/
+	get out()
+	{
+		return this._out;
+	}
+
+	/**
 	 * localTransform
 	 * @getter
 	 * This function is a getter for the member localTransform.
@@ -39,7 +50,7 @@ class TransformBase
 	 */
 	get localTransform()
 	{
-		return this._out.localTransform;
+		return new Matrix(this._out.localTransform);
 	}
 	
 	/**
@@ -53,24 +64,24 @@ class TransformBase
 		if (!(matrix instanceof Matrix))
 			throw new TypeError("matrix must be a Matrix.");
 
-		this._out.localTransform = matrix;
+		this._out.localTransform = matrix.out;
 	}
 
 	/**
 	 * worldTransform
 	 * @getter
-	 * This function is a getter for the member worldTransorm.
+	 * This function is a getter for the member worldTransform.
 	 * @return {Matrix} The global matrix transform.
 	 */
 	get worldTransform()
 	{
-		return this._out.worldTransform;
+		return new Matrix(this._out.worldTransform);
 	}
 	
 	/**
 	 * worldTransform
 	 * @setter
-	 * This function is a setter for the member worldTransorm.
+	 * This function is a setter for the member worldTransform.
 	 * @param {Matrix}  matrix  The global matrix transform.
 	 */
 	set worldTransform(matrix)
@@ -78,7 +89,7 @@ class TransformBase
 		if (!(matrix instanceof Matrix))
 			throw new TypeError("matrix must be a Matrix.");
 
-		this._out.worldTransform = matrix;
+		this._out.worldTransform = matrix.out;
 	}
 	
 	/**
@@ -100,7 +111,7 @@ class TransformBase
 		if (!(parent instanceof TransformBase))
 			throw new TypeError("parent must be a TransformBase.");
 
-		this._out.updateTransform(parent);
+		this._out.updateTransform(parent.out);
 	}
 }
 
