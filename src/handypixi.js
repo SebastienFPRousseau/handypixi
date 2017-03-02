@@ -9,4 +9,5 @@ module.exports = {
     //Quad: Support.Quad,
     TransformBase: Support.TransformBase,
     Transform: Support.Transform,
+    TransformStatic: Support.TransformStatic,
 };

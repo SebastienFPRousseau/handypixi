@@ -1,37 +1,36 @@
 /*
 |--------------------------------------------------------------------------
-| Transform
+| TransformStatic
 |--------------------------------------------------------------------------
 |
-| This file defines the Transform Object.
-| This object build a PIXI.Transform for HandyPixi.
+| This file defines the TransformStatic Object.
+| This object build a PIXI.TransformStatic for HandyPixi.
 | This package is based on Pixi.js and should not be externalized.
 | http://www.pixijs.com/
 |
 */
 const { Matrix } = require("./Matrix.js");
 const { TransformBase } = require("./TransformBase.js");
-const { Point } = require("./Point.js");
 const { ObservablePoint } = require("./ObservablePoint.js");
 
-class Transform extends TransformBase
+class TransformStatic extends TransformBase
 {
 
 	/**
 	 * constructor
-	 * This function is used in order to build a Transform.
-	 * @param   {PIXI.Transform}   pixiObj     The Pixi object to build the HandyPixi object.
+	 * This function is used in order to build a TransformStatic.
+	 * @param   {PIXI.TransformStatic}   pixiObj     The Pixi object to build the HandyPixi object.
 	 */
 	constructor(pixiObj = null)
 	{
 		super();
-		if (pixiObj instanceof PIXI.Transform)
+		if (pixiObj instanceof PIXI.TransformStatic)
 		{
 			this._out = pixiObj;
 		}
 		else 
 		{
-			this._out = new PIXI.Transform();
+			this._out = new PIXI.TransformStatic();
 		}
 	}
 
@@ -39,23 +38,23 @@ class Transform extends TransformBase
 	 * pivot
 	 * @getter
 	 * This function is a getter for the member pivot.
-	 * @return {Point} The pivot point of the displayObject that it rotates around.
+	 * @return {ObservablePoint} The pivot point of the displayObject that it rotates around.
 	 */
 	get pivot()
 	{
-		return new Point(this._out.pivot);
+		return new ObservablePoint(this._out.pivot);
 	}
 
 	/**
 	 * pivot
 	 * @setter
 	 * This function is a setter for the member pivot.
-	 * @param {Point}  pivot  The pivot point of the displayObject that it rotates around.
+	 * @param {ObservablePoint}  pivot  The pivot point of the displayObject that it rotates around.
 	 */
 	set pivot(pivot)
 	{
-		if (!(pivot instanceof Point))
-			throw new TypeError("pivot must be a Point.");
+		if (!(pivot instanceof ObservablePoint))
+			throw new TypeError("pivot must be an ObservablePoint.");
 
 		this._out.pivot = pivot.out;
 	}
@@ -64,23 +63,23 @@ class Transform extends TransformBase
 	 * position
 	 * @getter
 	 * This function is a getter for the member position.
-	 * @return {Point} The coordinate of the object relative to the local coordinates of the parent.
+	 * @return {ObservablePoint} The coordinate of the object relative to the local coordinates of the parent.
 	 */
 	get position()
 	{
-		return new Point(this._out.position);
+		return new ObservablePoint(this._out.position);
 	}
 
 	/**
 	 * position
 	 * @setter
 	 * This function is a setter for the member position.
-	 * @param {Point}  position  The coordinate of the object relative to the local coordinates of the parent.
+	 * @param {ObservablePoint}  position  The coordinate of the object relative to the local coordinates of the parent.
 	 */
 	set position(position)
 	{
-		if (!(position instanceof Point))
-			throw new TypeError("position must be a Point.");
+		if (!(position instanceof ObservablePoint))
+			throw new TypeError("position must be an ObservablePoint.");
 
 		this._out.position = position.out;
 	}
@@ -114,23 +113,23 @@ class Transform extends TransformBase
 	 * scale
 	 * @getter
 	 * This function is a getter for the member scale.
-	 * @return {Point} The scale factor of the object.
+	 * @return {ObservablePoint} The scale factor of the object.
 	 */
 	get scale()
 	{
-		return new Point(this._out.scale);
+		return new ObservablePoint(this._out.scale);
 	}
 	
 	/**
 	 * scale
 	 * @setter
 	 * This function is a setter for the member scale.
-	 * @param {Point}  scale  The scale factor of the object.
+	 * @param {ObservablePoint}  scale  The scale factor of the object.
 	 */
 	set scale(scale)
 	{
 		if (!(scale instanceof Point))
-			throw new TypeError("scale must be a Point.");
+			throw new TypeError("scale must be an ObservablePoint.");
 
 		this._out.scale = scale.out;
 	}
@@ -188,5 +187,5 @@ class Transform extends TransformBase
 }
 
 module.exports = {
-	Transform: Transform,
+	TransformStatic: TransformStatic,
 };
