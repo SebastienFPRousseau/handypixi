@@ -44,7 +44,8 @@ class ObservablePoint
 	}
 
 	/**
-	* get out
+	* out
+	* @getter
 	* This function is a getter for the member _out.
 	* @return  {PIXI.ObservablePoint} The PIXI Object used by this object. 
 	*/
@@ -54,7 +55,8 @@ class ObservablePoint
 	}
 
 	/**
-	* get x
+	* x
+	* @getter
 	* This function is a getter for the member x.
 	* @return  {Number} Position of the point on the x axis. 
 	*/
@@ -64,7 +66,8 @@ class ObservablePoint
 	}
 
 	/**
-	* set x
+	* x
+	* @setter
 	* This function is a setter for the member x.
 	* @param  {Number} 	x 	 Position of the point on the x axis. 
 	*/
@@ -77,7 +80,8 @@ class ObservablePoint
 	}
 
 	/**
-	* get y
+	* y
+	* @getter
 	* This function is a getter for the member y.
 	* @return  {Number} Position of the point on the y axis. 
 	*/
@@ -87,7 +91,8 @@ class ObservablePoint
 	}
 
 	/**
-	* set y
+	* y
+	* @setter
 	* This function is a setter for the member y.
 	* @param  {Number} 	y  Position of the point on the y axis. 
 	*/

@@ -48,7 +48,8 @@ class Matrix
 	}
 
 	/**
-	* get out
+	* out
+	* @getter
 	* This function is a getter for the member _out.
 	* @return  {PIXI.Matrix} The PIXI Object used by this object. 
 	*/
@@ -338,7 +339,7 @@ class Matrix
 	 * toArray
 	 * This function is used in order to create an array from this Matrix.
 	 * @param {Boolean} transpose Whether we need to transpose the matrix or not.
-	 * @param {Number[9]} out If provided the array will be assigned to out.
+	 * @param {Float32Array[9]} out If provided the array will be assigned to out.
 	 * @return {Number[9]} The newly created array which contains the matrix.
 	 */
 	toArray(transpose, out = [])

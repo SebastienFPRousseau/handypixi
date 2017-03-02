@@ -6,4 +6,6 @@ module.exports = {
     ObservablePoint: Support.ObservablePoint,
     Frame: Support.Frame,
     Matrix: Support.Matrix,
+    //Quad: Support.Quad,
+    TransformBase: Support.TransformBase,
 };

@@ -34,7 +34,8 @@ class Frame
 	}
 
 	/**
-	* getTexture
+	* texture
+	* @getter
 	* This function is a getter for the member texture.
 	* @return  {Texture} The Texture of the frame. 
 	*/
@@ -44,7 +45,8 @@ class Frame
 	}
 
 	/**
-	* setTexture
+	* texture
+	* @setter
 	* This function is a setter for the member texture.
 	* @param  {Texture} 	texture 	 The Texture of the frame. 
 	*/
@@ -57,7 +59,8 @@ class Frame
 	}
 
 	/**
-	* getTime
+	* time
+	* @getter
 	* This function is a getter for the member time.
 	* @return  {Number} The duration of the frame in ms. 
 	*/
@@ -67,7 +70,8 @@ class Frame
 	}
 
 	/**
-	* setTime
+	* time
+	* @setter
 	* This function is a setter for the member time.
 	* @param  {Number}	time 	 The duration of the frame in ms. 
 	*/
