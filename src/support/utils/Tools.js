@@ -10,6 +10,8 @@
 |
 */
 
+const { Point } = require("./../geometry/Point.js");
+
 class Tools
 {
 	/**
@@ -100,28 +102,79 @@ class Tools
 	
 	/**
 	 * scaleBy
-	 * This function is used in order to
+	 * This function is used in order to multiply the x and y values of this point by a value.
+	 * @param {Point}  point  The point to scale by.
+	 * @param {Number}  value  The value to use.
 	 */
+	static scaleBy(point, value)
+	{
+		if (!(point instanceof Point))
+			throw new TypeError("point must be a Point.");
+
+		if ({}.toString.call(value) !== "[object Number]")
+			throw new TypeError("value must be a number.");
+
+		PIXI.particles.ParticleUtils.scaleBy(point.out, value);
+	}
 	
 	/**
 	 * rotatePoint
-	 * This function is used in order to
+	 * This function is used in order to rotate a point by a given angle.
+	 * @param {Number}  angle  The angle to use in degrees.
+	 * @param {Point}  point  The point to rotate around (0,0).
 	 */
-	
+	static rotatePoint(angle, point)
+	{
+		if ({}.toString.call(angle) !== "[object Number]")
+			throw new TypeError("angle must be a number.");
+
+		if (!(point instanceof Point))
+			throw new TypeError("point must be a Point.");
+
+		PIXI.particles.ParticleUtils.rotatePoint(angle, point.out);
+	}
+
 	/**
 	 * normalize
-	 * This function is used in order to
+	 * This function is used in order to reduce the point to a length of 1.
+	 * @param {Point}  point  The point to normalize.
 	 */
-	
+	static normalize(point)
+	{
+		if (!(point instanceof Point))
+			throw new TypeError("point must be a Point.");
+
+		PIXI.particles.ParticleUtils.normalize(point.out);
+	}
+
 	/**
 	 * length
-	 * This function is used in order to
+	 * This function is used in order to get the length (or magnitude) of this point.
+	 * @param {Point}  point  The point to measure length.
+	 * @return {Number} The length of this point.
 	 */
-	
+	static length(point)
+	{
+		if (!(point instanceof Point))
+			throw new TypeError("point must be a Point.");
+
+		return PIXI.particles.ParticleUtils.length(point.out);
+	}
+
 	/**
-	 * generationEase
-	 * This function is used in order to
+	 * generateEase
+	 * This function is used in order to generates a custom ease function. 
+	 * Based on the GreenSock custom ease, as demonstrated by the related tool at http://www.greensock.com/customease/.
+	 * @param {Array}  segments  An array of segments, as created by http://www.greensock.com/customease/.
+	 * @return {Function} A function that calculates the percentage of change at a given point in time (0-1 inclusive).
 	 */
+	static generateEase(segments)
+	{
+		if ({}.toString.call(segments) !== "[object Array]")
+			throw new TypeError("segments must be an array.");
+
+		return PIXI.particles.ParticleUtils.generateEase(segments);
+	}
 }
 
 module.exports = {
