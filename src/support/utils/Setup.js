@@ -4,7 +4,7 @@
 |--------------------------------------------------------------------------
 |
 | This file defines the Setup static class.
-| This object define many static method about the setup of HandyPixi.
+| This class define many static method about the setup of HandyPixi.
 | This package is based on Pixi.js and should not be externalized.
 | http://www.pixijs.com/
 |

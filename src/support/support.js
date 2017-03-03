@@ -5,6 +5,7 @@ const { Matrix, Transform, TransformBase, TransformStatic } = require("./geometr
 //const { Quad } = require("./geometry/Quad.js");
 const { GroupD8 } = require("./geometry/GroupD8.js");
 const { Setup } = require("./utils/Setup.js");
+const { Tools } = require("./utils/Tools.js");
 
 module.exports = {
 	Point: Point,
@@ -17,4 +18,5 @@ module.exports = {
     TransformStatic: TransformStatic,
     GroupD8: GroupD8,
     Setup: Setup,
+    Tools: Tools,
 }

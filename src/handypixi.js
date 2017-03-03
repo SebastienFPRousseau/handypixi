@@ -12,4 +12,5 @@ module.exports = {
     TransformStatic: Support.TransformStatic,
     GroupD8: Support.GroupD8,
     Setup: Support.Setup,
+    Tools: Support.Tools,
 };
