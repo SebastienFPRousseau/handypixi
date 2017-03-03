@@ -10,6 +10,9 @@
 |
 */
 
+const { Point } = require("./Point.js");
+const { ObservablePoint } = require("./ObservablePoint.js");
+
 class Matrix
 {
 	/**
@@ -146,11 +149,11 @@ class Matrix
 	 */
 	decompose(transform)
 	{
-		if (!(transform instanceof Transform))
+		if (transform instanceof Transform)
 		{
 			transform = new Transform(this._out.decompose(transform.out));
 		}
-		else if (!(transform instanceof TransformStatic))
+		else if (transform instanceof TransformStatic)
 		{
 			transform = new TransformStatic(this._out.decompose(transform.out));
 		}
@@ -371,6 +374,494 @@ class Matrix
 	}
 }
 
+/*
+|--------------------------------------------------------------------------
+| TransformBase
+|--------------------------------------------------------------------------
+|
+| This file defines the TransformBase Object.
+| This object build a PIXI.TransformBase for HandyPixi.
+| This package is based on Pixi.js and should not be externalized.
+| http://www.pixijs.com/
+|
+*/
+
+class TransformBase
+{
+
+	/**
+	 * constructor
+	 * This function is used in order to build a TransformBase.
+	 * @param   {PIXI.TransformBase}   pixiObj     The Pixi object to build the HandyPixi object.
+	 */
+	constructor(pixiObj = null)
+	{
+		if (pixiObj instanceof PIXI.TransformBase)
+		{
+			this._out = pixiObj;
+		}
+		else 
+		{
+			this._out = new PIXI.TransformBase();
+		}
+	}
+
+	/**
+	* out
+	* @getter
+	* This function is a getter for the member _out.
+	* @return  {PIXI.TransformBase} The PIXI Object used by this object. 
+	*/
+	get out()
+	{
+		return this._out;
+	}
+
+	/**
+	 * localTransform
+	 * @getter
+	 * This function is a getter for the member localTransform.
+	 * @return {Matrix} The local matrix transform.
+	 */
+	get localTransform()
+	{
+		return new Matrix(this._out.localTransform);
+	}
+	
+	/**
+	 * localTransform
+	 * @setter
+	 * This function is a setter for the member localTransform.
+	 * @param {Matrix}  matrix  The local matrix transform.
+	 */
+	set localTransform(matrix)
+	{
+		if (!(matrix instanceof Matrix))
+			throw new TypeError("matrix must be a Matrix.");
+
+		this._out.localTransform = matrix.out;
+	}
+
+	/**
+	 * worldTransform
+	 * @getter
+	 * This function is a getter for the member worldTransform.
+	 * @return {Matrix} The global matrix transform.
+	 */
+	get worldTransform()
+	{
+		return new Matrix(this._out.worldTransform);
+	}
+	
+	/**
+	 * worldTransform
+	 * @setter
+	 * This function is a setter for the member worldTransform.
+	 * @param {Matrix}  matrix  The global matrix transform.
+	 */
+	set worldTransform(matrix)
+	{
+		if (!(matrix instanceof Matrix))
+			throw new TypeError("matrix must be a Matrix.");
+
+		this._out.worldTransform = matrix.out;
+	}
+	
+	/**
+	 * updateLocalTransform
+	 * TransformBase does not have decomposition, so this function wont do anything.
+	 */
+	updateLocalTransform()
+	{
+		this._out.updateLocalTransform();
+	}
+	
+	/**
+	 * updateTransform
+	 * This function is used in order to apply the parent's transform.
+	 * @param {TransformBase}  parent  The transform of the parent of this object.
+	 */
+	updateTransform(parent)
+	{
+		if (!(parent instanceof TransformBase))
+			throw new TypeError("parent must be a TransformBase.");
+
+		this._out.updateTransform(parent.out);
+	}
+}
+
+/*
+|--------------------------------------------------------------------------
+| Transform
+|--------------------------------------------------------------------------
+|
+| This file defines the Transform Object.
+| This object build a PIXI.Transform for HandyPixi.
+| This package is based on Pixi.js and should not be externalized.
+| http://www.pixijs.com/
+|
+*/
+
+class Transform extends TransformBase
+{
+
+	/**
+	 * constructor
+	 * This function is used in order to build a Transform.
+	 * @param   {PIXI.Transform}   pixiObj     The Pixi object to build the HandyPixi object.
+	 */
+	constructor(pixiObj = null)
+	{
+		super();
+		if (pixiObj instanceof PIXI.Transform)
+		{
+			this._out = pixiObj;
+		}
+		else 
+		{
+			this._out = new PIXI.Transform();
+		}
+	}
+
+	/**
+	 * pivot
+	 * @getter
+	 * This function is a getter for the member pivot.
+	 * @return {Point} The pivot point of the displayObject that it rotates around.
+	 */
+	get pivot()
+	{
+		return new Point(this._out.pivot);
+	}
+
+	/**
+	 * pivot
+	 * @setter
+	 * This function is a setter for the member pivot.
+	 * @param {Point}  pivot  The pivot point of the displayObject that it rotates around.
+	 */
+	set pivot(pivot)
+	{
+		if (!(pivot instanceof Point))
+			throw new TypeError("pivot must be a Point.");
+
+		this._out.pivot = pivot.out;
+	}
+
+	/**
+	 * position
+	 * @getter
+	 * This function is a getter for the member position.
+	 * @return {Point} The coordinate of the object relative to the local coordinates of the parent.
+	 */
+	get position()
+	{
+		return new Point(this._out.position);
+	}
+
+	/**
+	 * position
+	 * @setter
+	 * This function is a setter for the member position.
+	 * @param {Point}  position  The coordinate of the object relative to the local coordinates of the parent.
+	 */
+	set position(position)
+	{
+		if (!(position instanceof Point))
+			throw new TypeError("position must be a Point.");
+
+		this._out.position = position.out;
+	}
+
+	/**
+	 * rotation
+	 * @getter
+	 * This function is a getter for the member rotation.
+	 * @return {Number} The rotation of the object in radians.
+	 */
+	get rotation()
+	{
+		return this._out.rotation;
+	}
+
+	/**
+	 * rotation
+	 * @setter
+	 * This function is a setter for the member rotation.
+	 * @param {Number}  rotation  The rotation of the object in radians.
+	 */
+	set rotation(rotation)
+	{
+		if ({}.toString.call(rotation) !== "[object Number]")
+			throw new TypeError("rotation must be a number.");
+
+		this._out.rotation = rotation;
+	}
+
+	/**
+	 * scale
+	 * @getter
+	 * This function is a getter for the member scale.
+	 * @return {Point} The scale factor of the object.
+	 */
+	get scale()
+	{
+		return new Point(this._out.scale);
+	}
+	
+	/**
+	 * scale
+	 * @setter
+	 * This function is a setter for the member scale.
+	 * @param {Point}  scale  The scale factor of the object.
+	 */
+	set scale(scale)
+	{
+		if (!(scale instanceof Point))
+			throw new TypeError("scale must be a Point.");
+
+		this._out.scale = scale.out;
+	}
+
+	/**
+	 * skew
+	 * @getter
+	 * This function is a getter for the member skew.
+	 * @return {ObservablePoint} The skew amount, on the x and y axis.
+	 */
+	get skew()
+	{
+		return new ObservablePoint(this._out.skew);
+	}
+
+	/**
+	 * skew
+	 * @setter
+	 * This function is a setter for the member skew.
+	 * @param {ObservablePoint}  skew   The skew amount, on the x and y axis.
+	 */
+	set skew(skew)
+	{
+		if (!(skew instanceof ObservablePoint))
+			throw new TypeError("skew must be an ObservablePoint.");
+
+		this._out.skew = skew.out;
+	}
+
+	/**
+	 * setFromMatrix
+	 * This function is used in order to sets the transforms properties based on a matrix.
+	 * @param {Matrix}  matrix  The matrix to decompose.
+	 */
+	setFromMatrix(matrix)
+	{
+		if (!(matrix instanceof Matrix))
+			throw new TypeError("matrix must be a Matrix.");
+
+		this._out.setFromMatrix(matrix.out);
+	}
+
+	/**
+	 * updateTransform
+	 * This function is used in order to apply the parent's transform.
+	 * @param {Transform}  parent  The transform of the parent of this object.
+	 */
+	updateTransform(parent)
+	{
+		if (!(parent instanceof Transform))
+			throw new TypeError("parent must be a Transform.");
+
+		this._out.updateTransform(parent.out);
+	}
+}
+
+/*
+|--------------------------------------------------------------------------
+| TransformStatic
+|--------------------------------------------------------------------------
+|
+| This file defines the TransformStatic Object.
+| This object build a PIXI.TransformStatic for HandyPixi.
+| This package is based on Pixi.js and should not be externalized.
+| http://www.pixijs.com/
+|
+*/
+
+class TransformStatic extends TransformBase
+{
+	/**
+	 * constructor
+	 * This function is used in order to build a TransformStatic.
+	 * @param   {PIXI.TransformStatic}   pixiObj     The Pixi object to build the HandyPixi object.
+	 */
+	constructor(pixiObj = null)
+	{
+		super();
+		if (pixiObj instanceof PIXI.TransformStatic)
+		{
+			this._out = pixiObj;
+		}
+		else 
+		{
+			this._out = new PIXI.TransformStatic();
+		}
+	}
+
+	/**
+	 * pivot
+	 * @getter
+	 * This function is a getter for the member pivot.
+	 * @return {ObservablePoint} The pivot point of the displayObject that it rotates around.
+	 */
+	get pivot()
+	{
+		return new ObservablePoint(this._out.pivot);
+	}
+
+	/**
+	 * pivot
+	 * @setter
+	 * This function is a setter for the member pivot.
+	 * @param {ObservablePoint}  pivot  The pivot point of the displayObject that it rotates around.
+	 */
+	set pivot(pivot)
+	{
+		if (!(pivot instanceof ObservablePoint))
+			throw new TypeError("pivot must be an ObservablePoint.");
+
+		this._out.pivot = pivot.out;
+	}
+
+	/**
+	 * position
+	 * @getter
+	 * This function is a getter for the member position.
+	 * @return {ObservablePoint} The coordinate of the object relative to the local coordinates of the parent.
+	 */
+	get position()
+	{
+		return new ObservablePoint(this._out.position);
+	}
+
+	/**
+	 * position
+	 * @setter
+	 * This function is a setter for the member position.
+	 * @param {ObservablePoint}  position  The coordinate of the object relative to the local coordinates of the parent.
+	 */
+	set position(position)
+	{
+		if (!(position instanceof ObservablePoint))
+			throw new TypeError("position must be an ObservablePoint.");
+
+		this._out.position = position.out;
+	}
+
+	/**
+	 * rotation
+	 * @getter
+	 * This function is a getter for the member rotation.
+	 * @return {Number} The rotation of the object in radians.
+	 */
+	get rotation()
+	{
+		return this._out.rotation;
+	}
+
+	/**
+	 * rotation
+	 * @setter
+	 * This function is a setter for the member rotation.
+	 * @param {Number}  rotation  The rotation of the object in radians.
+	 */
+	set rotation(rotation)
+	{
+		if ({}.toString.call(rotation) !== "[object Number]")
+			throw new TypeError("rotation must be a number.");
+
+		this._out.rotation = rotation;
+	}
+
+	/**
+	 * scale
+	 * @getter
+	 * This function is a getter for the member scale.
+	 * @return {ObservablePoint} The scale factor of the object.
+	 */
+	get scale()
+	{
+		return new ObservablePoint(this._out.scale);
+	}
+	
+	/**
+	 * scale
+	 * @setter
+	 * This function is a setter for the member scale.
+	 * @param {ObservablePoint}  scale  The scale factor of the object.
+	 */
+	set scale(scale)
+	{
+		if (!(scale instanceof Point))
+			throw new TypeError("scale must be an ObservablePoint.");
+
+		this._out.scale = scale.out;
+	}
+
+	/**
+	 * skew
+	 * @getter
+	 * This function is a getter for the member skew.
+	 * @return {ObservablePoint} The skew amount, on the x and y axis.
+	 */
+	get skew()
+	{
+		return new ObservablePoint(this._out.skew);
+	}
+
+	/**
+	 * skew
+	 * @setter
+	 * This function is a setter for the member skew.
+	 * @param {ObservablePoint}  skew   The skew amount, on the x and y axis.
+	 */
+	set skew(skew)
+	{
+		if (!(skew instanceof ObservablePoint))
+			throw new TypeError("skew must be an ObservablePoint.");
+
+		this._out.skew = skew.out;
+	}
+
+	/**
+	 * setFromMatrix
+	 * This function is used in order to sets the transforms properties based on a matrix.
+	 * @param {Matrix}  matrix  The matrix to decompose.
+	 */
+	setFromMatrix(matrix)
+	{
+		if (!(matrix instanceof Matrix))
+			throw new TypeError("matrix must be a Matrix.");
+
+		this._out.setFromMatrix(matrix.out);
+	}
+
+	/**
+	 * updateTransform
+	 * This function is used in order to apply the parent's transform.
+	 * @param {Transform}  parent  The transform of the parent of this object.
+	 */
+	updateTransform(parent)
+	{
+		if (!(parent instanceof Transform))
+			throw new TypeError("parent must be a Transform.");
+
+		this._out.updateTransform(parent.out);
+	}
+}
+
 module.exports = {
+	TransformStatic: TransformStatic,
+	Transform: Transform,
+	TransformBase: TransformBase,
 	Matrix: Matrix,
 };
