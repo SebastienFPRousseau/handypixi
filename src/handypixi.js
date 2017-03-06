@@ -1,6 +1,8 @@
 require("pixi.js");
 require("pixi-particles");
+
 const Support = require("./support/support.js");
+const Event = require("./event/event.js");
 
 module.exports = {
     Point: Support.Point,
@@ -14,4 +16,6 @@ module.exports = {
     GroupD8: Support.GroupD8,
     Setup: Support.Setup,
     Tools: Support.Tools,
+
+    Ticker: Event.Ticker,
 };
