@@ -4,7 +4,7 @@
 |--------------------------------------------------------------------------
 |
 | This file defines the Ticker Object.
-| This object build a PIXI.Ticker for HandyPixi.
+| This object build a PIXI.ticker.Ticker for HandyPixi.
 | This package is based on Pixi.js and should not be externalized.
 | http://www.pixijs.com/
 |
@@ -15,8 +15,8 @@ class Ticker
 
 	/**
 	* constructor
-	* This function is used in order to build a Matrix.
-	* @param   {PIXI.Ticker}   pixiObj  The Pixi object to build the HandyPixi object.
+	* This function is used in order to build a Ticker.
+	* @param   {PIXI.ticker.Ticker}   pixiObj  The Pixi object to build the HandyPixi object.
 	*/
 	constructor(pixiObj = null)
 	{
@@ -36,7 +36,7 @@ class Ticker
 	* out
 	* @getter
 	* This function is a getter for the member _out.
-	* @return  {PIXI.Ticker} The PIXI Object used by this object. 
+	* @return  {PIXI.ticker.Ticker} The PIXI Object used by this object. 
 	*/
 	get out()
 	{

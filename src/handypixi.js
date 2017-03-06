@@ -3,6 +3,7 @@ require("pixi-particles");
 
 const Support = require("./support/support.js");
 const Event = require("./event/event.js");
+const Environment = require("./environment/environment.js");
 
 module.exports = {
     Point: Support.Point,
@@ -18,4 +19,6 @@ module.exports = {
     Tools: Support.Tools,
 
     Ticker: Event.Ticker,
+
+    CanvasElement: Environment.CanvasElement,
 };
