@@ -2,7 +2,6 @@ require("pixi.js");
 require("pixi-particles");
 const Support = require("./support/support.js");
 
-console.log(PIXI.particles);
 module.exports = {
     Point: Support.Point,
     ObservablePoint: Support.ObservablePoint,

@@ -396,6 +396,9 @@ class TransformBase
 	 */
 	constructor(pixiObj = null)
 	{
+		if (this.constructor.name !== "TransformBase")
+     		return ;
+
 		if (pixiObj instanceof PIXI.TransformBase)
 		{
 			this._out = pixiObj;
