@@ -68,6 +68,22 @@ class Ticker
 	}
 
 	/** 
+	 * deltaTime
+	 * @setter
+	 * This function is a setter for the member deltaTime.
+	 * @return {Number}  deltaTime  Scalar time value from last frame to this frame.
+	 * This value is capped by setting minFPS and is scaled with speed.
+	 * Note: The cap may be exceeded by scaling.
+	 */
+	set deltaTime(deltaTime)
+	{
+		if ({}.toString.call(deltaTime) !== "[object Number]")
+			throw new TypeError("deltaTime must be a number.");
+
+		this._out.deltaTime = deltaTime;
+	}
+
+	/** 
 	 * elapsedMS
 	 * @getter
 	 * This function is a getter for the member elapsedMS.
@@ -107,7 +123,7 @@ class Ticker
 	 * @return {Number} Manages the maximum amount of milliseconds allowed to elapse between invoking this.update.
 	 * This value is used to cap deltaTime, but does not effect the measured value of FPS.
 	 */
-	 get minFPS()
+	get minFPS()
 	{
 		return this._out.minFPS;
 	}
@@ -134,7 +150,7 @@ class Ticker
 	 * This function is a getter for the member speed.
 	 * @return {Number} Factor of current deltaTime.
 	 */
-	 get speed()
+	get speed()
 	{
 		return this._out.speed;
 	}
@@ -170,10 +186,10 @@ class Ticker
 	 * This function is used in order to invoke the method start automatically when a listener is added or not
 	 * @param {Boolean} auto Whether or not this ticker should automatically start.
 	 */
-	autoStart(auto)
+	autoStart(auto = true)
 	{
-		if ({}.toString.call(autoStart) !== "[object Boolean]")
-			throw new TypeError("autoStart must be a boolean.");
+		if ({}.toString.call(auto) !== "[object Boolean]")
+			throw new TypeError("auto must be a boolean.");
 
 		this._out.autoStart = auto;
 	}
@@ -186,6 +202,131 @@ class Ticker
 	isStarted()
 	{
 		return this._out.started;
+	}
+
+	/**
+	 * add
+	 * This function is used in order to request a new animation frame at this point.
+	 * @param {Function}  fn  The listener function to be added for updates.
+	 * @param {Function}  context  The listener context.
+	 */
+	add(fn, context = null)
+	{
+		if ({}.toString.call(fn) !== "[object Function]")
+			throw new TypeError("fn must be a function.");
+
+		if(context != null)
+		{
+				if ({}.toString.call(context) !== "[object Function]")
+					throw new TypeError("context must be a function.");
+
+				this._out.add(fn, context);
+		}
+		else
+		{
+			this._out.add(fn);
+		}
+
+		this._listenersFunctions.push(fn);
+	}
+
+	/**
+	 * addOnce
+	 * This function is used in order to request a new animation frame at this point.
+	 * @param {Function}  fn  The listener function to be added for ONE update.
+	 * @param {Function}  context  The listener context.
+	 */
+	addOnce(fn, context = null)
+	{
+		if ({}.toString.call(fn) !== "[object Function]")
+			throw new TypeError("fn must be a function.");
+
+		if(context != null)
+		{
+				if ({}.toString.call(context) !== "[object Function]")
+					throw new TypeError("context must be a function.");
+
+				this._out.addOnce(fn, context);
+		}
+		else
+		{
+			this._out.addOnce(fn);
+		}
+	}
+
+	/**
+	 * remove
+	 * This function is used in order to cancel the animation frame.
+	 * @param {Function}  fn  The listener function to be removed.
+	 * @param {Function}  context  The listener context to be removed.
+	 */
+	remove(fn = null, context = null)
+	{
+		if(fn != null)
+		{
+			if ({}.toString.call(fn) !== "[object Function]")
+				throw new TypeError("fn must be a function.");
+
+			if(context != null)
+			{
+					if ({}.toString.call(context) !== "[object Function]")
+						throw new TypeError("context must be a function.");
+
+					this._out.remove(fn, context);
+			}
+			else
+			{
+				this._out.remove(fn);
+			}
+
+			for(let i = 0, l = this._listenersFunctions.length; i < l; i++)
+			{
+				if(this._listenersFunctions[i] === fn)
+					this._listenersFunctions.splice(i, 1);
+			}
+		}
+		else
+		{
+			this._out.remove();
+		}
+	}
+
+	/**
+	 * start
+	 * This function is used in order to start the Ticker. 
+	 */
+	start()
+	{
+		this._out.start();
+	}
+
+	/**
+	 * stop
+	 * This function is used in order to stop the Ticker.
+	 */
+	stop()
+	{
+		this._out.stop();
+	}
+
+	/**
+	 * update
+	 * This function is used in order to trigger an update.
+	 * @param {Number}  currentTime  The current time of execution. 
+	 */
+	update(currentTime = null)
+	{
+		if(currentTime != null)
+		{
+			if ({}.toString.call(currentTime) !== "[object Number]")
+			throw new TypeError("currentTime must be a number.");
+
+			this._out.update(currentTime);
+		}
+		else
+		{
+			this._out.update();
+		}
 	}
 }
 
