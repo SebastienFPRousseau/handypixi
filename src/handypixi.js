@@ -21,4 +21,5 @@ module.exports = {
     Ticker: Event.Ticker,
 
     CanvasElement: Environment.CanvasElement,
+    Configuration: Environment.Configuration,
 };

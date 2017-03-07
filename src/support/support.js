@@ -19,4 +19,4 @@ module.exports = {
     GroupD8: GroupD8,
     Setup: Setup,
     Tools: Tools,
-}
+};
