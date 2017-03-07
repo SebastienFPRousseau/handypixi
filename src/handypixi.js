@@ -23,4 +23,5 @@ module.exports = {
     CanvasElement: Environment.CanvasElement,
     Configuration: Environment.Configuration,
     WebGLConfiguration: Environment.WebGLConfiguration,
+    Settings: Environment.Settings,
 };
