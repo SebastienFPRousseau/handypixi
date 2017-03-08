@@ -627,7 +627,169 @@ class Settings
 		return PIXI.settings.SCALE_MODE;
 	}
 
-	
+	/**
+	 * SCALE_MODE
+	 * @setter
+	 * This function is a setter for the member SCALE_MODE.
+	 * @param {SCALE_MODE} mode Default scale mode. 
+	 */
+	static set SCALE_MODE(mode)
+	{
+		if ({}.toString.call(mode) !== "[object Number]")
+			throw new TypeError("mode must be a number.");
+
+		PIXI.settings.SCALE_MODE = mode;
+	}
+
+	/**
+	 * SPRITE_BATCH_SIZE
+	 * @getter
+	 * This function is a getter for the member SPRITE_BATCH_SIZE.
+	 * @return {Number} The default sprite batch size. 
+	 */
+	static get SPRITE_BATCH_SIZE()
+	{
+		return PIXI.settings.SPRITE_BATCH_SIZE;
+	}
+
+	/**
+	 * SPRITE_BATCH_SIZE
+	 * @setter
+	 * This function is a setter for the member SPRITE_BATCH_SIZE.
+	 * @param {Number} size The default sprite batch size. 
+	 */
+	static set SPRITE_BATCH_SIZE(size)
+	{
+		if ({}.toString.call(size) !== "[object Number]")
+			throw new TypeError("size must be a number.");
+
+		PIXI.settings.SPRITE_BATCH_SIZE = size;
+	}
+
+	/**
+	 * SPRITE_MAX_TEXTURES
+	 * @getter
+	 * This function is a getter for the member SPRITE_MAX_TEXTURES.
+	 * @return {Number} The maximum textures that this device supports. 
+	 */
+	static get SPRITE_MAX_TEXTURES()
+	{
+		return PIXI.settings.SPRITE_MAX_TEXTURES;
+	}
+
+	/**
+	 * SPRITE_MAX_TEXTURES
+	 * @setter
+	 * This function is a setter for the member SPRITE_MAX_TEXTURES.
+	 * @param {Number} max The maximum textures that this device supports. 
+	 */
+	static set SPRITE_MAX_TEXTURES(max)
+	{
+		if ({}.toString.call(max) !== "[object Number]")
+			throw new TypeError("max must be a number.");
+
+		PIXI.settings.SPRITE_MAX_TEXTURES = max;
+	}
+
+	/**
+	 * TARGET_FPMS
+	 * @getter
+	 * This function is a getter for the member TARGET_FPMS.
+	 * @return {Number} Target frames per millisecond. 
+	 */
+	static get TARGET_FPMS()
+	{
+		return PIXI.settings.TARGET_FPMS;
+	}
+
+	/**
+	 * TARGET_FPMS
+	 * @setter
+	 * This function is a setter for the member TARGET_FPMS.
+	 * @param {Number} tfpms Target frames per millisecond. 
+	 */
+	static set TARGET_FPMS(tfpms)
+	{
+		if ({}.toString.call(tfpms) !== "[object Number]")
+			throw new TypeError("tfpms must be a number.");
+
+		PIXI.settings.TARGET_FPMS = tfpms;
+	}
+
+	/**
+	 * TRANSFORM_MODE
+	 * @getter
+	 * This function is a getter for the member TRANSFORM_MODE.
+	 * @return {TRANSFORM_MODE} Default filter resolution. 
+	 */
+	static get TRANSFORM_MODE()
+	{
+		return PIXI.settings.TRANSFORM_MODE;
+	}
+
+	/**
+	 * TRANSFORM_MODE
+	 * @setter
+	 * This function is a setter for the member TRANSFORM_MODE.
+	 * @param {TRANSFORM_MODE} mode Default filter resolution. 
+	 */
+	static set TRANSFORM_MODE(mode)
+	{
+		if ({}.toString.call(mode) !== "[object Number]")
+			throw new TypeError("mode must be a number.");
+
+		PIXI.settings.TRANSFORM_MODE = mode;
+	}
+
+	/**
+	 * UPLOADS_PER_FRAME
+	 * @getter
+	 * This function is a getter for the member UPLOADS_PER_FRAME.
+	 * @return {Number} Default number of uploads per frame using prepare plugin. 
+	 */
+	static get UPLOADS_PER_FRAME()
+	{
+		return PIXI.settings.UPLOADS_PER_FRAME;
+	}
+
+	/**
+	 * UPLOADS_PER_FRAME
+	 * @setter
+	 * This function is a setter for the member UPLOADS_PER_FRAME.
+	 * @param {Number} upf Default number of uploads per frame using prepare plugin. 
+	 */
+	static set UPLOADS_PER_FRAME(upf)
+	{
+		if ({}.toString.call(upf) !== "[object Number]")
+			throw new TypeError("upf must be a number.");
+
+		PIXI.settings.UPLOADS_PER_FRAME = upf;
+	}
+
+	/**
+	 * WRAP_MODE
+	 * @getter
+	 * This function is a getter for the member WRAP_MODE.
+	 * @return {WRAP_MODE} Default wrap mode. 
+	 */
+	static get WRAP_MODE()
+	{
+		return PIXI.settings.WRAP_MODE;
+	}
+
+	/**
+	 * WRAP_MODE
+	 * @setter
+	 * This function is a setter for the member WRAP_MODE.
+	 * @param {WRAP_MODE} mode Default wrap mode. 
+	 */
+	static set WRAP_MODE(mode)
+	{
+		if ({}.toString.call(mode) !== "[object Number]")
+			throw new TypeError("mode must be a number.");
+
+		PIXI.settings.WRAP_MODE = mode;
+	}
 }
 
 module.exports = {
