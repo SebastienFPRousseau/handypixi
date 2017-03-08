@@ -400,6 +400,233 @@ class Settings
 		PIXI.settings.GC_MAX_IDLE = max;
 	}
 
+	/**
+	 * GC_MODE
+	 * @getter
+	 * This function is a getter for the member GC_MODE.
+	 * @return {GC_MODES} Default Garbage Collection mode. 
+	 */
+	static get GC_MODE()
+	{
+		return PIXI.settings.GC_MODE;
+	}
+
+	/**
+	 * GC_MODE
+	 * @setter
+	 * This function is a setter for the member GC_MODE.
+	 * @param {GC_MODES} mode Default Garbage Collection mode. 
+	 */
+	static set GC_MODE(mode)
+	{
+		if ({}.toString.call(mode) !== "[object Number]")
+			throw new TypeError("mode must be a number.");
+
+
+		PIXI.settings.GC_MODE = mode;
+	}
+
+	/**
+	 * MIPMAP_TEXTURES
+	 * @getter
+	 * This function is a getter for the member MIPMAP_TEXTURES.
+	 * @return {Boolean} If set to true WebGL will attempt make textures mimpaped by default. 
+	 */
+	static get MIPMAP_TEXTURES()
+	{
+		return PIXI.settings.MIPMAP_TEXTURES;
+	}
+
+	/**
+	 * MIPMAP_TEXTURES
+	 * @setter
+	 * This function is a setter for the member MIPMAP_TEXTURES.
+	 * @param {Boolean} value If set to true WebGL will attempt make textures mimpaped by default. 
+	 */
+	static set MIPMAP_TEXTURES(value)
+	{
+		if ({}.toString.call(value) !== "[object Boolean]")
+			throw new TypeError("value must be a boolean.");
+
+		PIXI.settings.MIPMAP_TEXTURES = value;
+	}
+
+	/**
+	 * PRECISION_FRAGMENT
+	 * @getter
+	 * This function is a getter for the member PRECISION_FRAGMENT.
+	 * @return {PRECISION} Default specify float precision in fragment shader. 
+	 */
+	static get PRECISION_FRAGMENT()
+	{
+		return PIXI.settings.PRECISION_FRAGMENT;
+	}
+
+	/**
+	 * PRECISION_FRAGMENT
+	 * @setter
+	 * This function is a setter for the member PRECISION_FRAGMENT.
+	 * @param {PRECISION} precision Default specify float precision in fragment shader. 
+	 */
+	static set PRECISION_FRAGMENT(precision)
+	{
+		if (!(typeof precision === "string" && {}.toString.call(precision) === "[object String]"))
+			throw new TypeError("precision must be a string.");
+
+		PIXI.settings.PRECISION_FRAGMENT = precision;
+	}
+
+	/**
+	 * PRECISION_VERTEX
+	 * @getter
+	 * This function is a getter for the member PRECISION_VERTEX.
+	 * @return {Number} Default specify float precision in vertex shader. 
+	 */
+	static get PRECISION_VERTEX()
+	{
+		return PIXI.settings.PRECISION_VERTEX;
+	}
+
+	/**
+	 * PRECISION_VERTEX
+	 * @setter
+	 * This function is a setter for the member PRECISION_VERTEX.
+	 * @param {Number} precision Default specify float precision in vertex shader. 
+	 */
+	static set PRECISION_VERTEX(precision)
+	{
+		if (!(typeof precision === "string" && {}.toString.call(precision) === "[object String]"))
+			throw new TypeError("precision must be a string.");
+
+		PIXI.settings.PRECISION_VERTEX = precision;
+	}
+
+	/**
+	 * RENDER_OPTIONS
+	 * @getter
+	 * This function is a getter for the member RENDER_OPTIONS.
+	 * @return {Object} The default render options if none are supplied to renderer. 
+	 * @property {HTMLCanvasElement} view
+	 * @property {Number} resolution
+	 * @property {Boolean} antialias
+	 * @property {Boolean} forceFXAA
+	 * @property {Boolean} autoResize
+	 * @property {Boolean} transparent
+	 * @property {Number} backgroundColor
+	 * @property {Boolean} clearBeforeRender
+	 * @property {Boolean} preserveDrawingBuffer
+	 * @property {Boolean} roundPixels
+	 */
+	static get RENDER_OPTIONS()
+	{
+		return PIXI.settings.RENDER_OPTIONS;
+	}
+
+	/**
+	 * RENDER_OPTIONS
+	 * @setter
+	 * This function is a setter for the member RENDER_OPTIONS.
+	 * @param {Object} options The default render options if none are supplied to renderer. 
+	 */
+	static set RENDER_OPTIONS(options)
+	{
+		if (!(typeof options === "object" && {}.toString.call(options) === "[object Object]"))
+			throw new TypeError("options must be an object.");
+
+		if (!(options.view instanceof HTMLCanvasElement))
+			throw new TypeError("options.view must be a HTMLCanvasElement.");
+
+		if ({}.toString.call(options.resolution) !== "[object Number]")
+			throw new TypeError("options.resolution must be a number.");
+
+		if ({}.toString.call(options.antialias) !== "[object Boolean]")
+			throw new TypeError("options.antialias must be a boolean.");
+
+		if ({}.toString.call(options.forceFXAA) !== "[object Boolean]")
+			throw new TypeError("options.forceFXAA must be a boolean.");
+
+		if ({}.toString.call(options.autoResize) !== "[object Boolean]")
+			throw new TypeError("options.autoResize must be a boolean.");
+
+		if ({}.toString.call(options.transparent) !== "[object Boolean]")
+			throw new TypeError("options.transparent must be a boolean.");
+
+		if ({}.toString.call(options.backgroundColor) !== "[object Number]")
+			throw new TypeError("options.backgroundColor must be a number.");
+
+		if ({}.toString.call(options.clearBeforeRender) !== "[object Boolean]")
+			throw new TypeError("options.clearBeforeRender must be a boolean.");
+
+		if ({}.toString.call(options.preserveDrawingBuffer) !== "[object Boolean]")
+			throw new TypeError("options.preserveDrawingBuffer must be a boolean.");
+
+		if ({}.toString.call(options.roundPixels) !== "[object Boolean]")
+			throw new TypeError("options.roundPixels must be a boolean.");
+
+		PIXI.settings.RENDER_OPTIONS = options;
+	}
+	
+	/**
+	 * RESOLUTION
+	 * @getter
+	 * This function is a getter for the member RESOLUTION.
+	 * @return {Number} Default resolution / device pixel ratio of the renderer. 
+	 */
+	static get RESOLUTION()
+	{
+		return PIXI.settings.RESOLUTION;
+	}
+
+	/**
+	 * RESOLUTION
+	 * @setter
+	 * This function is a setter for the member RESOLUTION.
+	 * @param {Number} resolution Default resolution / device pixel ratio of the renderer. 
+	 */
+	static set RESOLUTION(resolution)
+	{
+		if ({}.toString.call(resolution) !== "[object Number]")
+			throw new TypeError("resolution must be a number.");
+
+		PIXI.settings.RESOLUTION = resolution;
+	}
+
+	/**
+	 * RETINA_PREFIX
+	 * @getter
+	 * This function is a getter for the member RETINA_PREFIX.
+	 * @return {RegExp} The prefix that denotes a URL is for a retina asset. 
+	 */
+	static get RETINA_PREFIX()
+	{
+		return PIXI.settings.RETINA_PREFIX;
+	}
+
+	/**
+	 * RETINA_PREFIX
+	 * @setter
+	 * This function is a setter for the member RETINA_PREFIX.
+	 * @param {RegExp} prefix The prefix that denotes a URL is for a retina asset. 
+	 */
+	static set RETINA_PREFIX(prefix)
+	{
+		if (!(prefix instanceof RegExp))
+			throw new TypeError("prefix must be a RegExp.");
+
+		PIXI.settings.RETINA_PREFIX = prefix;
+	}
+
+	/**
+	 * SCALE_MODE
+	 * @getter
+	 * This function is a getter for the member SCALE_MODE.
+	 * @return {SCALE_MODE} Default scale mode. 
+	 */
+	static get SCALE_MODE()
+	{
+		return PIXI.settings.SCALE_MODE;
+	}
+
 	
 }
 
