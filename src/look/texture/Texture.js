@@ -380,6 +380,154 @@ class Texture
 	{
 		return this._out.baseTexture.imageType;
 	}
+
+	/**
+	 * hasFrame
+	 * This function is used in order to know if this Texture have any frame data assigned to it.
+	 * @return {Boolean} Has a frame or not.
+	 */
+	hasFrame()
+	{
+		return !(this._out.noFrame);
+	}
+
+	/**
+	 * requiresUpdate
+	 * This function is used in order to signal that a texture has been updated.
+	 * @param {Boolean}  value  The renderer need to update or not.
+	 */
+	requiresUpdate(value)
+	{
+		if ({}.toString.call(value) !== "[object Boolean]")
+			throw new TypeError("value must be a boolean.");
+
+		this._out.requiresUpdate = value;
+	}
+
+	/**
+	 * validate
+	 * This function is used in order to render the texture or not.
+	 * @param {Boolean}  value  The renderer can render this texture or not.
+	 */
+	validate(value)
+	{
+		if ({}.toString.call(value) !== "[object Boolean]")
+			throw new TypeError("value must be a boolean.");
+
+		this._out.valid = value;
+	}
+
+	/**
+	 * hasLoaded
+	 * This function is used in order to know if the base texture has successfully loaded.
+	 * @return {Boolean} Loaded or not.
+	 */
+	hasLoaded()
+	{
+		return this._out.baseTexture.hasLoaded;
+	}
+
+	/**
+	 * isLoading
+	 * This function is used in order to know if the source is currently loading.
+	 * @return {Boolean} Loading or not.
+	 */
+	isLoading()
+	{
+		return this._out.baseTexture.isLoading;
+	}
+
+	/**
+	 * mipmap
+	 * This function is used in order to generate a mipmap of this texture.
+	 * Use this function before using the texture.
+	 * @param {Boolean}  value  A mipmap needs to be generated or not.
+	 */
+	mipmap(value)
+	{
+		if ({}.toString.call(value) !== "[object Boolean]")
+			throw new TypeError("value must be a boolean.");
+
+		this._out.baseTexture.mipmap = value;
+	}
+
+	/**
+	 * premultiplyAlpha
+	 * This function is used in order to pre-multiply the RGB channels by Alpha.
+	 * All blend modes, and shaders written for default value. Change it on your own risk. WebGL only.
+	 * @param {Boolean}  value  The RBG channels should be pre-multiplied or not.
+	 */
+	premultiplyAlpha(value)
+	{
+		if ({}.toString.call(value) !== "[object Boolean]")
+			throw new TypeError("value must be a boolean.");
+
+		this._out.baseTexture.premultipliedAlpha = value;
+	}
+
+	/**
+	 * clone
+	 * This function is used in order to clone this Texture.
+	 * @return {Texture} A copy of this Texture.
+	 */
+	clone()
+	{
+		return new Texture(this._out);
+	}
+
+	/**
+	 * updateMatrices
+	 * This function is used in order to updates matrices.
+	 * @param {Boolean}  forceUpdate  Matrices will be updated any case.
+	 */
+	updateMatrices(forceUpdate = false)
+	{
+		if ({}.toString.call(forceUpdate) !== "[object Boolean]")
+			throw new TypeError("forceUpdate must be a boolean.");
+
+		this._transform.update(forceUpdate);
+	}
+
+	/**
+	 * updateOnRenderers
+	 * This function is used in order to update the texture on all the webgl renderers
+	 */
+	updateOnRenderers()
+	{
+		this._out.baseTexture.update();
+	}
+
+	/**
+	 * updateOnGPU
+	 * This function is used in order to update this texture on the gpu.
+	 */
+	updateOnGPU()
+	{
+		this._out.update();
+	}
+
+	/**
+	 * destroy
+	 * This function is used in order to destroy this Texture.
+	 * @param {Boolean} destroyBase Whether to destroy the base texture as well.
+	 */
+	destroy(destroyBase)
+	{
+		if ({}.toString.call(destroyBase) !== "[object Boolean]")
+			throw new TypeError("destroyBase must be a boolean.");
+
+		this._out.destroy(destroyBase);
+	}
+
+	/**
+	 * dispose
+	 * This function is used in order to free the texture from WebGL memory without destroying this texture object.
+	 * This means you can still use the texture later which will upload it to GPU memory again.
+	 */
+	dispose()
+	{
+		this._out.baseTexture.dispose();
+	}
 }
 
 module.exports = {
