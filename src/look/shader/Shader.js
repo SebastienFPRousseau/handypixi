@@ -19,6 +19,9 @@ class Shader
 	*/
 	constructor(pixiObj = null)
 	{
+		if (this.constructor.name !== "Shader")
+     		return ;
+
 		if (pixiObj instanceof PIXI.Filter)
 		{
 			this._out = pixiObj;

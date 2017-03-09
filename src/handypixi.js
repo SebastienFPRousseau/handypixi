@@ -29,4 +29,6 @@ module.exports = {
     Shader: Look.Shader,
     GLSLShader: Look.GLSLShader,
     LookMaskShader: Look.LookMaskShader,
+    AbstractShaderFactory: Look.AbstractShaderFactory,
+    ShaderFactory: Look.ShaderFactory,
 };
