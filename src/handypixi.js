@@ -4,6 +4,7 @@ require("pixi-particles");
 const Support = require("./support/support.js");
 const Event = require("./event/event.js");
 const Environment = require("./environment/environment.js");
+const Look = require("./look/look.js");
 
 module.exports = {
     Point: Support.Point,
@@ -24,4 +25,6 @@ module.exports = {
     Configuration: Environment.Configuration,
     WebGLConfiguration: Environment.WebGLConfiguration,
     Settings: Environment.Settings,
+
+    Shader: Look.Shader,
 };
