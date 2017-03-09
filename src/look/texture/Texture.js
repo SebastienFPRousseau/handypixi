@@ -199,13 +199,17 @@ class Texture
 		this._out.rotate = rotateCode;
 	}
 
-	 /**
+	/**
 	 * clampMargin
 	 * @getter
 	 * This function is a getter for the member clampMargin.
 	 * @return {Number} Margin for frame clamping. Works with TilingSprite and Mesh.
 	 */
-	
+	get clampMargin()
+	{
+		return this._transform.clampMargin;
+	}
+
 	/**
 	 * clampMargin
 	 * @setter
@@ -213,14 +217,25 @@ class Texture
 	 * @param {Number}  clampMargin  Margin for frame clamping. Works with TilingSprite and Mesh.
 	 * Change to -0.5 to add a pixel to the edge, recommended for transparent trimmed textures in atlas.
 	 */
-	
+	set clampMargin(clampMargin)
+	{
+		if ({}.toString.call(clampMargin) !== "[object Number]")
+			throw new TypeError("clampMargin must be a number.");
+
+		this._transform.clampMargin = clampMargin;
+	}
+
 	/**
 	 * clampOffset
 	 * @getter
 	 * This function is a getter for the member clampOffset.
 	 * @return {Number} Offset for frame clamping. Works with TilingSprite and Mesh.
 	 */
-	
+	get clampOffset()
+	{
+		return this._transform.clampOffset;
+	}
+
 	/**
 	 * clampOffset
 	 * @setter
@@ -228,83 +243,143 @@ class Texture
 	 * @param {Number}  clampOffset  Offset for frame clamping. Works with TilingSprite and Mesh.
 	 * Change to 1.5 if you texture has repeated right and bottom lines, that leads to smoother borders.
 	 */
-	
+	set clampOffset(clampOffset)
+	{
+		if ({}.toString.call(clampOffset) !== "[object Number]")
+			throw new TypeError("clampOffset must be a number.");
+
+		this._transform.clampOffset = clampOffset;
+	}
+
 	/**
 	 * realHeight
 	 * @getter
 	 * This function is a getter for the member realHeight.
 	 * @return {Number} The actual height of the source of this texture.
 	 */
-	
+	get realHeight()
+	{
+		return this._out.baseTexture.realHeight;
+	}
+
 	/**
 	 * realWidth
 	 * @getter
 	 * This function is a getter for the member realWidth.
 	 * @return {Number} The actual width of the source of this texture.
 	 */
-	
+	get realWidth()
+	{
+		return this._out.baseTexture.realWidth;
+	}
+
 	/**
 	 * resolution
 	 * @getter
 	 * This function is a getter for the member resolution.
 	 * @return {Number} The resolution / device pixel ratio of the texture.
 	 */
-	
+	get resolution()
+	{
+		return this._out.baseTexture.resolution;
+	}
+
 	/**
 	 * resolution
 	 * @setter
 	 * This function is a setter for the member resolution.
 	 * @param {Number}  resolution  The resolution / device pixel ratio of the texture.
 	 */
-	
+	set resolution(resolution)
+	{
+		if ({}.toString.call(resolution) !== "[object Number]")
+			throw new TypeError("resolution must be a number.");
+
+		this._out.baseTexture.resolution = resolution;
+	}
+
 	/**
 	 * scaleMode
 	 * @getter
 	 * This function is a getter for the member scaleMode.
 	 * @return {Number} The scale mode to apply when scaling this texture.
 	 */
-	
+	get scaleMode()
+	{
+		return this._out.baseTexture.scaleMode;
+	}
+
 	/**
 	 * scaleMode
 	 * @setter
 	 * This function is a setter for the member scaleMode.
 	 * @param {Number}  scaleMode  The scale mode to apply when scaling this texture.
 	 */
-	
+	set scaleMode(scaleMode)
+	{
+		if ({}.toString.call(scaleMode) !== "[object Number]")
+			throw new TypeError("scaleMode must be a number.");
+
+		this._out.baseTexture.scaleMode = scaleMode;
+	}
+
 	/**
 	 * wrapMode
 	 * @getter
 	 * This function is a getter for the member wrapMode.
 	 * @return {Number} WebGL Texture wrap mode.
 	 */
-	
+	get wrapMode()
+	{
+		return this._out.baseTexture.wrapMode;
+	}
+
 	/**
 	 * wrapMode
 	 * @setter
 	 * This function is a setter for the member wrapMode.
 	 * @param {Number}  wrapMode  WebGL Texture wrap mode.
 	 */
-	
+	set wrapMode(wrapMode)
+	{
+		if ({}.toString.call(wrapMode) !== "[object Number]")
+			throw new TypeError("wrapMode must be a number.");
+
+		this._out.baseTexture.wrapMode = wrapMode;
+	}
+
 	/**
 	 * sourceScale
 	 * @getter
 	 * This function is a getter for the member sourceScale.
 	 * @return {Number} Scale for source image. Used with Svg images to scale them before rasterization.
 	 */
-	
+	get sourceScale()
+	{
+		return this._out.baseTexture.sourceScale;
+	}
+
 	/**
 	 * imageUrl
 	 * @getter
 	 * This function is a getter for the member imageUrl.
 	 * @return {String} The image url of the texture.
 	 */
-	
+	get imageUrl()
+	{
+		return this._out.baseTexture.imageUrl;
+	}
+
 	/**
 	 * imageType
 	 * @getter
 	 * This function is a getter for the member imageType.
 	 * @return {String} Type of image defined in source, eg. png or svg.
 	 */
+	get imageType()
+	{
+		return this._out.baseTexture.imageType;
+	}
 }
 
 module.exports = {
