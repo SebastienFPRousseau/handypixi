@@ -27,4 +27,5 @@ module.exports = {
     Settings: Environment.Settings,
 
     Shader: Look.Shader,
+    GLSLShader: Look.GLSLShader,
 };
