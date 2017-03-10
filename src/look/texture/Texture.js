@@ -19,6 +19,9 @@ class Texture
 	 */
 	constructor(pixiObj = null)
 	{
+		if (this.constructor.name !== "Texture")
+     		return ;
+
 		if (pixiObj instanceof PIXI.Texture && pixiObj !== PIXI.Texture.EMPTY)
 		{
 			this._out = pixiObj;
@@ -360,28 +363,6 @@ class Texture
 	}
 
 	/**
-	 * imageUrl
-	 * @getter
-	 * This function is a getter for the member imageUrl.
-	 * @return {String} The image url of the texture.
-	 */
-	get imageUrl()
-	{
-		return this._out.baseTexture.imageUrl;
-	}
-
-	/**
-	 * imageType
-	 * @getter
-	 * This function is a getter for the member imageType.
-	 * @return {String} Type of image defined in source, eg. png or svg.
-	 */
-	get imageType()
-	{
-		return this._out.baseTexture.imageType;
-	}
-
-	/**
 	 * hasFrame
 	 * This function is used in order to know if this Texture have any frame data assigned to it.
 	 * @return {Boolean} Has a frame or not.
@@ -528,6 +509,20 @@ class Texture
 	{
 		this._out.baseTexture.dispose();
 	}
+
+	/**
+	 * addToCache
+	 * This function is used in order to add a texture to the global TextureCache. 
+	 * This cache is shared across the whole PIXI object.
+	 * @param {String}  id  The id that the texture will be stored against.
+	 */
+	addToCache(id)
+	{
+		if (!(typeof id === "string" && {}.toString.call(id) === "[object String]"))
+			throw new TypeError("id must be a string.");
+
+		PIXI.Texture.addTextureToCache(this._out, id);
+	} 
 }
 
 module.exports = {

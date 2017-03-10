@@ -32,4 +32,5 @@ module.exports = {
     AbstractShaderFactory: Look.AbstractShaderFactory,
     ShaderFactory: Look.ShaderFactory,
     Texture: Look.Texture,
+    ImageTexture: Look.ImageTexture,
 };
