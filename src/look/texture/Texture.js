@@ -19,7 +19,10 @@ class Texture
 	 */
 	constructor(pixiObj = null)
 	{
-		if (this.constructor.name !== "Texture")
+		this._transform = new PIXI.extras.TextureTransform(this.out);
+		this._cacheId = "";
+
+		if (pixiObj === null  && this.constructor.name !== "Texture" )
      		return ;
 
 		if (pixiObj instanceof PIXI.Texture && pixiObj !== PIXI.Texture.EMPTY)
@@ -33,9 +36,7 @@ class Texture
 		else
 		{
 			this._out = PIXI.Texture.EMPTY.clone();
-		}	
-
-		this._transform = new PIXI.extras.TextureTransform(this.out);
+		}
 	}
 
 	/**
@@ -521,7 +522,18 @@ class Texture
 		if (!(typeof id === "string" && {}.toString.call(id) === "[object String]"))
 			throw new TypeError("id must be a string.");
 
+		this._cacheId = id;
 		PIXI.Texture.addTextureToCache(this._out, id);
+	} 
+
+	/**
+	 * removeFromCache
+	 * This function is used in order to remove the texture from the global TextureCache.
+	 */
+	removeFromCache()
+	{
+		PIXI.Texture.removeTextureFromCache(this._out, this._cacheId);
+		this._cacheId = "";
 	} 
 }
 

@@ -34,4 +34,5 @@ module.exports = {
     Texture: Look.Texture,
     ImageTexture: Look.ImageTexture,
     RenderTexture: Look.RenderTexture,
+    VideoTexture: Look.VideoTexture,
 };

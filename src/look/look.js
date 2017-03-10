@@ -5,6 +5,7 @@ const { AbstractShaderFactory, ShaderFactory } = require("./shader/AbstractShade
 const { Texture } = require("./texture/Texture.js");
 const { ImageTexture } = require("./texture/ImageTexture.js");
 const { RenderTexture } = require("./texture/RenderTexture.js");
+const { VideoTexture } = require("./texture/VideoTexture.js");
 
 module.exports = {
 	Shader: Shader,
@@ -15,4 +16,5 @@ module.exports = {
 	Texture: Texture,
 	ImageTexture: ImageTexture,
 	RenderTexture: RenderTexture,
+	VideoTexture: VideoTexture,
 };
