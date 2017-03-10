@@ -26,7 +26,7 @@ class ImageTexture extends Texture
 	{
 		if (!(typeof url === "string" && {}.toString.call(url) === "[object String]"))
 			throw new TypeError("url must be a string.");
-
+		
 		super();
 
 		if (sourceScale !== null)

@@ -35,4 +35,6 @@ module.exports = {
     ImageTexture: Look.ImageTexture,
     RenderTexture: Look.RenderTexture,
     VideoTexture: Look.VideoTexture,
+    AbstractTextureFactory: Look.AbstractTextureFactory,
+    TextureFactory: Look.TextureFactory,
 };

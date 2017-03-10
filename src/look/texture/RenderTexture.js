@@ -9,6 +9,7 @@
 | http://www.pixijs.com/
 |
 */
+
 const { Texture } = require("./Texture.js");
 
 class RenderTexture extends Texture
@@ -31,7 +32,7 @@ class RenderTexture extends Texture
 			throw new TypeError("resolution must be a number.");
 
 		super();
-		
+
 		if (width instanceof PIXI.RenderTexture)
 		{
 			this._out = pixiObj;
