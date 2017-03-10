@@ -33,4 +33,5 @@ module.exports = {
     ShaderFactory: Look.ShaderFactory,
     Texture: Look.Texture,
     ImageTexture: Look.ImageTexture,
+    RenderTexture: Look.RenderTexture,
 };

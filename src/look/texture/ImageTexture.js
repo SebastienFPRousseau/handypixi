@@ -48,7 +48,7 @@ class ImageTexture extends Texture
 			if ({}.toString.call(crossOrigin) !== "[object Boolean]")
 		  		throw new TypeError("crossOrigin must be a boolean.");
 
-		  	this._out = PIXI.Texture.fromImage(url, crosOrigin);
+		  	this._out = PIXI.Texture.fromImage(url, crossOrigin);
 		} 
 		else
 		{

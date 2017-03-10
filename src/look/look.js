@@ -4,6 +4,7 @@ const { LookMaskShader } = require("./shader/LookMaskShader.js");
 const { AbstractShaderFactory, ShaderFactory } = require("./shader/AbstractShaderFactory.js");
 const { Texture } = require("./texture/Texture.js");
 const { ImageTexture } = require("./texture/ImageTexture.js");
+const { RenderTexture } = require("./texture/RenderTexture.js");
 
 module.exports = {
 	Shader: Shader,
@@ -13,4 +14,5 @@ module.exports = {
 	ShaderFactory: ShaderFactory,
 	Texture: Texture,
 	ImageTexture: ImageTexture,
+	RenderTexture: RenderTexture,
 };
