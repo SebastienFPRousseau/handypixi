@@ -10,6 +10,8 @@
 |
 */
 
+const { Bounds } = require("./../../twoDObject/bounds/Bounds.js");
+
 class Texture
 {
 	/**

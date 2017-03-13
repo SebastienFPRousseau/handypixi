@@ -63,8 +63,6 @@ class AbstractTextureFactory
 			default: 
 				throw new Error("No factory found for this id: "+ id +"!");
 		}
-
-		return undefined;
 	}
 }
 

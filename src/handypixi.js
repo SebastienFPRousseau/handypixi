@@ -5,6 +5,7 @@ const Support = require("./support/support.js");
 const Event = require("./event/event.js");
 const Environment = require("./environment/environment.js");
 const Look = require("./look/look.js");
+const TwoDObject = require("./twoDObject/twoDObject.js");
 
 module.exports = {
     Point: Support.Point,
@@ -37,4 +38,6 @@ module.exports = {
     VideoTexture: Look.VideoTexture,
     AbstractTextureFactory: Look.AbstractTextureFactory,
     TextureFactory: Look.TextureFactory,
+
+    Bounds: TwoDObject.Bounds,
 };
