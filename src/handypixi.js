@@ -38,6 +38,7 @@ module.exports = {
     VideoTexture: Look.VideoTexture,
     AbstractTextureFactory: Look.AbstractTextureFactory,
     TextureFactory: Look.TextureFactory,
+    TextStyle: Look.TextStyle,
 
     Bounds: TwoDObject.Bounds,
 };
