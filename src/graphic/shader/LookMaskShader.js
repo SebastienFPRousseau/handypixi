@@ -11,6 +11,7 @@
 */
 
 const { Shader } = require("./Shader.js");
+const { Look } = require("./../look/Look.js");
 
 class LookMaskShader extends Shader
 {

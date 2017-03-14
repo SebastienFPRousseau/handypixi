@@ -39,6 +39,7 @@ module.exports = {
     AbstractTextureFactory: Graphic.AbstractTextureFactory,
     TextureFactory: Graphic.TextureFactory,
     TextStyle: Graphic.TextStyle,
+    Look: Graphic.Look,
 
     Bounds: DisplayObject.Bounds,
 };
