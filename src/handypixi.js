@@ -2,10 +2,10 @@ require("pixi.js");
 require("pixi-particles");
 
 const Support = require("./support/support.js");
-const Event = require("./event/event.js");
-const Environment = require("./environment/environment.js");
-const Look = require("./look/look.js");
-const TwoDObject = require("./twoDObject/twoDObject.js");
+const Interactivity = require("./interactivity/interactivity.js");
+const RenderingSystem = require("./renderingSystem/renderingSystem.js");
+const Graphic = require("./graphic/graphic.js");
+const DisplayObject = require("./displayObject/displayObject.js");
 
 module.exports = {
     Point: Support.Point,
@@ -20,25 +20,25 @@ module.exports = {
     Setup: Support.Setup,
     Tools: Support.Tools,
 
-    Ticker: Event.Ticker,
+    Ticker: Interactivity.Ticker,
 
-    CanvasElement: Environment.CanvasElement,
-    Configuration: Environment.Configuration,
-    WebGLConfiguration: Environment.WebGLConfiguration,
-    Settings: Environment.Settings,
+    CanvasElement: RenderingSystem.CanvasElement,
+    Configuration: RenderingSystem.Configuration,
+    WebGLConfiguration: RenderingSystem.WebGLConfiguration,
+    Settings: RenderingSystem.Settings,
 
-    Shader: Look.Shader,
-    GLSLShader: Look.GLSLShader,
-    LookMaskShader: Look.LookMaskShader,
-    AbstractShaderFactory: Look.AbstractShaderFactory,
-    ShaderFactory: Look.ShaderFactory,
-    Texture: Look.Texture,
-    ImageTexture: Look.ImageTexture,
-    RenderTexture: Look.RenderTexture,
-    VideoTexture: Look.VideoTexture,
-    AbstractTextureFactory: Look.AbstractTextureFactory,
-    TextureFactory: Look.TextureFactory,
-    TextStyle: Look.TextStyle,
+    Shader: Graphic.Shader,
+    GLSLShader: Graphic.GLSLShader,
+    LookMaskShader: Graphic.LookMaskShader,
+    AbstractShaderFactory: Graphic.AbstractShaderFactory,
+    ShaderFactory: Graphic.ShaderFactory,
+    Texture: Graphic.Texture,
+    ImageTexture: Graphic.ImageTexture,
+    RenderTexture: Graphic.RenderTexture,
+    VideoTexture: Graphic.VideoTexture,
+    AbstractTextureFactory: Graphic.AbstractTextureFactory,
+    TextureFactory: Graphic.TextureFactory,
+    TextStyle: Graphic.TextStyle,
 
-    Bounds: TwoDObject.Bounds,
+    Bounds: DisplayObject.Bounds,
 };
