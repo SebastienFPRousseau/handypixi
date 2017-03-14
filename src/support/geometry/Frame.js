@@ -10,6 +10,8 @@
 |
 */
 
+const { Texture } = require("./../../graphic/texture/Texture.js");
+
 class Frame
 {
 	/**
@@ -20,7 +22,7 @@ class Frame
 	*/
 	constructor(texture, time)
 	{
-		if (!(point instanceof Texture))
+		if (!(texture instanceof Texture))
 			throw new TypeError("texture must be a Texture.");
 
 		if ({}.toString.call(time) !== "[object Number]")
