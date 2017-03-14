@@ -19,6 +19,7 @@ module.exports = {
     GroupD8: Support.GroupD8,
     Setup: Support.Setup,
     Tools: Support.Tools,
+    CanvasTinter: Support.CanvasTinter,
 
     Ticker: Interactivity.Ticker,
 

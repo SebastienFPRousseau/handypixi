@@ -6,6 +6,7 @@ const { Matrix, Transform, TransformBase, TransformStatic } = require("./geometr
 const { GroupD8 } = require("./geometry/GroupD8.js");
 const { Setup } = require("./utils/Setup.js");
 const { Tools } = require("./utils/Tools.js");
+const { CanvasTinter } = require("./utils/CanvasTinter.js");
 
 module.exports = {
 	Point: Point,
@@ -19,4 +20,5 @@ module.exports = {
     GroupD8: GroupD8,
     Setup: Setup,
     Tools: Tools,
+    CanvasTinter: CanvasTinter,
 };
