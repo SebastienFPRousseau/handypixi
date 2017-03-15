@@ -36,6 +36,17 @@ class Frame
 	}
 
 	/**
+	* out
+	* @getter
+	* This function is a getter for the member _out.
+	* @return  {Object}  The Object used. 
+	*/
+	get out()
+	{
+		return this._out;
+	}
+
+	/**
 	* texture
 	* @getter
 	* This function is a getter for the member texture.

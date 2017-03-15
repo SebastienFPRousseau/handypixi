@@ -7,6 +7,7 @@ const { GroupD8 } = require("./geometry/GroupD8.js");
 const { Setup } = require("./utils/Setup.js");
 const { Tools } = require("./utils/Tools.js");
 const { CanvasTinter } = require("./utils/CanvasTinter.js");
+const { Loader } = require("./loader/Loader.js");
 
 module.exports = {
 	Point: Point,
@@ -21,4 +22,5 @@ module.exports = {
     Setup: Setup,
     Tools: Tools,
     CanvasTinter: CanvasTinter,
+    Loader: Loader,
 };

@@ -20,6 +20,7 @@ module.exports = {
     Setup: Support.Setup,
     Tools: Support.Tools,
     CanvasTinter: Support.CanvasTinter,
+    Loader: Support.Loader,
 
     Ticker: Interactivity.Ticker,
 
