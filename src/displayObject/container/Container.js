@@ -10,9 +10,10 @@
 |
 */
 
-const { Matrix } = require("./../../support/geometry/Matrix.js");
+const { Matrix, TransformBase } = require("./../../support/geometry/Matrix.js");
 const { AbstractPoint } = require("./../../support/geometry/AbstractPoint.js");
 const { ObservablePoint } = require("./../../support/geometry/ObservablePoint.js");
+const { Point } = require("./../../support/geometry/Point.js");
 const { Bounds } = require("./../bounds/Bounds.js");
 
 class Container
@@ -272,18 +273,206 @@ class Container
 	}
 
 	/**
+	 * transform
+	 * @getter
+	 * This function is a getter for the member transform.
+	 * @return {TransformBase} World transform and local transform of this object.
+	 */
+	get transform()
+	{
+		return new TransformBase(this._out.transform);
+	}
+
+	/**
+	 * worldAlpha
+	 * @getter
+	 * This function is a getter for the member worldAlpha.
+	 * @return {Number} The multiplied alpha of the object.
+	 */
+	get worldAlpha()
+	{
+		return this._out.worldAlpha;
+	}
+
+	/**
+	 * worldTransform
+	 * @getter
+	 * This function is a getter for the member worldTransform.
+	 * @return {Matrix} Current transform of the object based on world (parent) factors.
+	 */
+	get worldTransform()
+	{
+		return new Matrix(this._out.worldTransform);
+	}
+
+	/**
+	 * worldVisible
+	 * @getter
+	 * This function is a getter for the member worldVisible.
+	 * @return {Boolean} If the object is globally visible.
+	 */
+	get worldVisible()
+	{
+		return this._out.worldVisible;
+	}
+
+	/**
 	 * cacheAsBitmap
 	 * This function is used in order to cache this object as a bitmap. It takes a snap shot when the method is called.
 	 * Make sure that all your textures are preloaded before setting this to true !
 	 * @param {Boolean}  value  If the object must to be cached or not.
 	 */
-	
-	 /**
-	 * isRenderable
-	 * This function is used in order to make renderable this object.
-	 * If not, the object will not be drawn but the updateTransform methods will still be called.
-	 * @param {Boolean}  value  If the object can be rendered or not.
+	cacheAsBitmap(value = true)
+	{
+		if ({}.toString.call(value) !== "[object Boolean]")
+			throw new TypeError("value must be a boolean.");
+
+		this._out.cacheAsBitmap = value;
+	}
+
+	/**
+	* renderable
+	* This function is used in order to make renderable this object.
+	* If not, the object will not be drawn but the updateTransform methods will still be called.
+	* @param {Boolean}  value  If the object can be rendered or not.
+	*/
+	renderable(value = true)
+	{
+		if ({}.toString.call(value) !== "[object Boolean]")
+			throw new TypeError("value must be a boolean.");
+
+		this._out.renderable = value;
+	}
+
+	/**
+	* visible
+	* This function is used in order to make visible this object.
+	* If false the object will not be drawn, and the updateTransform function will not be called.
+	* @param {Boolean}  value  If the object must be visible or not.
+	*/
+	visible(value = true)
+	{
+		if ({}.toString.call(value) !== "[object Boolean]")
+			throw new TypeError("value must be a boolean.");
+
+		this._out.visible = value;
+	}
+
+	/**
+	 * destroy
+	 * This function is used in order to destroy the object and its listeners.
 	 */
+	destroy()
+	{
+		this._out.destroy();
+	}
+	
+	/**
+	 * updateTransform
+	 * This function is used in order to update the object transform for rendering.
+	 */
+	updateTransform()
+	{
+		this._out.updateTransform();
+	}
+	
+	/**
+	 * toGlobal
+	 * This function is used in order to calculate the global position of this object
+	 * @param {Point}  position  The world origin to calculate from.
+	 * @param {Point}  point  A point object in which to store the value.
+	 * @param {Boolean}  skipUpdate  Should we skip the update transform. 
+	 * @return {Point} A point object representing the position of this object.
+	 */
+	toGlobal(position, point = new Point(), skipUpdate = false)
+	{
+		if (!(position instanceof Point))
+			throw new TypeError("position must be a Point.");
+
+		if ({}.toString.call(skipUpdate) !== "[object Boolean]")
+			throw new TypeError("skipUpdate must be a boolean.");
+
+		if (!(point instanceof Point))
+			throw new TypeError("point must be a Point.");
+
+		point = new Point(this._out.toGlobal(position.out, undefined, skipUpdate));
+	}
+
+	/**
+	 * toLocal
+	 * This function is used in order to calculate the local position of this object.
+	 * @param {Point}  position  The world origin to calculate from.
+	 * @param {Container}  from  The object to calculate the global position from.
+	 * @param {Point}  point  A point object in which to store the value.
+	 * @param {Boolean}  skipUpdate  Should we skip the update transform. 
+	 * @return {Point} A point object representing the position of this object.
+	 */
+	toLocal(position, from, point = new Point(), skipUpdate = false)
+	{
+		if (!(position instanceof Point))
+			throw new TypeError("position must be a Point.");
+
+		if (!(from instanceof Container))
+			throw new TypeError("from must be a Container.");
+
+		if (!(point instanceof Point))
+			throw new TypeError("point must be a Point.");
+
+		if ({}.toString.call(skipUpdate) !== "[object Boolean]")
+			throw new TypeError("skipUpdate must be a boolean.");
+
+		point = new Point(this._out.toLocal(position.out, from.out, undefined, skipUpdate));
+	}
+
+	/**
+	 * setTransform
+	 * This function is used in order to set all transform properties at once.
+	 * @param {Object}  transform Store the properties to change. A missing property will be reset by default.
+	 */
+	setTransform(transform)
+	{
+		if (!(typeof transform === "object" && {}.toString.call(transform) === "[object Object]"))
+			throw new TypeError("transform must be an object.");
+
+		this._out.setTransform(transform.x, transform.y,
+							   transform.scaleX, transform.scaleY,
+							   transform.rotation,
+							   transform.skewX, transform.skewY,
+							   transform.pivotX, transform.pivotY);
+	}
+
+	/**
+	 * getBounds
+	 * This function is used in order to retrieve the bounds of this object.
+	 * @param {Boolean}  skipUpdate  Stop the transforms of the scene from being updated or not.
+	 * This means the calculation returned MAY be out of date BUT will give you a nice performance boost.
+	 * @param {Bounds}  bounds  Store the result.
+	 * @return {Bounds} The resulting area.
+	 */
+	getBounds(skipUpdate, bounds)
+	{
+		if ({}.toString.call(skipUpdate) !== "[object Boolean]")
+			throw new TypeError("skipUpdate must be a boolean.");
+
+		if (!(bounds instanceof Bounds))
+			throw new TypeError("bounds must be a Bounds.");
+
+		return new Bounds(this._out.getBounds(skipUpdate, bounds.out));
+	}
+
+	/**
+	* getLocalBounds
+	* This function is used in order to retrieve the local bounds of this object.
+	* @param {Bounds}  bounds  Store the result.
+	* @return {Bounds} The resulting area.
+	*/
+	getLocalBounds(bounds)
+	{
+		if (!(bounds instanceof Bounds))
+			throw new TypeError("bounds must be a Bounds.");
+
+		return new Bounds(this._out.getLocalBounds(bounds.out));
+	}
 }
 
 module.exports = {

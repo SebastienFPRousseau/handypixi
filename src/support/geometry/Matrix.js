@@ -83,7 +83,7 @@ class Matrix
 	 * @param {Point}	resultingPoint The container point for the result.
 	 * @return {Point} The new point, transformed through this matrix.
 	 */
-	apply(point, resultingPoint)
+	apply(point, resultingPoint = new Point())
 	{
 		if (!(point instanceof Point))
 			throw new TypeError("point must be a Point.");
