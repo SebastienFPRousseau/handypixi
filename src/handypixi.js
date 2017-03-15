@@ -10,6 +10,7 @@ const DisplayObject = require("./displayObject/displayObject.js");
 module.exports = {
     Point: Support.Point,
     ObservablePoint: Support.ObservablePoint,
+    AbstractPoint: Support.AbstractPoint,
     Frame: Support.Frame,
     Matrix: Support.Matrix,
     //Quad: Support.Quad,
@@ -44,4 +45,5 @@ module.exports = {
     Look: Graphic.Look,
 
     Bounds: DisplayObject.Bounds,
+    Container: DisplayObject.Container,
 };

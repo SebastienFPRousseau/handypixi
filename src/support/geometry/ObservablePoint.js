@@ -10,7 +10,9 @@
 |
 */
 
-class ObservablePoint
+const { AbstractPoint } = require("./AbstractPoint.js");
+
+class ObservablePoint extends AbstractPoint
 {
 	/**
 	* constructor
@@ -23,6 +25,7 @@ class ObservablePoint
 	*/
 	constructor(onMove, scope, x = 0, y = 0)
 	{
+		super();
 		if ({}.toString.call(x) !== "[object Number]")
 			throw new TypeError("x must be a number.");
 
