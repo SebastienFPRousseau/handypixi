@@ -46,4 +46,5 @@ module.exports = {
 
     Bounds: DisplayObject.Bounds,
     Container: DisplayObject.Container,
+    Mask: DisplayObject.Mask,
 };

@@ -414,7 +414,7 @@ class Container
 	 * @param {Object}  options  Options parameter to destroy dependencies. 
 	 * @param {Boolean}  options  A boolean will act as if all options have been set to that value.
 	 */
-	destroy()
+	destroy(options)
 	{
 		if (!(typeof options === "object" && {}.toString.call(options) === "[object Object]") && 
 			{}.toString.call(options) !== "[object Boolean]")
