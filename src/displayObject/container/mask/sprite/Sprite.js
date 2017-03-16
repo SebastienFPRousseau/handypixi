@@ -17,8 +17,8 @@ class Sprite extends Mask
 {
 	/**
 	* constructor
-	* This function is used in order to build a Container.
-	* @param {PIXI.Spritee}  pixiObj  The Pixi object to build the HandyPixi object.
+	* This function is used in order to build a Sprite.
+	* @param {PIXI.Sprite}  pixiObj  The Pixi object to build the HandyPixi object.
 	*/
 	constructor(pixiObj = null)
 	{
