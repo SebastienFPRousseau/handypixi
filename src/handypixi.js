@@ -49,4 +49,5 @@ module.exports = {
     Mask: DisplayObject.Mask,
     Sprite: DisplayObject.Sprite,
     AnimatedSprite: DisplayObject.AnimatedSprite,
+    SimpleText: DisplayObject.SimpleText,
 };
