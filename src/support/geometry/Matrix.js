@@ -80,40 +80,28 @@ class Matrix
 	 * apply
 	 * This function is used in order to apply this Matrix to a point.
 	 * @param {Point}	point  The origin.
-	 * @param {Point}	resultingPoint The container point for the result.
 	 * @return {Point} The new point, transformed through this matrix.
 	 */
-	apply(point, resultingPoint = new Point())
+	apply(point)
 	{
 		if (!(point instanceof Point))
 			throw new TypeError("point must be a Point.");
 
-		if (!(resultingPoint instanceof Point))
-			throw new TypeError("resultingPoint must be a Point.");
-
-		resultingPoint = new Point(this._out.apply(point.out));
-
-		return resultingPoint;
+		return new Point(this._out.apply(point.out));
 	}
 
 	/**
 	 * applyInverse
 	 * This function is used in order to inverse-apply this Matrix to a point.
 	 * @param {Point}	point  The origin.
-	 * @param {Point}	resultingPoint The container point for the result.
 	 * @return {Point} The new point, inverse-transformed through this matrix.
 	 */
-	applyInverse(point, resultingPoint)
+	applyInverse(point)
 	{
 		if (!(point instanceof Point))
 			throw new TypeError("point must be a Point.");
 
-		if (!(resultingPoint instanceof Point))
-			throw new TypeError("resultingPoint must be a Point.");
-
-		resultingPoint = new Point(this._out.applyInverse(point.out));
-
-		return resultingPoint;
+		return new Point(this._out.applyInverse(point.out));
 	}
 
 	/**

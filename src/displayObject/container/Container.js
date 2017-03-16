@@ -317,6 +317,56 @@ class Container
 	}
 
 	/**
+	 * height
+	 * @getter
+	 * This function is a getter for the member height.
+	 * @return {Number} The height of the Container.
+	 */
+	get height()
+	{
+		return this._out.height;
+	}
+
+	/**
+	 * height
+	 * @setter
+	 * This function is a setter for the member height.
+	 * @param {Number}  height  The height of the Container, setting this will modify the scale to achieve the value set.
+	 */
+	set height(height)
+	{
+		if ({}.toString.call(height) !== "[object Number]")
+			throw new TypeError("height must be a number.");
+
+		this._out.height = height;
+	}
+
+	/**
+	 * width
+	 * @getter
+	 * This function is a getter for the member width.
+	 * @return {Number} The width of the Container.
+	 */
+	get width()
+	{
+		return this._out.width;
+	}
+
+	/**
+	 * width
+	 * @setter
+	 * This function is a setter for the member width.
+	 * @param {Number}  width  The width of the Container, setting this will modify the scale to achieve the value set.
+	 */
+	set width(width)
+	{
+		if ({}.toString.call(width) !== "[object Number]")
+			throw new TypeError("width must be a number.");
+
+		this._out.width = width;
+	}
+
+	/**
 	 * cacheAsBitmap
 	 * This function is used in order to cache this object as a bitmap. It takes a snap shot when the method is called.
 	 * Make sure that all your textures are preloaded before setting this to true !
@@ -361,10 +411,16 @@ class Container
 	/**
 	 * destroy
 	 * This function is used in order to destroy the object and its listeners.
+	 * @param {Object}  options  Options parameter to destroy dependencies. 
+	 * @param {Boolean}  options  A boolean will act as if all options have been set to that value.
 	 */
 	destroy()
 	{
-		this._out.destroy();
+		if (!(typeof options === "object" && {}.toString.call(options) === "[object Object]") && 
+			{}.toString.call(options) !== "[object Boolean]")
+			throw new TypeError("options must be an object or a boolean.");
+		
+		this._out.destroy(options);
 	}
 	
 	/**
@@ -380,11 +436,10 @@ class Container
 	 * toGlobal
 	 * This function is used in order to calculate the global position of this object
 	 * @param {Point}  position  The world origin to calculate from.
-	 * @param {Point}  point  A point object in which to store the value.
 	 * @param {Boolean}  skipUpdate  Should we skip the update transform. 
 	 * @return {Point} A point object representing the position of this object.
 	 */
-	toGlobal(position, point = new Point(), skipUpdate = false)
+	toGlobal(position, skipUpdate = false)
 	{
 		if (!(position instanceof Point))
 			throw new TypeError("position must be a Point.");
@@ -392,10 +447,7 @@ class Container
 		if ({}.toString.call(skipUpdate) !== "[object Boolean]")
 			throw new TypeError("skipUpdate must be a boolean.");
 
-		if (!(point instanceof Point))
-			throw new TypeError("point must be a Point.");
-
-		point = new Point(this._out.toGlobal(position.out, undefined, skipUpdate));
+		return new Point(this._out.toGlobal(position.out, undefined, skipUpdate));
 	}
 
 	/**
@@ -403,25 +455,32 @@ class Container
 	 * This function is used in order to calculate the local position of this object.
 	 * @param {Point}  position  The world origin to calculate from.
 	 * @param {Container}  from  The object to calculate the global position from.
-	 * @param {Point}  point  A point object in which to store the value.
 	 * @param {Boolean}  skipUpdate  Should we skip the update transform. 
 	 * @return {Point} A point object representing the position of this object.
 	 */
-	toLocal(position, from, point = new Point(), skipUpdate = false)
+	toLocal(position, from = null, skipUpdate = false)
 	{
+		let point;
+
 		if (!(position instanceof Point))
 			throw new TypeError("position must be a Point.");
-
-		if (!(from instanceof Container))
-			throw new TypeError("from must be a Container.");
-
-		if (!(point instanceof Point))
-			throw new TypeError("point must be a Point.");
 
 		if ({}.toString.call(skipUpdate) !== "[object Boolean]")
 			throw new TypeError("skipUpdate must be a boolean.");
 
-		point = new Point(this._out.toLocal(position.out, from.out, undefined, skipUpdate));
+		if (from === null)
+		{
+			point = new Point(this._out.toLocal(position.out, undefined, undefined, skipUpdate));
+		}
+		else 
+		{
+			if (!(from instanceof Container))
+				throw new TypeError("from must be a Container.");
+
+			point = new Point(this._out.toLocal(position.out, from.out, undefined, skipUpdate));
+		}
+
+		return point;
 	}
 
 	/**
@@ -442,36 +501,37 @@ class Container
 	}
 
 	/**
+	 * calculateBounds
+	 * This function is used in order to recalculate the bounds of the container.
+	 */
+	calculateBounds()
+	{
+		this._out.calculateBounds();
+	}
+
+	/**
 	 * getBounds
 	 * This function is used in order to retrieve the bounds of this object.
 	 * @param {Boolean}  skipUpdate  Stop the transforms of the scene from being updated or not.
 	 * This means the calculation returned MAY be out of date BUT will give you a nice performance boost.
-	 * @param {Bounds}  bounds  Store the result.
 	 * @return {Bounds} The resulting area.
 	 */
-	getBounds(skipUpdate, bounds)
+	getBounds(skipUpdate = false)
 	{
 		if ({}.toString.call(skipUpdate) !== "[object Boolean]")
 			throw new TypeError("skipUpdate must be a boolean.");
 
-		if (!(bounds instanceof Bounds))
-			throw new TypeError("bounds must be a Bounds.");
-
-		return new Bounds(this._out.getBounds(skipUpdate, bounds.out));
+		return new Bounds(this._out.getBounds(skipUpdate));
 	}
 
 	/**
 	* getLocalBounds
 	* This function is used in order to retrieve the local bounds of this object.
-	* @param {Bounds}  bounds  Store the result.
 	* @return {Bounds} The resulting area.
 	*/
-	getLocalBounds(bounds)
+	getLocalBounds()
 	{
-		if (!(bounds instanceof Bounds))
-			throw new TypeError("bounds must be a Bounds.");
-
-		return new Bounds(this._out.getLocalBounds(bounds.out));
+		return new Bounds(this._out.getLocalBounds());
 	}
 }
 
