@@ -53,4 +53,5 @@ module.exports = {
     TilingSprite: DisplayObject.TilingSprite,
     BitmapText: DisplayObject.BitmapText,
     Mesh: DisplayObject.Mesh,
+    Rope: DisplayObject.Rope,
 };

@@ -11,9 +11,28 @@
 */
 
 const { Container } = require("./../Container.js");
+const { Point } = require("./../../../support/geometry/Point.js");
+
+/**
+ * DRAW_MODES
+ * Various webgl draw modes.
+ * @type {Object} 
+ * @property {Number} TRIANGLE_MESH
+ * @property {Number} TRIANGLES
+ */
+const DRAW_MODES = PIXI.mesh.Mesh.DRAW_MODES;
 
 class Mesh extends Container
 {
+	/**
+	 * DRAW_MODES
+	 * @getter
+	 */
+	static get DRAW_MODES()
+	{
+		return DRAW_MODES;
+	}
+
 	/**
 	 * constructor
 	 * This function is used in order to build a Mesh.
@@ -278,6 +297,19 @@ class Mesh extends Container
 		this._out.indexDirty = indexDirty;
 	}
 
+	/**
+	 * containsPoint
+	 * This function is used in order to check if a point is inside this mesh.
+	 * @param {Point}  point  The point to check.
+	 * @return {Boolean} Whether or not the mesh contains the point.
+	 */
+	containsPoint(point)
+	{
+		if (!(point instanceof Point))
+			throw new TypeError("point must be a Point.");
+
+		return this._out.containsPoint(point.out);
+	}
 }
 
 module.exports = {
