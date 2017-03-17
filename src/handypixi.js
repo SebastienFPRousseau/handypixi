@@ -54,4 +54,6 @@ module.exports = {
     BitmapText: DisplayObject.BitmapText,
     Mesh: DisplayObject.Mesh,
     Rope: DisplayObject.Rope,
+    Plane: DisplayObject.Plane,
+    NineSlicePlane: DisplayObject.NineSlicePlane
 };

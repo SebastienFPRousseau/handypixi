@@ -8,6 +8,8 @@ const { TilingSprite } = require("./container/mask/sprite/TilingSprite.js");
 const { BitmapText } = require("./container/BitmapText.js");
 const { Mesh } = require("./container/mesh/Mesh.js");
 const { Rope } = require("./container/mesh/Rope.js");
+const { Plane } = require("./container/mesh/Plane.js");
+const { NineSlicePlane } = require("./container/mesh/NineSlicePlane.js");
 
 module.exports = {
 	Bounds: Bounds,
@@ -20,4 +22,6 @@ module.exports = {
 	BitmapText: BitmapText,
 	Mesh: Mesh,
 	Rope: Rope,
+	Plane: Plane,
+	NineSlicePlane: NineSlicePlane,
 };
