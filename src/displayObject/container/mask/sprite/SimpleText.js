@@ -54,12 +54,12 @@ class SimpleText extends Sprite
 	 * This function is a setter for the member text.
 	 * @param {String}  text  The string to display by this Object.
 	 */
-	set text(speed)
+	set text(text)
 	{
-		if (!(typeof speed === "string" && {}.toString.call(speed) === "[object String]"))
-			throw new TypeError("speed must be a string.");
+		if (!(typeof text === "string" && {}.toString.call(text) === "[object String]"))
+			throw new TypeError("text must be a string.");
 
-		this._out.text = speed;
+		this._out.text = text;
 	}
 
 }

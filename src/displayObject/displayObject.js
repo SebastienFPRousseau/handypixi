@@ -4,6 +4,7 @@ const { Mask } = require("./container/mask/Mask.js");
 const { Sprite } = require("./container/mask/sprite/Sprite.js");
 const { AnimatedSprite } = require("./container/mask/sprite/AnimatedSprite.js");
 const { SimpleText } = require("./container/mask/sprite/SimpleText.js");
+const { TilingSprite } = require("./container/mask/sprite/TilingSprite.js");
 
 module.exports = {
 	Bounds: Bounds,
@@ -12,4 +13,5 @@ module.exports = {
 	Sprite: Sprite,
 	AnimatedSprite: AnimatedSprite,
 	SimpleText: SimpleText,
+	TilingSprite: TilingSprite,
 };

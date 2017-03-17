@@ -18,7 +18,7 @@ class AnimatedSprite extends Sprite
 	* constructor
 	* This function is used in order to build a AnimatedSprite.
 	* @param {Boolean}  autoUpdate  Use the shared Ticker to auto update animation or not.
-	* @param {PIXI.AnimatedSprite}  autoUpdate  The Pixi object to build the HandyPixi object.
+	* @param {PIXI.extras.AnimatedSprite}  autoUpdate  The Pixi object to build the HandyPixi object.
 	*/
 	constructor(autoUpdate = true)
 	{

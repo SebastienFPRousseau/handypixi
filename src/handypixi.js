@@ -50,4 +50,5 @@ module.exports = {
     Sprite: DisplayObject.Sprite,
     AnimatedSprite: DisplayObject.AnimatedSprite,
     SimpleText: DisplayObject.SimpleText,
+    TilingSprite: DisplayObject.TilingSprite,
 };
