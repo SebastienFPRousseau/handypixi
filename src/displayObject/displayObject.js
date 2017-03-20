@@ -10,6 +10,7 @@ const { Mesh } = require("./container/mesh/Mesh.js");
 const { Rope } = require("./container/mesh/Rope.js");
 const { Plane } = require("./container/mesh/Plane.js");
 const { NineSlicePlane } = require("./container/mesh/NineSlicePlane.js");
+const { Shape } = require("./container/mask/shape/Shape.js");
 
 module.exports = {
 	Bounds: Bounds,
@@ -24,4 +25,5 @@ module.exports = {
 	Rope: Rope,
 	Plane: Plane,
 	NineSlicePlane: NineSlicePlane,
+	Shape: Shape,
 };

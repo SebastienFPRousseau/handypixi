@@ -55,5 +55,6 @@ module.exports = {
     Mesh: DisplayObject.Mesh,
     Rope: DisplayObject.Rope,
     Plane: DisplayObject.Plane,
-    NineSlicePlane: DisplayObject.NineSlicePlane
+    NineSlicePlane: DisplayObject.NineSlicePlane,
+    Shape: DisplayObject.Shape,
 };
