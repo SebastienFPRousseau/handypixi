@@ -11,6 +11,7 @@
 */
 
 const { Mask } = require("./../Mask.js");
+const { Point } = require("./../../../../support/geometry/Point.js");
 
 class Shape extends Mask
 {
@@ -403,7 +404,7 @@ class Shape extends Mask
 	updateLocalBounds()
 	{
 		this._out.updateLocalBounds();
-		
+
 		return this;
 	}
 }

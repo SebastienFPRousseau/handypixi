@@ -57,4 +57,6 @@ module.exports = {
     Plane: DisplayObject.Plane,
     NineSlicePlane: DisplayObject.NineSlicePlane,
     Shape: DisplayObject.Shape,
+    Circle: DisplayObject.Circle,
+    Ellipse: DisplayObject.Ellipse,
 };
