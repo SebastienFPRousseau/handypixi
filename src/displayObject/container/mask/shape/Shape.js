@@ -18,21 +18,29 @@ class Shape extends Mask
 	/**
 	* constructor
 	* This function is used in order to build a Shape.
+	* @param {Object}  options  Default options for drawing.
 	* @param {Boolean}  drawLines  Lines will be draw using LINES instead of TRIANGLE_STRIP
-	* @param {PIXI.Graphics}  drawLines  The Pixi object to build the HandyPixi object.
+	* @param {PIXI.Graphics}  options  The Pixi object to build the HandyPixi object.
 	*/
-	constructor(drawLines = false)
+	constructor(options = {}, drawLines = false)
 	{
 		super();
 
-		if (drawLines instanceof PIXI.Graphics)
+		if ({}.toString.call(drawLines) !== "[object Boolean]")
+				throw new TypeError("drawLines must be a boolean.");
+
+		this._options = {};
+		
+		if (options instanceof PIXI.Graphics)
 		{
-			this._out = drawLines;
+			this._out = options;
 		}
 		else 
 		{
-			if ({}.toString.call(drawLines) !== "[object Boolean]")
-				throw new TypeError("drawLines must be a boolean.");
+			if (!(typeof options === "object" && {}.toString.call(options) === "[object Object]"))
+				throw new TypeError("options must be an object.");
+			
+			this.options = options;
 
 			this._out = new PIXI.Graphics(drawLines);
 		}
@@ -150,6 +158,69 @@ class Shape extends Mask
 	}
 
 	/**
+	 * options
+	 * @getter
+	 * This function is a getter for the member _options.
+	 * @return {Object} Default options for drawing.
+	 */
+	get options()
+	{
+		return this._options;
+	}
+
+	/**
+	 * options
+	 * @setter
+	 * This function is a setter for the member _options.
+	 * @param {Object}  options  Default options for drawing.
+	 */
+	set options(options)
+	{
+		if (!(typeof options === "object" && {}.toString.call(options) === "[object Object]"))
+			throw new TypeError("options must be an object.");
+
+		if (options.fillColor !== undefined)
+		{
+			if ({}.toString.call(options.fillColor) !== "[object Number]")
+				throw new TypeError("options.fillColor must be a number.");
+
+			this._options.fillColor = options.fillColor;
+		}
+		
+		if (options.fillAlpha !== undefined)
+		{
+			if ({}.toString.call(options.fillAlpha) !== "[object Number]")
+				throw new TypeError("options.fillAlpha must be a number.");
+			
+			this._options.fillAlpha = options.fillAlpha;
+		}
+
+		if (options.lineWidth !== undefined)
+		{
+			if ({}.toString.call(options.lineWidth) !== "[object Number]")
+				throw new TypeError("options.lineWidth must be a number.");
+			
+			this._options.lineWidth = options.lineWidth;
+		}
+
+		if (options.lineColor !== undefined)
+		{
+			if ({}.toString.call(options.lineColor) !== "[object Number]")
+				throw new TypeError("options.lineColor must be a number.");
+			
+			this._options.lineColor = options.lineColor;
+		}
+
+		if (options.lineAlpha !== undefined)
+		{
+			if ({}.toString.call(options.lineAlpha) !== "[object Number]")
+				throw new TypeError("options.lineAlpha must be a number.");
+			
+			this._options.lineAlpha = options.lineAlpha;
+		}
+	}
+
+	/**
 	 * addHole
 	 * This function is used in order to add a hole in the current path.
 	 */
@@ -227,7 +298,7 @@ class Shape extends Mask
 	 * @param {Number}  alpha  The alpha of the fill.
 	 * @return {Shape} This Shape object. Good for chaining method calls.
 	 */
-	beginFill(color = 0, alpha = 1)
+	beginFill(color = this.options.fillColor || 0, alpha = this.options.fillAlpha || 1)
 	{
 		if ({}.toString.call(color) !== "[object Number]")
 			throw new TypeError("color must be a number.");
@@ -236,6 +307,7 @@ class Shape extends Mask
 			throw new TypeError("alpha must be a number.");
 
 		this._out.beginFill(color, alpha);
+		this.lineStyle({lineWidth: this._options.lineWidth, color: this._options.lineColor, alpha: this._options.lineAlpha});
 
 		return this;
 	}
