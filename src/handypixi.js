@@ -59,4 +59,6 @@ module.exports = {
     Shape: DisplayObject.Shape,
     Circle: DisplayObject.Circle,
     Ellipse: DisplayObject.Ellipse,
+    Rectangle: DisplayObject.Rectangle,
+    RoundedRectangle: DisplayObject.RoundedRectangle,
 };

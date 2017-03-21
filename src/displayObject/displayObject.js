@@ -13,6 +13,8 @@ const { NineSlicePlane } = require("./container/mesh/NineSlicePlane.js");
 const { Shape } = require("./container/mask/shape/Shape.js");
 const { Circle } = require("./container/mask/shape/Circle.js");
 const { Ellipse } = require("./container/mask/shape/Ellipse.js");
+const { Rectangle } = require("./container/mask/shape/Rectangle.js");
+const { RoundedRectangle } = require("./container/mask/shape/RoundedRectangle.js");
 
 module.exports = {
 	Bounds: Bounds,
@@ -30,4 +32,6 @@ module.exports = {
 	Shape: Shape,
 	Circle: Circle,
 	Ellipse: Ellipse,
+	Rectangle: Rectangle,
+	RoundedRectangle: RoundedRectangle,
 };

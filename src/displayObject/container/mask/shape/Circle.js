@@ -20,7 +20,7 @@ class Circle extends Shape
 	 * @param {Number}  x  The X coordinate of the center of this circle.
 	 * @param {Number}  y  The Y coordinate of the center of this circle.
 	 * @param {Number}  radius  The radius of the circle.
-	 * @param {Object}  options  Options for drawing.
+	 * @param {Object}  options  Default options for drawing.
 	 * @param {Boolean}  drawLines  Lines will be draw using LINES instead of TRIANGLE_STRIP
 	 * @param {PIXI.Circle}  x  The Pixi object to build the HandyPixi object.
 	 */
