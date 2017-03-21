@@ -21,7 +21,7 @@ class Rectangle extends Shape
 	 * @param {Number}  y  The Y coordinate of the center of this Rectangle.
 	 * @param {Number}  width  The overall width of this rectangle.
 	 * @param {Number}  height  The overall height of this rectangle.
-	 * @param {Options}  options  Options for drawing.
+	 * @param {Options}  options  Default options for drawing.
 	 * @param {Boolean}  drawLines  Lines will be draw using LINES instead of TRIANGLE_STRIP
 	 * @param {PIXI.Rectangle}  x  The Pixi object to build the HandyPixi object.
 	 */

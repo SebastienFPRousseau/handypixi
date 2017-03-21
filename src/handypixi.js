@@ -61,4 +61,5 @@ module.exports = {
     Ellipse: DisplayObject.Ellipse,
     Rectangle: DisplayObject.Rectangle,
     RoundedRectangle: DisplayObject.RoundedRectangle,
+    Polygon: DisplayObject.Polygon,
 };
