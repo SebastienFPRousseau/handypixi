@@ -21,13 +21,13 @@ class Ellipse extends Shape
 	 * @param {Number}  y  The Y coordinate of the center of this Ellipse.
 	 * @param {Number}  width  The half width of this ellipse.
 	 * @param {Number}  height  The half height of this ellipse.
-	 * @param {Options}  options  Options for drawing.
-	 * @param {Boolean}  drawLines  Lines will be draw using LINES instead of TRIANGLE_STRIP
+	 * @param {Options}  options  Default options for drawing.
+	 * @param {Boolean}  nativeLines  Lines will be draw using LINES instead of TRIANGLE_STRIP
 	 * @param {PIXI.Ellipse}  x  The Pixi object to build the HandyPixi object.
 	 */
-	constructor(x = 0, y = 0, width = 0, height = 0, options = {}, drawLines = false)
+	constructor(x = 0, y = 0, width = 0, height = 0, options = {}, nativeLines = false)
 	{
-		super(options, drawLines);
+		super(options, nativeLines);
 
 		if ({}.toString.call(y) !== "[object Number]")
 			throw new TypeError("y must be a number.");

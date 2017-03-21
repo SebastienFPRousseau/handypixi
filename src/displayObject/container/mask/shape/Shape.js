@@ -12,6 +12,7 @@
 
 const { Mask } = require("./../Mask.js");
 const { Point } = require("./../../../../support/geometry/Point.js");
+const { ShapeData } = require("./ShapeData.js");
 
 class Shape extends Mask
 {
@@ -19,17 +20,18 @@ class Shape extends Mask
 	* constructor
 	* This function is used in order to build a Shape.
 	* @param {Object}  options  Default options for drawing.
-	* @param {Boolean}  drawLines  Lines will be draw using LINES instead of TRIANGLE_STRIP
+	* @param {Boolean}  nativeLines  Lines will be draw using LINES instead of TRIANGLE_STRIP
 	* @param {PIXI.Graphics}  options  The Pixi object to build the HandyPixi object.
 	*/
-	constructor(options = {}, drawLines = false)
+	constructor(options = {}, nativeLines = false)
 	{
 		super();
 
-		if ({}.toString.call(drawLines) !== "[object Boolean]")
-				throw new TypeError("drawLines must be a boolean.");
+		if ({}.toString.call(nativeLines) !== "[object Boolean]")
+				throw new TypeError("nativeLines must be a boolean.");
 
 		this._options = {};
+		this._properties = null;
 		
 		if (options instanceof PIXI.Graphics)
 		{
@@ -42,7 +44,7 @@ class Shape extends Mask
 			
 			this.options = options;
 
-			this._out = new PIXI.Graphics(drawLines);
+			this._out = new PIXI.Graphics(nativeLines);
 		}
 	}
 
@@ -478,6 +480,21 @@ class Shape extends Mask
 		this._out.updateLocalBounds();
 
 		return this;
+	}
+
+	/**
+	 * getShapeData
+	 * This function is used in order to get the related ShapeData object of this Shape.
+	 * @return {ShapeData} The ShapeData.
+	 */
+	getShapeData()
+	{
+		let fill = false;
+
+		if (this._options.fillColor !== undefined)
+			fill = true;
+
+		return new ShapeData(this._options, fill, this._out.nativeLines, this._properties);
 	}
 }
 

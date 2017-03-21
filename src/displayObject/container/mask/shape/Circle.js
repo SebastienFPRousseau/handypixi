@@ -21,12 +21,12 @@ class Circle extends Shape
 	 * @param {Number}  y  The Y coordinate of the center of this circle.
 	 * @param {Number}  radius  The radius of the circle.
 	 * @param {Object}  options  Default options for drawing.
-	 * @param {Boolean}  drawLines  Lines will be draw using LINES instead of TRIANGLE_STRIP
+	 * @param {Boolean}  nativeLines  Lines will be draw using LINES instead of TRIANGLE_STRIP
 	 * @param {PIXI.Circle}  x  The Pixi object to build the HandyPixi object.
 	 */
-	constructor(x = 0, y = 0, radius = 0, options = {}, drawLines = false)
+	constructor(x = 0, y = 0, radius = 0, options = {}, nativeLines = false)
 	{
-		super(options, drawLines);
+		super(options, nativeLines);
 
 		if ({}.toString.call(y) !== "[object Number]")
 			throw new TypeError("y must be a number.");

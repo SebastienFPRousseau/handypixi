@@ -20,12 +20,12 @@ class Polygon extends Shape
 	 * This function is used in order to build a Polygon.
 	 * @param {Point[]} points An array of Points that form the polygon.
 	 * @param {Object}  options  Default options for drawing.
-	 * @param {Boolean}  drawLines  Lines will be draw using LINES instead of TRIANGLE_STRIP
+	 * @param {Boolean}  nativeLines  Lines will be draw using LINES instead of TRIANGLE_STRIP
 	 * @param {PIXI.Polygon}  points  The Pixi object to build the HandyPixi object.
 	 */
-	constructor(points = [], options = {}, drawLines = false)
+	constructor(points = [], options = {}, nativeLines = false)
 	{
-		super(options, drawLines);
+		super(options, nativeLines);
 
 		if (points instanceof PIXI.Polygon)
 		{
@@ -92,6 +92,16 @@ class Polygon extends Shape
 
 		this.redraw();
 		return this._properties.points = pixiPoints;
+	}
+
+	/**
+	 * isClosed
+	 * This function is used in order to know if the Polygon is closed.
+	 * @return {Boolean} If the polygon is closed or not.
+	 */
+	isClosed()
+	{
+		return this._properties.closed;
 	}
 
 	/**

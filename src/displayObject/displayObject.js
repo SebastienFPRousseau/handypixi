@@ -16,6 +16,7 @@ const { Ellipse } = require("./container/mask/shape/Ellipse.js");
 const { Rectangle } = require("./container/mask/shape/Rectangle.js");
 const { RoundedRectangle } = require("./container/mask/shape/RoundedRectangle.js");
 const { Polygon } = require("./container/mask/shape/Polygon.js");
+const { ShapeData } = require("./container/mask/shape/ShapeData.js");
 
 module.exports = {
 	Bounds: Bounds,
@@ -36,4 +37,5 @@ module.exports = {
 	Rectangle: Rectangle,
 	RoundedRectangle: RoundedRectangle,
 	Polygon: Polygon,
+	ShapeData: ShapeData,
 };
