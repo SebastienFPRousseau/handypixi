@@ -496,6 +496,143 @@ class Shape extends Mask
 
 		return new ShapeData(this._options, fill, this._out.nativeLines, this._properties);
 	}
+
+	/**
+	 * drawCircle
+	 * This function is used in order to draw a circle into this Shape.
+	 * @param {Number}  x  The X coordinate of the center of this circle.
+	 * @param {Number}  y  The Y coordinate of the center of this circle.
+	 * @param {Number}  radius  The radius of the circle.
+	 * @return {Shape} This Shape object. Good for chaining method calls.
+	 */
+	drawCircle(x, y, radius)
+	{
+		if ({}.toString.call(x) !== "[object Number]")
+			throw new TypeError("x must be a number.");
+
+		if ({}.toString.call(y) !== "[object Number]")
+			throw new TypeError("y must be a number.");
+
+		if ({}.toString.call(radius) !== "[object Number]")
+			throw new TypeError("radius must be a number.");
+
+		this._out.drawCircle(x, y, radius);
+
+		return this;
+	}
+
+	
+	/**
+	 * drawEllipse
+	 * This function is used in order to draw an ellipse into this Shape.
+	 * @param {Number}  x  The X coordinate of the center of this Ellipse.
+	 * @param {Number}  y  The Y coordinate of the center of this Ellipse.
+	 * @param {Number}  width  The half width of this ellipse.
+	 * @param {Number}  height  The half height of this ellipse.
+	 * @return {Shape} This Shape object. Good for chaining method calls.
+	 */
+	drawEllipse(x, y, width, height)
+	{
+		if ({}.toString.call(x) !== "[object Number]")
+			throw new TypeError("x must be a number.");
+
+		if ({}.toString.call(y) !== "[object Number]")
+			throw new TypeError("y must be a number.");
+
+		if ({}.toString.call(width) !== "[object Number]")
+			throw new TypeError("width must be a number.");
+
+		if ({}.toString.call(height) !== "[object Number]")
+			throw new TypeError("height must be a number.");
+
+		this._out.drawEllipse(x, y, width, height);
+
+		return this;
+	}
+
+	/**
+	 * drawPolygon
+	 * This function is used in order to draw a polygon into this Shape.
+	 * @param {Point[]}  points  An array of Points that form the polygon.
+	 * @return {Shape} This Shape object. Good for chaining method calls.
+	 */
+	drawPolygon(points)
+	{
+		if (!Array.isArray(points))
+			throw new TypeError("points must be an array.");
+
+		let pixiPoints = [];
+		for(let i = 0, l = points.length; i < l; i++)
+		{
+			if (!(points[i] instanceof Point))
+				throw new TypeError("Can't use the "+ i +" element, it must be a Point");
+
+			pixiPoints.push(points[i].out);
+		}
+		this._out.drawPolygon(pixiPoints);
+
+		return this;
+	}
+
+	/**
+	 * drawRectangle
+	 * This function is used in order to draw a rectangle into this Shape.
+	 * @param {Number}  x  The X coordinate of the center of this Rectangle.
+	 * @param {Number}  y  The Y coordinate of the center of this Rectangle.
+	 * @param {Number}  width  The overall width of this rectangle.
+	 * @param {Number}  height  The overall height of this rectangle.
+	 * @return {Shape} This Shape object. Good for chaining method calls.
+	 */
+	drawRectangle(x, y, width, height)
+	{
+		if ({}.toString.call(x) !== "[object Number]")
+			throw new TypeError("x must be a number.");
+
+		if ({}.toString.call(y) !== "[object Number]")
+			throw new TypeError("y must be a number.");
+
+		if ({}.toString.call(width) !== "[object Number]")
+			throw new TypeError("width must be a number.");
+
+		if ({}.toString.call(height) !== "[object Number]")
+			throw new TypeError("height must be a number.");
+
+		this._out.drawRect(x, y, width, height);
+
+		return this;
+	}
+
+	/**
+	 * drawRoundedRectangle
+	 * This function is used in order to draw a rounded rectangle into this Shape.
+	 * @param {Number}  x  The X coordinate of the center of this RoundedRectangle.
+	 * @param {Number}  y  The Y coordinate of the center of this RoundedRectangle.
+	 * @param {Number}  width  The overall width of this RoundedRectangle.
+	 * @param {Number}  height  The overall height of this RoundedRectangle.
+	 * @param {Number}  radius  Controls the radius of the rounded corners.
+	 * @return {Shape} This Shape object. Good for chaining method calls.
+	 */
+	drawRoundedRectangle(x, y, width, height, radius)
+	{
+		if ({}.toString.call(x) !== "[object Number]")
+			throw new TypeError("x must be a number.");
+
+		if ({}.toString.call(y) !== "[object Number]")
+			throw new TypeError("y must be a number.");
+
+		if ({}.toString.call(width) !== "[object Number]")
+			throw new TypeError("width must be a number.");
+
+		if ({}.toString.call(height) !== "[object Number]")
+			throw new TypeError("height must be a number.");
+
+		if ({}.toString.call(radius) !== "[object Number]")
+			throw new TypeError("radius must be a number.");
+
+		this._out.drawRoundedRect(x, y, width, height, radius);
+
+		return this;
+	}
 }
 
 module.exports = {
