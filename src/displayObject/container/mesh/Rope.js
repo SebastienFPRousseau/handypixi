@@ -39,7 +39,7 @@ class Rope extends Mesh
 			for(let i = 0, l = points.length; i < l; i++)
 			{
 				if (!(points[i] instanceof Point))
-					throw new TypeError("Can't apply the "+ i +" element, it must be a Point");
+					throw new TypeError("Can't use the "+ i +" element, it must be a Point");
 
 				pixiPoints.push(points[i].out);
 			}

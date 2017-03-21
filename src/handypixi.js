@@ -63,4 +63,7 @@ module.exports = {
     RoundedRectangle: DisplayObject.RoundedRectangle,
     Polygon: DisplayObject.Polygon,
     ShapeData: DisplayObject.ShapeData,
+    AbstractContainerFactory: DisplayObject.AbstractContainerFactory,
+    TextFactory: DisplayObject.TextFactory,
+    BitmapText: DisplayObject.BitmapText,
 };

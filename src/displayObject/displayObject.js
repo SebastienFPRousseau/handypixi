@@ -17,6 +17,7 @@ const { Rectangle } = require("./container/mask/shape/Rectangle.js");
 const { RoundedRectangle } = require("./container/mask/shape/RoundedRectangle.js");
 const { Polygon } = require("./container/mask/shape/Polygon.js");
 const { ShapeData } = require("./container/mask/shape/ShapeData.js");
+const { AbstractContainerFactory, TextFactory, BitmapTextFactory } = require("./container/AbstractContainerFactory.js");
 
 module.exports = {
 	Bounds: Bounds,
@@ -38,4 +39,7 @@ module.exports = {
 	RoundedRectangle: RoundedRectangle,
 	Polygon: Polygon,
 	ShapeData: ShapeData,
+	AbstractContainerFactory: AbstractContainerFactory,
+	TextFactory: TextFactory,
+	BitmapTextFactory: BitmapTextFactory,
 };
