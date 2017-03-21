@@ -65,5 +65,6 @@ module.exports = {
     ShapeData: DisplayObject.ShapeData,
     AbstractContainerFactory: DisplayObject.AbstractContainerFactory,
     TextFactory: DisplayObject.TextFactory,
-    BitmapText: DisplayObject.BitmapText,
+    BitmapTextFactory: DisplayObject.BitmapTextFactory,
+    MeshFactory: DisplayObject.MeshFactory,
 };
