@@ -23,6 +23,9 @@ const { Ellipse } = require("./mask/shape/Ellipse.js");
 const { Rectangle } = require("./mask/shape/Rectangle.js");
 const { RoundedRectangle } = require("./mask/shape/RoundedRectangle.js");
 const { Polygon } = require("./mask/shape/Polygon.js");
+const { Sprite } = require("./mask/sprite/Sprite.js");
+const { AnimatedSprite } = require("./mask/sprite/AnimatedSprite.js");
+const { TilingSprite } = require("./mask/sprite/TilingSprite.js");
 
 /**
  * TEXT_FACTORY
@@ -39,11 +42,11 @@ const TEXT_FACTORY = 0;
 const MESH_FACTORY = 1;
 
 /**
- * SPRITE_FACTORY
- * Identify the SpriteFactory 
+ * SPECIAL_SPRITE_FACTORY
+ * Identify the SpecialSpriteFactory 
  * @type {Number} 
  */
-const SPRITE_FACTORY = 2;
+const SPECIAL_SPRITE_FACTORY = 2;
 
 /**
  * SHAPE_FACTORY
@@ -90,12 +93,12 @@ class AbstractContainerFactory
 	}
 
 	/**
-	 * SPRITE_FACTORY
+	 * SPECIAL_SPRITE_FACTORY
 	 * @getter
 	 */
-	static get SPRITE_FACTORY()
+	static get SPECIAL_SPRITE_FACTORY()
 	{
-		return SPRITE_FACTORY;
+		return SPECIAL_SPRITE_FACTORY;
 	}
 
 	/**
@@ -143,6 +146,10 @@ class AbstractContainerFactory
 
 			case SHAPE_FACTORY:
 				return new ShapeFactory();
+			break;
+
+			case SPECIAL_SPRITE_FACTORY:
+				return new SpecialSpriteFactory();
 			break;
 
 			default: 
@@ -405,10 +412,58 @@ class ShapeFactory extends AbstractContainerFactory
 	
 }
 
+/*
+|--------------------------------------------------------------------------
+| SpecialSpriteFactory
+|--------------------------------------------------------------------------
+|
+| This file defines the SpecialSpriteFactory Object.
+| This object is a factory for specials Sprite.
+| This package is based on Pixi.js and should not be externalized.
+| http://www.pixijs.com/
+|
+*/
+
+class SpecialSpriteFactory extends AbstractContainerFactory
+{
+	/**
+	 * constructor
+	 * This function is used in order to build a SpecialSpriteFactory.
+	 */
+	constructor()
+	{
+		super();
+	}
+
+	/**
+	 * createAnimatedSprite
+	 * This function is used in order to build a AnimatedSprite.
+	 * @param {Boolean}  autoUpdate  Use the shared Ticker to auto update animation or not.
+	 * @return {AnimatedSprite} The AnimatedSprite built. 
+	 */
+	createAnimatedSprite(autoUpdate = undefined)
+	{
+		return new AnimatedSprite(autoUpdate);
+	}
+
+	/**
+	 * createTilingSprite
+	 * This function is used in order to build a TilingSprite.
+	 * @param {Number}  width  The width of the tiling sprite.
+	 * @param {Number}  height  The height of the tiling sprite.
+	 * @return {TilingSprite} The TilingSprite built. 
+	 */
+	createTilingSprite(width = undefined, height = undefined)
+	{
+		return new TilingSprite(width, height);
+	}
+}
+
 module.exports = {
 	AbstractContainerFactory: AbstractContainerFactory,
 	TextFactory: TextFactory,
 	BitmapTextFactory: BitmapTextFactory,
 	MeshFactory: MeshFactory,
 	ShapeFactory: ShapeFactory,
+	SpecialSpriteFactory: SpecialSpriteFactory,
 };

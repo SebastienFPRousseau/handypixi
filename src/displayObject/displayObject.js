@@ -21,7 +21,8 @@ const { AbstractContainerFactory,
 		TextFactory, 
 		BitmapTextFactory, 
 		MeshFactory, 
-		ShapeFactory } = require("./container/AbstractContainerFactory.js");
+		ShapeFactory,
+		SpecialSpriteFactory } = require("./container/AbstractContainerFactory.js");
 
 module.exports = {
 	Bounds: Bounds,
@@ -48,4 +49,5 @@ module.exports = {
 	BitmapTextFactory: BitmapTextFactory,
 	MeshFactory: MeshFactory,
 	ShapeFactory: ShapeFactory,
+	SpecialSpriteFactory: SpecialSpriteFactory,
 };

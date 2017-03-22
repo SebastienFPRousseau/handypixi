@@ -68,4 +68,5 @@ module.exports = {
     BitmapTextFactory: DisplayObject.BitmapTextFactory,
     MeshFactory: DisplayObject.MeshFactory,
     ShapeFactory: DisplayObject.ShapeFactory,
+    SpecialSpriteFactory: DisplayObject.SpecialSpriteFactory,
 };
