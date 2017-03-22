@@ -69,4 +69,5 @@ module.exports = {
     MeshFactory: DisplayObject.MeshFactory,
     ShapeFactory: DisplayObject.ShapeFactory,
     SpecialSpriteFactory: DisplayObject.SpecialSpriteFactory,
+    Object2D: DisplayObject.Object2D,
 };

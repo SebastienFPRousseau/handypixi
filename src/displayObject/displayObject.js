@@ -23,6 +23,7 @@ const { AbstractContainerFactory,
 		MeshFactory, 
 		ShapeFactory,
 		SpecialSpriteFactory } = require("./container/AbstractContainerFactory.js");
+const { Object2D } = require("./object2D/Object2D.js");
 
 module.exports = {
 	Bounds: Bounds,
@@ -50,4 +51,5 @@ module.exports = {
 	MeshFactory: MeshFactory,
 	ShapeFactory: ShapeFactory,
 	SpecialSpriteFactory: SpecialSpriteFactory,
+	Object2D: Object2D,
 };
