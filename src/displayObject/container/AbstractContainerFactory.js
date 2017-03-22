@@ -17,6 +17,12 @@ const { Mesh } = require("./mesh/Mesh.js");
 const { Rope } = require("./mesh/Rope.js");
 const { Plane } = require("./mesh/Plane.js");
 const { NineSlicePlane } = require("./mesh/NineSlicePlane.js");
+const { Shape } = require("./mask/shape/Shape.js");
+const { Circle } = require("./mask/shape/Circle.js");
+const { Ellipse } = require("./mask/shape/Ellipse.js");
+const { Rectangle } = require("./mask/shape/Rectangle.js");
+const { RoundedRectangle } = require("./mask/shape/RoundedRectangle.js");
+const { Polygon } = require("./mask/shape/Polygon.js");
 
 /**
  * TEXT_FACTORY
@@ -133,6 +139,10 @@ class AbstractContainerFactory
 
 			case MESH_FACTORY:
 				return new MeshFactory();
+			break;
+
+			case SHAPE_FACTORY:
+				return new ShapeFactory();
 			break;
 
 			default: 
@@ -281,10 +291,124 @@ class MeshFactory extends AbstractContainerFactory
 	}
 }
 
+/*
+|--------------------------------------------------------------------------
+| ShapeFactory
+|--------------------------------------------------------------------------
+|
+| This file defines the ShapeFactory Object.
+| This object is a factory for Shape.
+| This package is based on Pixi.js and should not be externalized.
+| http://www.pixijs.com/
+|
+*/
+
+class ShapeFactory extends AbstractContainerFactory
+{
+	/**
+	 * constructor
+	 * This function is used in order to build a ShapeFactory.
+	 */
+	constructor()
+	{
+		super();
+	}
+
+	/**
+	 * createShape
+	 * This function is used in order to build a Shape.
+	 * @param {Object}  options  Default options for drawing.
+	 * @param {Boolean}  nativeLines  Lines will be draw using LINES instead of TRIANGLE_STRIP
+	 * @return {Shape} The Shape built. 
+	 */
+	createShape(options = undefined, nativeLines = undefined)
+	{
+		return new Shape(options, nativeLines);
+	}
+
+	/**
+	 * createCircle
+	 * This function is used in order to build a Circle.
+	 * @param {Number}  x  The X coordinate of the center of this circle.
+	 * @param {Number}  y  The Y coordinate of the center of this circle.
+	 * @param {Number}  radius  The radius of the circle.
+	 * @param {Object}  options  Default options for drawing.
+	 * @param {Boolean}  nativeLines  Lines will be draw using LINES instead of TRIANGLE_STRIP
+	 * @return {Circle} The Circle built. 
+	 */
+	createCircle(x = undefined, y = undefined, radius = undefined, options = undefined, nativeLines = undefined)
+	{
+		return new Circle(x, y, radius, options, nativeLines);
+	}
+
+	/**
+	 * createEllipse
+	 * This function is used in order to build a Ellipse.
+	 * @param {Number}  x  The X coordinate of the center of this Ellipse.
+	 * @param {Number}  y  The Y coordinate of the center of this Ellipse.
+	 * @param {Number}  width  The half width of this ellipse.
+	 * @param {Number}  height  The half height of this ellipse.
+	 * @param {Object}  options  Default options for drawing.
+	 * @param {Boolean}  nativeLines  Lines will be draw using LINES instead of TRIANGLE_STRIP
+	 * @return {Ellipse} The Ellipse built. 
+	 */
+	createEllipse(x = undefined, y = undefined, width = undefined, height = undefined, options = undefined, nativeLines = undefined)
+	{
+		return new Ellipse(x, y, width, height, options, nativeLines);
+	}
+
+	/**
+	 * createPolygon
+	 * This function is used in order to build a Polygon.
+	 * @param {Point[]} points An array of Points that form the polygon.
+	 * @param {Object}  options  Default options for drawing.
+	 * @param {Boolean}  nativeLines  Lines will be draw using LINES instead of TRIANGLE_STRIP
+	 * @return {Polygon} The Polygon built. 
+	 */
+	createPolygon(points = undefined, options = undefined, nativeLines = undefined)
+	{
+		return new Polygon(points, options, nativeLines);
+	}
+
+	/**
+	 * createRectangle
+	 * This function is used in order to build a Rectangle.
+	 * @param {Number}  x  The X coordinate of the center of this Rectangle.
+	 * @param {Number}  y  The Y coordinate of the center of this Rectangle.
+	 * @param {Number}  width  The overall width of this rectangle.
+	 * @param {Number}  height  The overall height of this rectangle.
+	 * @param {Object}  options  Default options for drawing.
+	 * @param {Boolean}  nativeLines  Lines will be draw using LINES instead of TRIANGLE_STRIP
+	 * @return {Rectangle} The Rectangle built. 
+	 */
+	createRectangle(x = undefined, y = undefined, width = undefined, height = undefined, options = undefined, nativeLines = undefined)
+	{
+		return new Rectangle(x, y, width, height, options, nativeLines);
+	}
+
+	/**
+	 * createRoundedRectangle
+	 * This function is used in order to build a RoundedRectangle.
+	 * @param {Number}  x  The X coordinate of the center of this RoundedRectangle.
+	 * @param {Number}  y  The Y coordinate of the center of this RoundedRectangle.
+	 * @param {Number}  width  The overall width of this RoundedRectangle.
+	 * @param {Number}  height  The overall height of this RoundedRectangle.
+	 * @param {Number}  radius  Controls the radius of the rounded corners.
+	 * @param {Object}  options  Default options for drawing.
+	 * @param {Boolean}  nativeLines  Lines will be draw using LINES instead of TRIANGLE_STRIP
+	 * @return {RoundedRectangle} The RoundedRectangle built. 
+	 */
+	createRoundedRectangle(x = undefined, y = undefined, width = undefined, height = undefined, radius = undefined, options = undefined, nativeLines = undefined)
+	{
+		return new RoundedRectangle(x, y, width, height, radius, options, nativeLines);
+	}
+	
+}
 
 module.exports = {
 	AbstractContainerFactory: AbstractContainerFactory,
 	TextFactory: TextFactory,
 	BitmapTextFactory: BitmapTextFactory,
 	MeshFactory: MeshFactory,
+	ShapeFactory: ShapeFactory,
 };
