@@ -22,6 +22,7 @@ const { Mesh } = require("./../container/mesh/Mesh.js");
 const { Rope } = require("./../container/mesh/Rope.js");
 const { Plane } = require("./../container/mesh/Plane.js");
 const { NineSlicePlane } = require("./../container/mesh/NineSlicePlane.js");
+const { Look } = require("./../../graphic/look/Look.js");
 
 class Object2D
 {
@@ -113,31 +114,129 @@ class Object2D
 	 * This function is used in order to add and apply a Look on this object.
 	 * @param {Look}  look  The look to apply on this object.
 	 */
-	
+	addLook(look)
+	{
+		if (!(look instanceof Look))
+			throw new TypeError("look must be a Look.");
+
+		let type = this._out.constructor.name;
+
+		this._out.out.filters = look.out.filters;
+
+		if (type === "Container")
+		{
+			this._out = new Sprite(look.clone().out);
+		}
+		else if (type === "SimpleText")
+		{
+			this._out.out.style = look.style.out;
+		}
+		else if (type !== "BitmapText" && !(this._out instanceof Shape))
+		{
+			this._out.out.texture = look.out.texture;
+
+			if (type === "AnimatedSprite")
+				this._out.out.textures.push(look.out.texture);
+		}
+
+		this._looks.push(look);
+	}
+
 	/**
 	 * addLooks
 	 * This function is used in order to add and apply some Looks on this object.
 	 * @param {Look[]}  looks  The looks to apply on this object.
 	 */
-	
+	addLooks(looks)
+	{
+		if (!Array.isArray(looks))
+		{
+			throw new TypeError("looks must be an array.");
+		}
+		else 
+		{
+			for (let i = 0, l = looks.length; i < l; i++)
+			{
+				if (!(looks[i] instanceof Look))
+					throw new TypeError("Can't add the "+ i +" element, it must be an Look");
+
+				this.addLook(looks[i]);
+			}
+		}
+	}
+
 	/**
 	 * getLookAt
 	 * This function is used in order to get a Look at the given indice.
 	 * @param {Number}  id  The indice to get the look.
 	 * @return {Look} The corresponding look.
 	 */
-	
+	getLookAt(id)
+	{
+		if ({}.toString.call(id) !== "[object Number]")
+			throw new TypeError("id must be a number.");
+
+		if (!(id < this._looks.length && id >= 0))
+			throw new RangeError("The given indice : "+ id +", is out of range for the looks.");
+
+		return this._looks[id];
+	}
+
 	/**
 	 * removeLookAt
 	 * This function is used in order to remove a Look at the given indice.
 	 * @param {Number}  id  The indice of the look to remove.
 	 */
-	
+	removeLookAt(id)
+	{
+		if ({}.toString.call(id) !== "[object Number]")
+			throw new TypeError("id must be a number.");
+
+		if (!(id < this._looks.length && id >= 0))
+			throw new RangeError("The given indice : "+ id +", is out of range for the looks.");
+
+		let type = this._out.constructor.name;
+
+		if (id === this._looks.length-1)
+		{
+			this._out.out.filters = null;
+
+			if (type !== "Container" && type !== "BitmapText" && !(this._out instanceof Shape))
+			{
+				this._out.out.texture = PIXI.Texture.EMPTY.clone();
+
+				if (type === "SimpleText")
+					this._out.out.style = null;
+			}
+		}
+
+		if (type === "AnimatedSprite")
+			this._out.out.textures.splice(id,1);
+
+		this._looks.splice(id, 1);
+	}
+
 	/**
 	 * removeLooks
 	 * This function is used in order to remove all looks of this object.
+	 * @param {Number}  start  The beginning indice included.
+	 * @param {Number}  end  The ending indice excluded.
 	 */
-	
+	removeLooks(start = 0, end = this._looks.length)
+	{
+		if ({}.toString.call(start) !== "[object Number]")
+			throw new TypeError("start must be a number.");
+
+		if ({}.toString.call(end) !== "[object Number]")
+			throw new TypeError("end must be a number.");
+
+		if (start >= 0  && end <= this._looks.length)
+		{
+			for (let i = start; i < end; i++)
+				this.removeLookAt(start);
+		}
+	}
+
 	/**
 	 * addChild
 	 * This function is used in order to add a child for this object.
@@ -147,7 +246,6 @@ class Object2D
 	{
 		if (!(obj instanceof Object2D))
 			throw new TypeError("obj must be a Object2D.");
-
 
 		if (obj.parent !== null)
 			obj.parent.removeChild(obj);
@@ -191,6 +289,9 @@ class Object2D
 		if ({}.toString.call(id) !== "[object Number]")
 			throw new TypeError("id must be a number.");
 
+		if (!(id < this._children.length && id >= 0))
+			throw new RangeError("The given indice : "+ id +", is out of range for the children.");
+
 		return this._children[id];
 	}
 
@@ -204,13 +305,13 @@ class Object2D
 		if ({}.toString.call(id) !== "[object Number]")
 			throw new TypeError("id must be a number.");
 
-		if (id < this._children.length && id >= 0)
-		{
-			let child = this._children[id];
-			child._parent = null;
-			this._children.splice(id, 1);
-			this._out.out.removeChild(child.out.out);
-		}
+		if (!(id < this._children.length && id >= 0))
+			throw new RangeError("The given indice : "+ id +", is out of range for the children.");
+
+		let child = this._children[id];
+		child._parent = null;
+		this._children.splice(id, 1);
+		this._out.out.removeChild(child.out.out);
 	}
 
 	/**
@@ -250,27 +351,10 @@ class Object2D
 		if (start >= 0  && end <= this._children.length)
 		{
 			for (let i = start; i < end; i++)
-				this.removeChildAt(i);
+				this.removeChildAt(start);
 		}
 	}
 
-	/**
-	 * clone
-	 * This function is used in order to clone this object.
-	 * @return {Object2D} A copy of this object.
-	 */
-
-	/**
-	 * destroy
-	 * This function is used in order to destroy this object.
-	 * @param {Object}  options  Options for the destruction.
-	 */
-	
-	/**
-	 * update
-	 * This function is used in order to update this object.
-	 */
-	
 	/**
 	 * applyMask
 	 * This function is used in order to apply a mask on this object.
@@ -282,7 +366,7 @@ class Object2D
 			throw new TypeError("mask must be a Mask.");
 
 		this._mask = mask;
-		this._out.mask = mask.out;
+		this._out.out.mask = mask.out;
 	}
 
 	/**
@@ -292,9 +376,26 @@ class Object2D
 	removeMask()
 	{
 		this._mask = null;
-		this._out.mask = null;
+		this._out.out.mask = null;
 	}
 
+	/**
+	 * destroy
+	 * This function is used in order to destroy this object.
+	 * @param {Object}  options  Options for the destruction.
+	 */
+	
+	/**
+	 * clone
+	 * This function is used in order to clone this object.
+	 * @return {Object2D} A copy of this object.
+	 */
+	
+	/**
+	 * update
+	 * This function is used in order to update this object.
+	 */
+	
 	/**
 	 * getSprite
 	 * This function is used in order to get the resulting Sprite of this object to use it as a mask. 

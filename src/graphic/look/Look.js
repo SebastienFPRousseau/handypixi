@@ -93,7 +93,7 @@ class Look
 	 */
 	clone()
 	{
-		let copy = new Shader();
+		let copy = new Look();
 
 		copy.bindTexture(this._texture);
 		copy.bindStyle(this._style);
