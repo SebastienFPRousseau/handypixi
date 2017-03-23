@@ -83,11 +83,7 @@ class Object2D
 		if (!(parent instanceof Object2D))
 			throw new TypeError("parent must be a Object2D.");
 
-		if (this._parent !== null)
-			this._parent.removeChild(this);
-
-		this._parent = parent;
-		this._out.setParent(parent.out);
+		parent.addChild(this);
 	}
 
 	/**
@@ -152,8 +148,13 @@ class Object2D
 		if (!(obj instanceof Object2D))
 			throw new TypeError("obj must be a Object2D.");
 
-		obj.parent = this;
-		this.children.push(obj);
+
+		if (obj.parent !== null)
+			obj.parent.removeChild(obj);
+
+		obj._parent = this;
+		this._children.push(obj);
+		this._out.out.addChild(obj.out.out);
 	}
 
 	/**
@@ -174,8 +175,7 @@ class Object2D
 				if (!(objs[i] instanceof Object2D))
 					throw new TypeError("Can't add the "+ i +" element, it must be an Object2D");
 
-				objs[i].parent = this;
-				this._children.push(objs[i]);
+				this.addChild(objs[i]);
 			}
 		}
 	}
@@ -206,10 +206,10 @@ class Object2D
 
 		if (id < this._children.length && id >= 0)
 		{
-			let child = this._children[i];
+			let child = this._children[id];
 			child._parent = null;
-			this._children.splice(i, 1);
-			this._out.removeChild(child.out);
+			this._children.splice(id, 1);
+			this._out.out.removeChild(child.out.out);
 		}
 	}
 
@@ -226,7 +226,10 @@ class Object2D
 		for (let i = 0, l = this._children.length; i < l; i++)
 		{
 			if (obj === this._children[i])
+			{
 				this.removeChildAt(i);
+				break;
+			}
 		}
 	}
 
@@ -246,7 +249,7 @@ class Object2D
 
 		if (start >= 0  && end <= this._children.length)
 		{
-			for (i = start; i < end; i++)
+			for (let i = start; i < end; i++)
 				this.removeChildAt(i);
 		}
 	}
