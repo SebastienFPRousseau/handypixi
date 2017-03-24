@@ -382,25 +382,81 @@ class Object2D
 	/**
 	 * destroy
 	 * This function is used in order to destroy this object.
-	 * @param {Object}  options  Options for the destruction.
+	 * @param {Object}  options  Options parameter to destroy dependencies.
 	 */
-	
-	/**
-	 * clone
-	 * This function is used in order to clone this object.
-	 * @return {Object2D} A copy of this object.
-	 */
+	destroy(options)
+	{
+		if (!(typeof options === "object" && {}.toString.call(options) === "[object Object]"))
+			throw new TypeError("options must be an object.");
+
+		if (options.destroyLooks)
+		{
+			for (let i = 0, l = this._looks.length; i < l; i++)
+					this._looks[i].destroy({ destroyBase:options.destroyLooksBases, });
+		}
+		this._looks = null;
+
+		if (options.destroyMask && this._mask !== null)
+			this._mask.destroy({});
+
+		this._mask = null;
+		if (this._parent !== null)
+		{
+			this._parent.removeChild(this);
+			this._parent = null;
+		}
+
+		if (options.destroyChildren)
+		{
+			for (let i = 0, l = this._children.length; i < l; i++)
+				this._children[i].destroy(options);
+		}
+		else
+		{
+			for (let i = 0, l = this._children.length; i < l; i++)
+				this.children[i]._parent = null;
+		}
+		this._children = null;
+
+		this._out.destroy({});
+	}
 	
 	/**
 	 * update
 	 * This function is used in order to update this object.
 	 */
-	
+	update()
+	{
+		for (let i = 0, l = this._looks.length; i < l; i++)
+			this._looks[i].update();
+
+		this._out.calculateBounds();
+	}
+
 	/**
 	 * getSprite
 	 * This function is used in order to get the resulting Sprite of this object to use it as a mask. 
 	 * @return {Sprite} The resulting Sprite from this object.
 	 */
+	getSprite()
+	{
+		let sprite = null;
+
+		if (this._out instanceof Sprite)
+		{
+			sprite = this._out;
+		}
+		else if (this._looks.length > 0)
+		{
+			sprite = new Sprite(this._looks[this._looks.length-1].out);
+		}
+		else
+		{
+			sprite = new Sprite();
+		}
+
+		return sprite;
+	}
 }
 
 module.exports = {

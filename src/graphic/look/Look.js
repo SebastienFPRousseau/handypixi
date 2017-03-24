@@ -85,7 +85,25 @@ class Look
 		this._texture.updateOnGPU();
 	}
 	
-	
+	/**
+	 * destroy
+	 * This function is used in order to destroy this object.
+	 * @param {Object}  options  Options parameter to destroy dependencies.
+	 */
+	destroy(options)
+	{
+		if (!(typeof options === "object" && {}.toString.call(options) === "[object Object]"))
+			throw new TypeError("options must be an object.");
+
+		this._style = null;
+		this._shaders = null;
+
+		if (options.destroyTexture)
+			this._texture.destroy(options.destroyBase);
+
+		this._texture = null;
+	}
+
 	/**
 	 * clone
 	 * This function is used in order to clone this Look.
