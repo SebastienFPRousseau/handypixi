@@ -30,6 +30,7 @@ module.exports = {
     WebGLConfiguration: RenderingSystem.WebGLConfiguration,
     Settings: RenderingSystem.Settings,
     WebGLRenderTarget: RenderingSystem.WebGLRenderTarget,
+    Environment: RenderingSystem.Environment,
 
     Shader: Graphic.Shader,
     GLSLShader: Graphic.GLSLShader,
