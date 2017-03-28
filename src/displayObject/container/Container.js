@@ -160,11 +160,11 @@ class Container
 	{
 		let position = null;
 
-		if (this._out.position.constructor.name === "Point")
+		if (this._out.position.constructor === Point)
 		{
 			position = new Point(this._out.position);
 		}
-		else if (this._out.position.constructor.name === "ObservablePoint")
+		else if (this._out.position.constructor === ObservablePoint)
 		{
 			position = new ObservablePoint(this._out.position);
 		}

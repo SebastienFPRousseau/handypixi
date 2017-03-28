@@ -29,7 +29,7 @@ class Rectangle extends Shape
 	{
 		super(options, nativeLines);
 
-		if (this.constructor.name !== "Rectangle")
+		if (this.constructor !== Rectangle)
      		return ;
 
 		if ({}.toString.call(y) !== "[object Number]")
