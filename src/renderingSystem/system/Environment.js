@@ -103,28 +103,44 @@ class Environment
 	 * This function is a getter for the member viewWidth.
 	 * @return {Number} The width of the view.
 	 */
-	
+	get viewWidth()
+	{
+		return this._canvas.width;
+	}
+
 	/**
 	 * viewWidth
 	 * @setter
 	 * This function is a setter for the member viewWidth.
 	 * @param {Number}  width  The width of the view.
 	 */
-	
+	set viewWidth(width)
+	{
+		this._canvas.width = width;
+	}
+
 	/**
 	 * viewHeight
 	 * @getter
 	 * This function is a getter for the member viewHeight.
 	 * @return {Number} The height of the view.
 	 */
-	
+	get viewHeight()
+	{
+		return this._canvas.height;
+	}
+
 	/**
 	 * viewHeight
 	 * @setter
 	 * This function is a setter for the member viewHeight.
 	 * @param {Number}  height  The height of the view.
 	 */
-	
+	set viewHeight(height)
+	{
+		this._canvas.height = height;
+	}
+
 	/**
 	 * resolution
 	 * @getter
@@ -171,13 +187,23 @@ class Environment
 	
 	/**
 	 * destroy
-	 * This function is used in order to 
+	 * This function is used in order to destroy this environment.
 	 */
-	
+	destroy()
+	{
+		this._canvas.destroy();
+	}
+
 	/**
 	 * resize
-	 * This function is used in order to 
+	 * This function is used in order to resize the view.
+	 * @param {Number}  width  The new width of the view.
+	 * @param {Number}  height  The new height of the view.
 	 */
+	resize(width, height)
+	{
+		this._canvas.resize(width, height);
+	}
 	
 	/**
 	 * getUsefulBlendModes
@@ -201,13 +227,49 @@ class Environment
 	
 	/**
 	 * add
-	 * This function is used in order to 
+	 * This function is used in order to add some Object2D to stage. 
+	 * @param {Object2D}  objs  One Object2D to add. 
+	 * @param {Object2D[]}  objs  An array of Object2D to add.  
 	 */
+	add(objs)
+	{
+		if (Array.isArray(objs))
+		{
+			this._stage.addChildren(objs);
+		}
+		else
+		{
+			this._stage.addChild(objs);
+		}
+	}
 	
 	/**
 	 * remove
-	 * This function is used in order to 
+	 * This function is used in order to remove some Object2D from stage.
+	 * @param {Object2D}  objs  One Object2D to remove. 
+	 * @param {Object2D[]}  objs  An array of Object2D to remove.  
 	 */
+	remove(objs)
+	{
+		if (Array.isArray(objs))
+		{
+			for (let i = 0, l = objs.length; i < l; i++)
+				this._stage.removeChild(objs);
+		}
+		else
+		{
+			this._stage.removeChild(objs);
+		}
+	}
+
+	/**
+	 * removeAll
+	 * This function is used in order to remove all Object2D from stage.
+	 */
+	removeAll()
+	{
+		this._stage.removeChildren();
+	}
 	
 	/**
 	 * render
