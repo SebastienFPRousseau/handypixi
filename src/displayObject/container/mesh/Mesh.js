@@ -43,7 +43,7 @@ class Mesh extends Container
 	{
 		super(); 
 
-		if (this.constructor.name !== "Mesh")
+		if (this.constructor !== Mesh)
      		return ;
 
 		if (options instanceof PIXI.mesh.Mesh)

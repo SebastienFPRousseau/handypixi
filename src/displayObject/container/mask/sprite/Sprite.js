@@ -24,7 +24,7 @@ class Sprite extends Mask
 	{
 		super();
 
-		if (pixiObj === null && this.constructor.name !== "Sprite")
+		if (pixiObj === null && this.constructor !== Sprite)
      		return ;
 
 		if (pixiObj instanceof PIXI.Sprite)

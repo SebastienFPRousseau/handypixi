@@ -29,7 +29,7 @@ class AbstractShaderFactory
 	 */
 	constructor()
 	{
-		if (this.constructor.name === "AbstractShaderFactory")
+		if (this.constructor === AbstractShaderFactory)
 			throw new TypeError("Cannot construct Abstract instances like AbstractShaderFactory directly.");
 	}
 

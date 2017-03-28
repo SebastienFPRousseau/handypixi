@@ -25,7 +25,7 @@ class Container
 	*/
 	constructor(pixiObj = null)
 	{
-		if (pixiObj === null && this.constructor.name !== "Container")
+		if (pixiObj === null && this.constructor !== Container)
      		return ;
 
 		if (pixiObj instanceof PIXI.Container)
@@ -124,11 +124,11 @@ class Container
 	{
 		let pivot = null;
 
-		if (this._out.pivot.constructor.name === "Point")
+		if (this._out.pivot.constructor === Point)
 		{
 			pivot = new Point(this._out.pivot);
 		}
-		else if (this._out.pivot.constructor.name === "ObservablePoint")
+		else if (this._out.pivot.constructor === ObservablePoint)
 		{
 			pivot = new ObservablePoint(this._out.pivot);
 		}

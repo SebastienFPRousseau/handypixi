@@ -19,7 +19,7 @@ class Shader
 	*/
 	constructor(pixiObj = null)
 	{
-		if (pixiObj === null && this.constructor.name !== "Shader")
+		if (pixiObj === null && this.constructor !== Shader)
      		return ;
 
 		if (pixiObj instanceof PIXI.Filter)

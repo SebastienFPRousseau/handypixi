@@ -70,7 +70,7 @@ class AbstractContainerFactory
 	 */
 	constructor()
 	{
-		if (this.constructor.name === "AbstractContainerFactory")
+		if (this.constructor === AbstractContainerFactory)
 			throw new TypeError("Cannot construct Abstract instances like AbstractContainerFactory directly.");
 	}
 

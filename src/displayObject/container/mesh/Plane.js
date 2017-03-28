@@ -25,7 +25,7 @@ class Plane extends Mesh
 	{
 		super(); 
 
-		if (this.constructor.name !== "Plane")
+		if (this.constructor !== Plane)
      		return ;
 
      	if ({}.toString.call(verticesY) !== "[object Number]")

@@ -18,7 +18,7 @@ class AbstractPoint
 	 */
 	constructor()
 	{
-		if (this.constructor.name === "AbstractPoint")
+		if (this.constructor === AbstractPoint)
 			throw new TypeError("Cannot construct Abstract instances like AbstractPoint directly.");
 	}
 }

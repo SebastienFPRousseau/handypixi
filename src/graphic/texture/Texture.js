@@ -24,7 +24,7 @@ class Texture
 		this._transform = new PIXI.extras.TextureTransform(this.out);
 		this._cacheId = "";
 
-		if (pixiObj === null  && this.constructor.name !== "Texture" )
+		if (pixiObj === null  && this.constructor !== Texture )
      		return ;
 
 		if (pixiObj instanceof PIXI.Texture && pixiObj !== PIXI.Texture.EMPTY)

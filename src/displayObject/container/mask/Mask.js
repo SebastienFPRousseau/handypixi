@@ -21,7 +21,7 @@ class Mask extends Container
 	constructor()
 	{
 		super();
-		if (this.constructor.name === "Mask")
+		if (this.constructor === Mask)
 			throw new TypeError("Cannot construct Abstract instances like Mask directly.");
 
 		this._mask = null;

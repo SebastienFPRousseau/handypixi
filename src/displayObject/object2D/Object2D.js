@@ -119,23 +119,23 @@ class Object2D
 		if (!(look instanceof Look))
 			throw new TypeError("look must be a Look.");
 
-		let type = this._out.constructor.name;
+		let type = this._out.constructor;
 
 		this._out.out.filters = look.out.filters;
 
-		if (type === "Container")
+		if (type === Container)
 		{
 			this._out = new Sprite(look.clone().out);
 		}
-		else if (type === "SimpleText")
+		else if (type === SimpleText)
 		{
 			this._out.out.style = look.style.out;
 		}
-		else if (type !== "BitmapText" && !(this._out instanceof Shape))
+		else if (type !== BitmapText && !(this._out instanceof Shape))
 		{
 			this._out.out.texture = look.out.texture;
 
-			if (type === "AnimatedSprite")
+			if (type === AnimatedSprite)
 				this._out.out.textures.push(look.out.texture);
 		}
 
@@ -195,17 +195,17 @@ class Object2D
 		if (!(id < this._looks.length && id >= 0))
 			throw new RangeError("The given indice : "+ id +", is out of range for the looks.");
 
-		let type = this._out.constructor.name;
+		let type = this._out.constructor;
 
 		if (id === this._looks.length-1)
 		{
 			this._out.out.filters = null;
 
-			if (type !== "Container" && type !== "BitmapText" && !(this._out instanceof Shape))
+			if (type !== Container && type !== BitmapText && !(this._out instanceof Shape))
 			{
 				this._out.out.texture = PIXI.Texture.EMPTY.clone();
 
-				if (type === "SimpleText")
+				if (type === SimpleText)
 					this._out.out.style = null;
 			}
 		}

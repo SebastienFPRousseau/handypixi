@@ -18,7 +18,7 @@ class Environment
 	 */
 	constructor()
 	{
-		if (this.constructor.name === "Environment")
+		if (this.constructor === Environment)
 			throw new TypeError("Cannot construct Abstract instances like Environment directly.");
 
 		this._renderer = null;
