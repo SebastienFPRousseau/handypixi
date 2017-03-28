@@ -63,8 +63,8 @@ class WebGLConfiguration extends Configuration
 	*/
 	set gl(gl)
 	{
-		if (!(gl instanceof PIXI.WebGLState))
-			throw new TypeError("gl must be a PIXI.WebGLState.");
+		if (!(gl instanceof WebGLRenderingContext))
+			throw new TypeError("gl must be a WebGLRenderingContext.");
 
 		this._out.gl = gl;
 	}

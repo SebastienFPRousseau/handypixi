@@ -23,42 +23,21 @@ class Environment
 
 		this._renderer = null;
 		this._canvas = null;
+		this._config = null;
 		this._prepare = null;
 		this._stage = null;
 		this._eventManager = null;
 	}
 
 	/**
-	 * renderer
-	 * @getter
-	 * This function is a getter for the member _renderer.
-	 * @return {PIXI.SystemRenderer} A PIXI Object used by this object.
-	 */
-	get renderer()
-	{
-		return this._renderer;
-	}
-
-	/**
 	 * canvas
 	 * @getter
 	 * This function is a getter for the member _canvas.
-	 * @return {CanvasElement} A HandyPixi Object used by this object.
+	 * @return {CanvasElement} The canvas element used by the renderer.
 	 */
 	get canvas()
 	{
 		return this._canvas;
-	}
-
-	/**
-	 * prepare
-	 * @getter
-	 * This function is a getter for the member _prepare.
-	 * @return {PIXI.BasePrepare} A PIXI Object used by this object.
-	 */
-	get prepare()
-	{
-		return this._prepare;
 	}
 
 	/**

@@ -10,6 +10,8 @@
 |
 */
 
+const { WebGLEnvironment } = require("./../system/WebGLEnvironment.js");
+
 class ContainerRenderer extends PIXI.ObjectRenderer
 {
 	/**

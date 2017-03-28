@@ -124,11 +124,11 @@ class Container
 	{
 		let pivot = null;
 
-		if (this._out.pivot.constructor === Point)
+		if (this._out.pivot.constructor === PIXI.Point)
 		{
 			pivot = new Point(this._out.pivot);
 		}
-		else if (this._out.pivot.constructor === ObservablePoint)
+		else if (this._out.pivot.constructor === PIXI.ObservablePoint)
 		{
 			pivot = new ObservablePoint(this._out.pivot);
 		}
@@ -160,11 +160,11 @@ class Container
 	{
 		let position = null;
 
-		if (this._out.position.constructor === Point)
+		if (this._out.position.constructor === PIXI.Point)
 		{
 			position = new Point(this._out.position);
 		}
-		else if (this._out.position.constructor === ObservablePoint)
+		else if (this._out.position.constructor === PIXI.ObservablePoint)
 		{
 			position = new ObservablePoint(this._out.position);
 		}
@@ -196,11 +196,11 @@ class Container
 	{
 		let scale = null;
 
-		if (this._out.scale.constructor.name === "Point")
+		if (this._out.scale.constructor === PIXI.Point)
 		{
 			scale = new Point(this._out.scale);
 		}
-		else if (this._out.scale.constructor.name === "ObservablePoint")
+		else if (this._out.scale.constructor === PIXI.ObservablePoint)
 		{
 			scale = new ObservablePoint(this._out.scale);
 		}
