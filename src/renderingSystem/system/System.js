@@ -41,7 +41,7 @@ class System
 	{
 		if (instance === undefined)
         	instance = new System();
-        
+
 		return instance;
 	}
 
@@ -82,7 +82,7 @@ class System
 
 		return env;
 	}
-}
+};
 
 module.exports = {
 	System: System,

@@ -175,8 +175,8 @@ class Tools
 
 		return PIXI.particles.ParticleUtils.generateEase(segments);
 	}
-}
+};
 
 module.exports = {
 	Tools: Tools,
-}
+};

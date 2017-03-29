@@ -360,7 +360,7 @@ class Matrix
 		this._out.translate(x,y);
 		return this; 
 	}
-}
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -479,7 +479,7 @@ class TransformBase
 
 		this._out.updateTransform(parent.out);
 	}
-}
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -664,7 +664,7 @@ class Transform extends TransformBase
 
 		this._out.updateTransform(parent.out);
 	}
-}
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -848,7 +848,7 @@ class TransformStatic extends TransformBase
 
 		this._out.updateTransform(parent.out);
 	}
-}
+};
 
 module.exports = {
 	TransformStatic: TransformStatic,

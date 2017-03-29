@@ -89,7 +89,7 @@ class VideoTexture extends Texture
 
 		this._out.baseTexture.autoUpdate = value;
 	}
-}
+};
 
 module.exports = {
 	VideoTexture: VideoTexture,

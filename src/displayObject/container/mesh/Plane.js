@@ -74,7 +74,7 @@ class Plane extends Mesh
 	{
 		this._out.refresh();
 	}
-}
+};
 
 module.exports = {
 	Plane: Plane,

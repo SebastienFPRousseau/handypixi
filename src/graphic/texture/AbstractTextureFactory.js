@@ -121,7 +121,7 @@ class TextureFactory extends AbstractTextureFactory
 
 		return new Videotexture(source, options.scaleMode);
 	}
-}
+};
 
 module.exports = {
 	AbstractTextureFactory: AbstractTextureFactory,

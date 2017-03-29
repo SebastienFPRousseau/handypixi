@@ -177,7 +177,7 @@ class AnimatedSprite extends Sprite
 	{
 		this._out.stop();
 	}
-}
+};
 
 module.exports = {
 	AnimatedSprite: AnimatedSprite,

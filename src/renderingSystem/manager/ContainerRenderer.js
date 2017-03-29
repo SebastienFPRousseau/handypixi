@@ -26,7 +26,7 @@ class ContainerRenderer extends PIXI.ObjectRenderer
 		
 		super(env.renderer);
 	}
-}
+};
 
 module.exports = {
 	ContainerRenderer: ContainerRenderer,

@@ -790,7 +790,7 @@ class Settings
 
 		PIXI.settings.WRAP_MODE = mode;
 	}
-}
+};
 
 module.exports = {
 	Settings: Settings,

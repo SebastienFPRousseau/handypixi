@@ -206,7 +206,7 @@ class WebGLConfiguration extends Configuration
 
 		this._out.setFrontFace(value);
 	}
-}
+};
 
 module.exports = {
 	WebGLConfiguration: WebGLConfiguration,

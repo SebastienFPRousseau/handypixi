@@ -87,7 +87,7 @@ class RenderTexture extends Texture
 
 		this._out.baseTexture.resize(width, height);
 	}
-}
+};
 
 module.exports = {
 	RenderTexture: RenderTexture,

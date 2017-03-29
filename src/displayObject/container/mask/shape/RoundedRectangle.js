@@ -84,7 +84,7 @@ class RoundedRectangle extends Rectangle
 		this._properties.radius = radius;
 		this.redraw();
 	}
-}
+};
 
 module.exports = {
 	RoundedRectangle: RoundedRectangle,

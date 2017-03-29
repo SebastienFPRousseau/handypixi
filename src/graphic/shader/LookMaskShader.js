@@ -58,7 +58,7 @@ class LookMaskShader extends Shader
 	{
 		return new LookMaskShader(this._out);
 	}
-}
+};
 
 module.exports = {
 	LookMaskShader: LookMaskShader,

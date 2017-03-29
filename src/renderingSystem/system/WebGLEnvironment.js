@@ -220,7 +220,7 @@ class WebGLEnvironment extends Environment
 	 * This function is used in order to add a ContainerRenderer as a plugin for specifics containers.
 	 * @param {ContainerRenderer} The container renderer to add. 
 	 */
-}
+};
 
 module.exports = {
 	WebGLEnvironment: WebGLEnvironment,

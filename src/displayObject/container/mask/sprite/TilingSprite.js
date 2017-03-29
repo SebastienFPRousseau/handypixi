@@ -146,7 +146,7 @@ class TilingSprite extends Sprite
 
 		return this._out.containsPoint(point.out);
 	}
-}
+};
 
 module.exports = {
 	TilingSprite: TilingSprite,

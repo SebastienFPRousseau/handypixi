@@ -38,7 +38,7 @@ class Loader extends PIXI.loaders.Loader
 	{
 		return PIXI.loader;
 	}
-}
+};
 
 module.exports = {
 	Loader: Loader,

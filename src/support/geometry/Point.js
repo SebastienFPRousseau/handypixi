@@ -149,7 +149,7 @@ class Point extends AbstractPoint
 
 		return this._out.equals(point.out);
 	}
-}
+};
 
 module.exports = {
 	Point: Point,

@@ -90,7 +90,7 @@ class ImageTexture extends Texture
 
 		this._out.baseTexture.updateSourceImage(newSrc);
 	}
-}
+};
 
 module.exports = {
 	ImageTexture: ImageTexture,

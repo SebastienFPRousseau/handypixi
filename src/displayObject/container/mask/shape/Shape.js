@@ -633,7 +633,7 @@ class Shape extends Mask
 
 		return this;
 	}
-}
+};
 
 module.exports = {
 	Shape: Shape,

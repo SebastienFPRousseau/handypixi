@@ -61,8 +61,7 @@ class SimpleText extends Sprite
 
 		this._out.text = text;
 	}
-
-}
+};
 
 module.exports = {
 	SimpleText: SimpleText,

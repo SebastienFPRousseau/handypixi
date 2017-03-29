@@ -109,7 +109,7 @@ class Setup
 	{
 		return PIXI.utils.pluginTarget;
 	}
-}
+};
 
 module.exports = {
 	Setup: Setup,

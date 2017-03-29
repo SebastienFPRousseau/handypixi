@@ -151,7 +151,7 @@ class CanvasElement
 
 		this._out.resize(width, height);
 	}
-}
+};
 
 module.exports = {
 	CanvasElement: CanvasElement,

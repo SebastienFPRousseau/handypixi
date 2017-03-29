@@ -63,7 +63,7 @@ class Rope extends Mesh
 
 		return outPoints;
 	}
-}
+};
 
 module.exports = {
 	Rope: Rope,

@@ -21,7 +21,7 @@ class AbstractPoint
 		if (this.constructor === AbstractPoint)
 			throw new TypeError("Cannot construct Abstract instances like AbstractPoint directly.");
 	}
-}
+};
 
 module.exports = {
 	AbstractPoint: AbstractPoint,

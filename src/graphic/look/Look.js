@@ -186,7 +186,7 @@ class Look
 			}
 		}
 	}
-}
+};
 
 module.exports = {
 	Look: Look,

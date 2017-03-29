@@ -115,7 +115,7 @@ class Polygon extends Shape
 		this._out.drawShape(this._properties);
 		this.endFill();
 	}
-}
+};
 
 module.exports = {
 	Polygon: Polygon,

@@ -191,7 +191,7 @@ class Shader
 	{
 		return new Shader(this._out);
 	}
-}
+};
 
 module.exports = {
 	Shader: Shader,

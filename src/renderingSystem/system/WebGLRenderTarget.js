@@ -434,7 +434,7 @@ class WebGLRenderTarget
 
 		this._out.setFrame(destination.out, source.out);
 	}
-}
+};
 
 module.exports = {
 	WebGLRenderTarget: WebGLRenderTarget,

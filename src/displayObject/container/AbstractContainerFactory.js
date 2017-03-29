@@ -457,7 +457,7 @@ class SpecialSpriteFactory extends AbstractContainerFactory
 	{
 		return new TilingSprite(width, height);
 	}
-}
+};
 
 module.exports = {
 	AbstractContainerFactory: AbstractContainerFactory,

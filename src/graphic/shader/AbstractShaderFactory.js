@@ -113,7 +113,7 @@ class ShaderFactory extends AbstractShaderFactory
 
 		return new GLSLShader(shader.vertexSrc, shader.fragmentSrc, shader.uniforms);
 	}
-}
+};
 
 module.exports = {
 	AbstractShaderFactory: AbstractShaderFactory,

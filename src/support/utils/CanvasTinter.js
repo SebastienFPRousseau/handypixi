@@ -214,7 +214,7 @@ class CanvasTinter
 
 		PIXI.CanvasTinter.tintWithPerPixel(texture.out, color, canvas);
 	}
-}
+};
 
 module.exports = {
 	CanvasTinter: CanvasTinter,

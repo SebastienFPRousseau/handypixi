@@ -537,7 +537,7 @@ class Texture
 		PIXI.Texture.removeTextureFromCache(this._out, this._cacheId);
 		this._cacheId = "";
 	} 
-}
+};
 
 module.exports = {
 	Texture: Texture,

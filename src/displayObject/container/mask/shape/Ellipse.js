@@ -170,7 +170,7 @@ class Ellipse extends Shape
 		this._out.drawShape(this._properties);
 		this.endFill();
 	}
-}
+};
 
 module.exports = {
 	Ellipse: Ellipse,

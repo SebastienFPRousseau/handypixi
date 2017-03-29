@@ -82,7 +82,7 @@ class NineSlicePlane extends Plane
 		this._out.updateHorizontalVertices();
 		this._out.updateVerticalVertices();
 	}
-}
+};
 
 module.exports = {
 	NineSlicePlane: NineSlicePlane,

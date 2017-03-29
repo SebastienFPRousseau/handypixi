@@ -132,7 +132,7 @@ class ObservablePoint extends AbstractPoint
 
 		this._out.copy(point.out);
 	}
-}
+};
 
 module.exports = 
 {

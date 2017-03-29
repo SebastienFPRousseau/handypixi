@@ -145,7 +145,7 @@ class ShapeData
 	{
 		return this._out.shape;
 	}
-}
+};
 
 module.exports = {
 	ShapeData: ShapeData,

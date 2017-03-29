@@ -126,8 +126,7 @@ class Configuration
 		this._countLimiter.beginFrame();
 		this._timeLimiter.beginFrame();
 	}
-
-}
+};
 
 module.exports = {
 	Configuration: Configuration,

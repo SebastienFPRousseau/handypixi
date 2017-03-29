@@ -64,7 +64,7 @@ class GLSLShader extends Shader
 	{
 		return new GLSLShader(this._out);
 	}
-}
+};
 
 module.exports = {
 	GLSLShader: GLSLShader,

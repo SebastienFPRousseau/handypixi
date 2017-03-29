@@ -104,7 +104,7 @@ class GroupD8
 
 		return PIXI.GroupD8.rotate180(rotation);
 	}
-}
+};
 
 module.exports = {
 	GroupD8: GroupD8,

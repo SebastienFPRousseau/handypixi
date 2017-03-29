@@ -533,7 +533,7 @@ class Container
 	{
 		return new Bounds(this._out.getLocalBounds());
 	}
-}
+};
 
 module.exports = {
 	Container: Container,

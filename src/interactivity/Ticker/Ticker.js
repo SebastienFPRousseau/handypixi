@@ -328,7 +328,7 @@ class Ticker
 			this._out.update();
 		}
 	}
-}
+};
 
 module.exports = {
 	Ticker: Ticker,

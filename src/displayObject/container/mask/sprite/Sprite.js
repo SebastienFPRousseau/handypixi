@@ -100,7 +100,7 @@ class Sprite extends Mask
 
 		this._out.pluginName = plugin;
 	}
-}
+};
 
 module.exports = {
 	Sprite: Sprite,

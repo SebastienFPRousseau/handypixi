@@ -440,7 +440,7 @@ class Environment
 	{
 		this._prepare.limiter = this._config.countLimiter;
 	}
-}
+};
 
 module.exports = {
 	Environment: Environment,

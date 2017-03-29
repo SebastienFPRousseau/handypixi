@@ -62,7 +62,7 @@ class TextStyle
 	{
 		this._out.reset();
 	}
-}
+};
 
 module.exports = {
 	TextStyle: TextStyle,

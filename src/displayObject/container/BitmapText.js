@@ -200,7 +200,7 @@ class BitmapText extends Container
 	{
 		return this._out.textWidth;
 	}
-}
+};
 
 module.exports = {
 	BitmapText: BitmapText,

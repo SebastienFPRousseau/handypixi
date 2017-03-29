@@ -95,7 +95,7 @@ class Frame
 
 		this._out.time = time;
 	}
-}
+};
 
 module.exports = {
 	Frame: Frame,

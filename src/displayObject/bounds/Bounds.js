@@ -319,7 +319,7 @@ class Bounds
 	{
 		return this._builder.isEmpty();
 	}
-}
+};
 
 module.exports = {
 	Bounds: Bounds,

@@ -310,7 +310,7 @@ class Mesh extends Container
 
 		return this._out.containsPoint(point.out);
 	}
-}
+};
 
 module.exports = {
 	Mesh: Mesh,

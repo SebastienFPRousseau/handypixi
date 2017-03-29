@@ -111,7 +111,7 @@ class Mask extends Container
 		this._out.mask = null;
 		this._mask = null;
 	}
-}
+};
 
 module.exports = {
 	Mask: Mask,

@@ -457,7 +457,7 @@ class Object2D
 
 		return sprite;
 	}
-}
+};
 
 module.exports = {
 	Object2D: Object2D,
