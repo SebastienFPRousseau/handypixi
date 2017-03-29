@@ -274,6 +274,7 @@ class Environment
 
 		this._renderer.destroy(options.removeView);
 		this._canvas = null;
+		this._prepare.destroy();
 	}
 
 	/**
@@ -289,23 +290,69 @@ class Environment
 	
 	/**
 	 * getUsefulBlendModes
-	 * This function is used in order to 
+	 * This function is used in order to track he blend modes useful for this environment.
+	 * @return {Object} The useful blend modes.
 	 */
-	
+	getUsefulBlendModes()
+	{
+		return this._renderer.blendModes;
+	}
+
 	/**
 	 * addForGPUUploading
-	 * This function is used in order to 
+	 * This function is used in order to manually add an item to the uploading queue.
+	 * @param {Object2D}  obj  The Object2D to add to the queue.
 	 */
+	addForGPUUploading(obj)
+	{
+		if (!(obj instanceof Object2D))
+			throw new TypeError("obj must be a Object2D.");
+
+		this._prepare.add(obj.out);
+	}
 
 	/**
 	 * uploadOnGPU
-	 * This function is used in order to 
+	 * This function is used in order to upload all the textures and shapes to the GPU.
+	 * @param {Object2D}  obj  The object2D to search for items to upload.
+	 * @param {Function}  done  The callback when all queued uploads have completed.
 	 */
+	uploadOnGPU(obj = undefined, done = function(){})
+	{
+		if ({}.toString.call(done) !== "[object Function]")
+			throw new TypeError("done must be a function.");
+
+		if (obj === undefined)
+		{
+			this._prepare.upload(done);
+		}
+		else
+		{
+			if (!(obj instanceof Object2D))
+				throw new TypeError("obj must be a Object2D.");
+
+			this._prepare.upload(obj.out, done);
+		}
+	}
 
 	/**
 	 * register
-	 * This function is used in order to 
+	 * This function is used in order to add hooks for finding and uploading items.
+	 * @param {Function}  addHook  Function call that takes two parameters: item:*, queue:Array 
+	 * It must return true if it was able to add item to the queue.
+	 * @param {Function}  uploadHook  Function call that takes two parameters: prepare:CanvasPrepare, item:*
+	 * It must return true if it was able to handle upload of item.
 	 */
+	register(addHook = undefined, uploadHook = undefined)
+	{
+		if (addHook !== undefined && {}.toString.call(addHook) !== "[object Function]")
+			throw new TypeError("addHook must be a function.");
+
+		if (uploadHook !== undefined && {}.toString.call(uploadHook) !== "[object Function]")
+			throw new TypeError("uploadHook must be a function.");
+
+		this._prepare.register(addHook, uploadHook);
+	}
 	
 	/**
 	 * add
@@ -355,23 +402,44 @@ class Environment
 	
 	/**
 	 * render
-	 * This function is used in order to 
+	 * This function is used in order to render the scene to its view.
 	 */
-	
+	render()
+	{
+		this._renderer.render(this._stage);
+	}
+
 	/**
 	 * setBlendMode
-	 * This function is used in order to 
+	 * This function is used in order to set the blend mode of the renderer.
+	 * @param {Number}  mode  The new blend mode, see Settings.BLEND_MODES for valid values.
 	 */
-	
+	setBlendMode(mode)
+	{
+		if ({}.toString.call(mode) !== "[object Number]")
+			throw new TypeError("mode must be a number.");
+
+		this._renderer.setBlendMode(mode);
+		this._state.out.setBlendMode(mode);
+	}
+
 	/**
 	 * useTimeLimiter
-	 * This function is used in order to 
+	 * This function is used in order to set the limiter used by the prepare uploader from the configuration. 
 	 */
+	useTimeLimiter()
+	{
+		this._prepare.limiter = this._config.timeLimiter;
+	}
 	
 	/**
 	 * useCountLimiter
-	 * This function is used in order to 
+	 * This function is used in order to set the limiter used by the prepare uploader from the configuration. 
 	 */
+	useCountLimiter()
+	{
+		this._prepare.limiter = this._config.countLimiter;
+	}
 }
 
 module.exports = {
