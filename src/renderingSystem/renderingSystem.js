@@ -6,6 +6,7 @@ const { WebGLRenderTarget } = require("./system/WebGLRenderTarget.js");
 const { Environment } = require("./system/Environment.js");
 const { ContainerRenderer } = require("./manager/ContainerRenderer.js");
 const { WebGLEnvironment } = require("./system/WebGLEnvironment.js");
+const { System } = require("./system/System.js");
 
 module.exports = {
 	CanvasElement: CanvasElement,
@@ -16,4 +17,5 @@ module.exports = {
 	Environment: Environment,
 	ContainerRenderer: ContainerRenderer,
 	WebGLEnvironment: WebGLEnvironment,
+	System: System,
 };

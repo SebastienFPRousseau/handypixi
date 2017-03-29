@@ -33,6 +33,7 @@ module.exports = {
     Environment: RenderingSystem.Environment,
     ContainerRenderer: RenderingSystem.ContainerRenderer,
     WebGLEnvironment: RenderingSystem.WebGLEnvironment,
+    System: RenderingSystem.System,
 
     Shader: Graphic.Shader,
     GLSLShader: Graphic.GLSLShader,

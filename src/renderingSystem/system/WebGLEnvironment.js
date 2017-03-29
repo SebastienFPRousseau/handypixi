@@ -73,6 +73,63 @@ class WebGLEnvironment extends Environment
 		this._config = new WebGLConfiguration( this._renderer.state, options.maxMilliseconds, options.maxItemsPerFrame);
 		this._eventManager = null;
 	}
+
+	/**
+	 * getInstance
+	 * This function is used in order to
+	 */
+	
+	/**
+	 * targets
+	 * @getter
+	 * This function is a getter for the member _targets.
+	 * @return { } [description]
+	 */
+	
+	/**
+	 * bindTarget
+	 * This function is used in order to
+	 */
+	
+	/**
+	 * changeTarget
+	 * This function is used in order to
+	 */
+	
+	/**
+	 * createVao
+	 * This function is used in order to
+	 */
+	
+	/**
+	 * bindVao
+	 * This function is used in order to
+	 */
+	
+	/**
+	 * flush
+	 * This function is used in order to
+	 */
+	
+	/**
+	 * reset
+	 * This function is used in order to
+	 */
+	
+	/**
+	 * setTransform
+	 * This function is used in order to
+	 */
+	
+	/**
+	 * clear
+	 * This function is used in order to
+	 */
+	
+	/**
+	 * addContainerRenderer
+	 * This function is used in order to
+	 */
 }
 
 module.exports = {
