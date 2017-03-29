@@ -30,6 +30,17 @@ class Environment
 	}
 
 	/**
+	 * config
+	 * @getter
+	 * This function is a getter for the member _config.
+	 * @return {Configuration} The configuration used by the renderer.
+	 */
+	get config()
+	{
+		return this._config;
+	}
+
+	/**
 	 * canvas
 	 * @getter
 	 * This function is a getter for the member _canvas.
@@ -63,19 +74,30 @@ class Environment
 	}	
 
 	/**
-	 * backGroundColor
+	 * backgroundColor
 	 * @getter
-	 * This function is a getter for the member backGroundColor.
-	 * @return {Number} The backGroundColor of the scene.
+	 * This function is a getter for the member backgroundColor.
+	 * @return {Number} The backgroundColor of the scene.
 	 */
-	
+	get backgroundColor()
+	{
+		return this._renderer.backgroundColor;
+	}
+
 	/**
-	 * backGroundColor
+	 * backgroundColor
 	 * @setter
-	 * This function is a setter for the member backGroundColor.
-	 * @param {Number}  color  The backGroundColor of the scene.
+	 * This function is a setter for the member backgroundColor.
+	 * @param {Number}  color  The backgroundColor of the scene.
 	 */
-	
+	set backgroundColor(color)
+	{
+		if ({}.toString.call(color) !== "[object Number]")
+			throw new TypeError("color must be a number.");
+
+		this._renderer.backgroundColor = color;
+	}
+
 	/**
 	 * viewWidth
 	 * @getter
@@ -95,7 +117,9 @@ class Environment
 	 */
 	set viewWidth(width)
 	{
-		this._canvas.width = width;
+		this._renderer.resize(width, this.viewHeight/this.resolution);
+		this._canvas.width = width * this.resolution;
+		this._stage.out.width = this._canvas.width;
 	}
 
 	/**
@@ -117,7 +141,9 @@ class Environment
 	 */
 	set viewHeight(height)
 	{
-		this._canvas.height = height;
+		this._renderer.resize(this.viewWidth/this.resolution, height);
+		this._canvas.height = height * this.resolution;
+		this._stage.out.height = this._canvas.height;
 	}
 
 	/**
@@ -126,51 +152,128 @@ class Environment
 	 * This function is a getter for the member resolution.
 	 * @return {Number} The resolution of the view.
 	 */
-	
+	get resolution()
+	{
+		return this._renderer.resolution;
+	}
+
 	/**
 	 * resolution
 	 * @setter
 	 * This function is a setter for the member resolution.
 	 * @param {Number}  resolution  The resolution of the view.
 	 */
-	
+	set resolution(resolution)
+	{
+		if ({}.toString.call(resolution) !== "[object Number]")
+			throw new TypeError("resolution must be a number.");
+
+		this._renderer.resolution = resolution;
+	}
+
+	/**
+	 * screen
+	 * @getter
+	 * This function is a getter for the member screen.
+	 * @return {Bounds} Measurements of the renderer screen.
+	 */
+	get screen()
+	{
+		return new Bounds(this._renderer.screen);
+	}
+
 	/**
 	 * autoResize
-	 * This function is used in order to 
+	 * This function is used in order to resize automatically the dimensions of canvas view from the renderer.
+	 * @param {Boolean}  value  Whether or not the css dimensions of canvas view should be autoresized. 
 	 */
-	
+	autoResize(value = true)
+	{
+		if ({}.toString.call(value) !== "[object Boolean]")
+			throw new TypeError("value must be a boolean.");
+
+		this._renderer.autoResize = value;
+	}
+
 	/**
 	 * clearBeforeRender
-	 * This function is used in order to 
+	 * This function is used in order to clear the canvas before the new render pass.
+	 * @param {Boolean}  value  Whether or not the canvas must be cleared before render again. 
 	 */
-	
+	clearBeforeRender(value = true)
+	{
+		if ({}.toString.call(value) !== "[object Boolean]")
+			throw new TypeError("value must be a boolean.");
+
+		this._renderer.clearBeforeRender = value;
+	}
+
 	/**
 	 * preserveDrawingBuffer
-	 * This function is used in order to 
+	 * This function is used in order to retain the contents of the stencil buffer after rendering.
+	 * @param {Boolean}  value  Whether or not the stencil buffer must be retained after the render. 
 	 */
-	
+	preserveDrawingBuffer(value = true)
+	{
+		if ({}.toString.call(value) !== "[object Boolean]")
+			throw new TypeError("value must be a boolean.");
+
+		this._renderer.preserveDrawingBuffer = value;
+	}
+
 	/**
 	 * pixelsInterpolation
-	 * This function is used in order to 
+	 * This function is used in order to keep the colour interpolation when rendering.
+	 * @param {Boolean}  value  Whether or not the x y values musn't be floored when rendering.
 	 */
-	
+	pixelsInterpolation(value = true)
+	{
+		if ({}.toString.call(value) !== "[object Boolean]")
+			throw new TypeError("value must be a boolean.");
+
+		this._renderer.roundPixels = !value;
+	}
+
 	/**
 	 * activateTransparency
-	 * This function is used in order to 
+	 * This function is used in order to allow the transparency on the view.
+	 * @param {Boolean}  value  Whether or not the render view is transparent.
 	 */
-	
+	activateTransparency(value = true)
+	{
+		if ({}.toString.call(value) !== "[object Boolean]")
+			throw new TypeError("value must be a boolean.");
+
+		this._renderer.transparent = value;
+	}
+
 	/**
 	 * isWebGL
-	 * This function is used in order to 
+	 * This function is used in order to know if the environment is a WebGL environment.
+	 * @return {Boolean}  Whether or not it is a webGL render type.
 	 */
-	
+	isWebGL()
+	{
+		let value = false;
+
+		if (this._renderer.type === PIXI.RENDERER_TYPE.WEBGL)
+			value = true;
+
+		return value;
+	}
+
 	/**
 	 * destroy
 	 * This function is used in order to destroy this environment.
+	 * @param {Object}  options  Options for destruction.
 	 */
-	destroy()
+	destroy(options)
 	{
-		this._canvas.destroy();
+		if (!(typeof options === "object" && {}.toString.call(options) === "[object Object]"))
+			throw new TypeError("options must be an object.");
+
+		this._renderer.destroy(options.removeView);
+		this._canvas = null;
 	}
 
 	/**
