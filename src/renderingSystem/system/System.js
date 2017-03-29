@@ -14,6 +14,13 @@ const { Settings } = require("./../config/Settings.js");
 const { WebGLEnvironment } = require("./WebGLEnvironment.js");
 const { Setup } = require("./../../support/utils/Setup.js");
 
+/**
+ * instance
+ * A premade instance of System. 
+ * @type {System} 
+ */
+let instance = undefined;
+
 class System
 {
 	/**
@@ -32,6 +39,9 @@ class System
 	*/
 	static getInstance()
 	{
+		if (instance === undefined)
+        	instance = new System();
+        
 		return instance;
 	}
 
@@ -73,13 +83,6 @@ class System
 		return env;
 	}
 }
-
-/**
- * instance
- * A premade instance of System. 
- * @type {System} 
- */
-const instance = new System();
 
 module.exports = {
 	System: System,
