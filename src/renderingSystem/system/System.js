@@ -73,7 +73,7 @@ class System
 
 		if (Setup.isWebGLSupported() && !forceCanvas)
 		{
-			env = new WebGLEnvironment(dom, options);
+			env = WebGLEnvironment.getInstance(dom, options);
 		}
 		else
 		{

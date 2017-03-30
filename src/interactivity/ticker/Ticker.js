@@ -208,7 +208,7 @@ class Ticker
 	 * add
 	 * This function is used in order to request a new animation frame at this point.
 	 * @param {Function}  fn  The listener function to be added for updates.
-	 * @param {Function}  context  The listener context.
+	 * @param {Object}  context  The listener context.
 	 */
 	add(fn, context = null)
 	{
@@ -217,10 +217,10 @@ class Ticker
 
 		if(context != null)
 		{
-				if ({}.toString.call(context) !== "[object Function]")
-					throw new TypeError("context must be a function.");
+			if (!(typeof context === "object" && {}.toString.call(context) === "[object Object]"))
+				throw new TypeError("context must be an object.");
 
-				this._out.add(fn, context);
+			this._out.add(fn, context);
 		}
 		else
 		{
@@ -234,7 +234,7 @@ class Ticker
 	 * addOnce
 	 * This function is used in order to request a new animation frame at this point.
 	 * @param {Function}  fn  The listener function to be added for ONE update.
-	 * @param {Function}  context  The listener context.
+	 * @param {Object}  context  The listener context.
 	 */
 	addOnce(fn, context = null)
 	{
@@ -243,10 +243,10 @@ class Ticker
 
 		if(context != null)
 		{
-				if ({}.toString.call(context) !== "[object Function]")
-					throw new TypeError("context must be a function.");
+			if (!(typeof context === "object" && {}.toString.call(context) === "[object Object]"))
+				throw new TypeError("context must be an object.");
 
-				this._out.addOnce(fn, context);
+			this._out.addOnce(fn, context);
 		}
 		else
 		{
@@ -258,7 +258,7 @@ class Ticker
 	 * remove
 	 * This function is used in order to cancel the animation frame.
 	 * @param {Function}  fn  The listener function to be removed.
-	 * @param {Function}  context  The listener context to be removed.
+	 * @param {Object}  context  The listener context to be removed.
 	 */
 	remove(fn = null, context = null)
 	{
@@ -269,10 +269,10 @@ class Ticker
 
 			if(context != null)
 			{
-					if ({}.toString.call(context) !== "[object Function]")
-						throw new TypeError("context must be a function.");
+				if (!(typeof context === "object" && {}.toString.call(context) === "[object Object]"))
+					throw new TypeError("context must be an object.");
 
-					this._out.remove(fn, context);
+				this._out.remove(fn, context);
 			}
 			else
 			{
@@ -319,7 +319,7 @@ class Ticker
 		if(currentTime != null)
 		{
 			if ({}.toString.call(currentTime) !== "[object Number]")
-			throw new TypeError("currentTime must be a number.");
+				throw new TypeError("currentTime must be a number.");
 
 			this._out.update(currentTime);
 		}

@@ -64,7 +64,7 @@ class AbstractTextureFactory
 				throw new Error("No factory found for this id: "+ id +"!");
 		}
 	}
-}
+};
 
 
 /*

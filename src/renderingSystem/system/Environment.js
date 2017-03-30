@@ -10,6 +10,9 @@
 |
 */
 
+const { Object2D } = require("./../../displayObject/object2D/Object2D.js");
+const { Bounds } = require("./../../displayObject/bounds/Bounds.js");
+
 class Environment
 {
 	/**
@@ -77,7 +80,7 @@ class Environment
 	 * backgroundColor
 	 * @getter
 	 * This function is a getter for the member backgroundColor.
-	 * @return {Number} The backgroundColor of the scene.
+	 * @return {Number} The backgroundColor of the scene, hex value.
 	 */
 	get backgroundColor()
 	{
@@ -88,7 +91,7 @@ class Environment
 	 * backgroundColor
 	 * @setter
 	 * This function is a setter for the member backgroundColor.
-	 * @param {Number}  color  The backgroundColor of the scene.
+	 * @param {Number}  color  The backgroundColor of the scene, hex value.
 	 */
 	set backgroundColor(color)
 	{
@@ -273,8 +276,13 @@ class Environment
 			throw new TypeError("options must be an object.");
 
 		this._renderer.destroy(options.removeView);
+		this._renderer = null;
 		this._canvas = null;
+		this._config = null;
 		this._prepare.destroy();
+		this._prepare = null;
+		this._stage = null;
+		this._eventManager = null;
 	}
 
 	/**
@@ -285,7 +293,10 @@ class Environment
 	 */
 	resize(width, height)
 	{
-		this._canvas.resize(width, height);
+		this._renderer.resize(width, height);
+		this._canvas.resize(width* this.resolution, height * this.resolution);
+		this._stage.out.height = this._canvas.height;
+		this._stage.out.width = this._canvas.width;
 	}
 	
 	/**
@@ -383,7 +394,7 @@ class Environment
 		if (Array.isArray(objs))
 		{
 			for (let i = 0, l = objs.length; i < l; i++)
-				this._stage.removeChild(objs);
+				this._stage.removeChild(objs[i]);
 		}
 		else
 		{
@@ -406,7 +417,7 @@ class Environment
 	 */
 	render()
 	{
-		this._renderer.render(this._stage);
+		this._renderer.render(this._stage.out.out);
 	}
 
 	/**
@@ -420,7 +431,6 @@ class Environment
 			throw new TypeError("mode must be a number.");
 
 		this._renderer.setBlendMode(mode);
-		this._state.out.setBlendMode(mode);
 	}
 
 	/**

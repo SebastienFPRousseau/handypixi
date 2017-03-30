@@ -10,21 +10,19 @@
 |
 */
 
-const { WebGLEnvironment } = require("./../system/WebGLEnvironment.js");
-
 class ContainerRenderer extends PIXI.ObjectRenderer
 {
 	/**
 	 * constructor
 	 * This function is used in order to build a ContainerRenderer.
-	 * @param {WebGLEnvironment}  env  Environment the ContainerRenderer is working for.
+	 * @param {PIXI.WebGLRenderer}  renderer  WebGL renderer the ContainerRenderer is working for.
 	 */
-	constructor(env)
+	constructor(renderer)
 	{
-		if (!(env instanceof WebGLEnvironment))
-			throw new TypeError("env must be a WebGLEnvironment.");
+		if (!(renderer instanceof PIXI.WebGLRenderer))
+			throw new TypeError("renderer must be a PIXI.WebGLRenderer.");
 		
-		super(env.renderer);
+		super(renderer);
 	}
 };
 

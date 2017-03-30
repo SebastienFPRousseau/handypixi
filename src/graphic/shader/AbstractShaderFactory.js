@@ -63,7 +63,7 @@ class AbstractShaderFactory
 				throw new Error("No factory found for this id: "+ id +"!");
 		}
 	}
-}
+};
 
 
 /*

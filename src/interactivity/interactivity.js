@@ -1,4 +1,4 @@
-const { Ticker } = require("./Ticker/Ticker.js");
+const { Ticker } = require("./ticker/Ticker.js");
 
 module.exports = {
 	Ticker : Ticker,

@@ -17,6 +17,7 @@ const { Object2D } = require("./../../displayObject/object2D/Object2D.js");
 const { Matrix } = require("./../../support/geometry/Matrix.js");
 const { WebGLRenderTarget } = require("./WebGLRenderTarget.js");
 const { ContainerRenderer } = require("./../manager/ContainerRenderer.js");
+const { Ticker } = require("./../../interactivity/ticker/Ticker.js");
 
 /**
  * instance
@@ -36,14 +37,16 @@ class WebGLEnvironment extends Environment
 	 */
 	constructor(dom, options = {})
 	{
-		if (!(dom instanceof HTMLCollection))
-			throw new TypeError("dom must be a HTMLCollection.");
+		if (!(typeof options === "object" && {}.toString.call(options) === "[object Object]"))
+			throw new TypeError("options must be an object.");
 
 		super();
 
 		if (dom instanceof PIXI.WebGLRenderer)
 		{
 			this._renderer = dom;
+			options.viewWidth = dom.width;
+			options.viewHeight = dom.height;
 
 			this._canvas = new CanvasElement(this._renderer.width, this._renderer.height, this._renderer.resolution);
 			this._canvas.out.canvas = this._renderer.view;
@@ -51,9 +54,9 @@ class WebGLEnvironment extends Environment
 		}
 		else
 		{
-			if (!(typeof options === "object" && {}.toString.call(options) === "[object Object]"))
-				throw new TypeError("options must be an object.");
-
+			if (!(dom instanceof HTMLCollection))
+				throw new TypeError("dom must be a HTMLCollection.");
+			
 			// Create the WebGL renderer
 			if (options.viewWidth === undefined)
 				options.viewWidth = 800;
@@ -85,6 +88,19 @@ class WebGLEnvironment extends Environment
 		this._prepare = new PIXI.prepare.webgl(this._renderer);
 		this._config = new WebGLConfiguration( this._renderer.state, options.maxMilliseconds, options.maxItemsPerFrame);
 		this._eventManager = null;
+
+		// Create a Ticker for render updates
+		this._ticker = null;
+
+		if (options.tickerShared)
+		{
+			this.ticker = Ticker.shared;
+		}
+		else
+		{
+			this.ticker = new Ticker();
+		}
+		this._ticker.start();
 	}
 
 	/**
@@ -115,6 +131,36 @@ class WebGLEnvironment extends Environment
 	{
 		return this._targets;
 	}
+
+	/**
+	 * ticker
+	 * @getter
+	 * This function is a getter for the member _ticker.
+	 * @return {Ticker} The ticker for render updates.
+	 */
+	get ticker()
+	{
+		return this._ticker;
+	}
+
+	/**
+	 * ticker
+	 * @setter
+	 * This function is a setter for the member _ticker.
+	 * @param {Ticker}  ticker  The ticker for render updates.
+	 */
+	set ticker(ticker)
+    {
+    	if (!(ticker instanceof Ticker))
+			throw new TypeError("ticker must be a Ticker.");
+
+        if (this._ticker)
+        {
+            this._ticker.remove(this.render, this);
+        }
+        this._ticker = ticker;
+		ticker.add(this.render, this);
+    }
 
 	/**
 	 * bindTarget
@@ -167,9 +213,6 @@ class WebGLEnvironment extends Environment
 	 */
 	bindVao(vao)
 	{
-		if (!(vao instanceof VertexArrayObject))
-			throw new TypeError("vao must be a VertexArrayObject.");
-
 		this._renderer.bindVao(vao);
 	}
 
@@ -214,12 +257,39 @@ class WebGLEnvironment extends Environment
 	{
 		this._targets[this._targets.length -1].clear(color);
 	}
+
+	/**
+	 * destroy
+	 * This function is used in order to destroy this environment.
+	 * @param {Object}  options  Options for destruction.
+	 */
+	destroy(options)
+	{
+		for(let i = 0, l = this._targets.length; i < l; i++)
+			this._targets[i].destroy();
+
+		this._targets = null;
+		this._ticker.out.destroy();
+		this._ticker = null;
+		super.destroy(options);
+	}
 	
 	/**
-	 * addContainerRenderer
-	 * This function is used in order to add a ContainerRenderer as a plugin for specifics containers.
-	 * @param {ContainerRenderer} The container renderer to add. 
+	 * registerContainerRenderer
+	 * This function is used in order to register a ContainerRenderer as a plugin for specifics containers.
+	 * @param {String}  pluginName  The plugin name of the container renderer to register.
+	 * @param {ContainerRenderer}  renderer  The container renderer class to register. 
 	 */
+	static registerContainerRenderer(pluginName, renderer)
+	{
+		if (!(typeof pluginName === "string" && {}.toString.call(pluginName) === "[object String]"))
+			throw new TypeError("pluginName must be a string.");
+		
+		if (!(renderer.prototype === ContainerRenderer.prototype))
+			throw new TypeError("renderer must be a class which inherits of ContainerRenderer.");
+
+		PIXI.WebGLRenderer.registerPlugin(pluginName, renderer);
+	}
 };
 
 module.exports = {

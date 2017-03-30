@@ -156,7 +156,7 @@ class AbstractContainerFactory
 				throw new Error("No factory found for this id: "+ id +"!");
 		}
 	}
-}
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -191,7 +191,7 @@ class TextFactory extends AbstractContainerFactory
 	{
 		return new SimpleText(text);
 	}
-}
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -227,7 +227,7 @@ class BitmapTextFactory extends AbstractContainerFactory
 	{
 		return new BitmapText(text, style);
 	}
-}
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -296,7 +296,7 @@ class MeshFactory extends AbstractContainerFactory
 	{
 		return new NineSlicePlane(barsSizes);
 	}
-}
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -409,8 +409,7 @@ class ShapeFactory extends AbstractContainerFactory
 	{
 		return new RoundedRectangle(x, y, width, height, radius, options, nativeLines);
 	}
-	
-}
+};
 
 /*
 |--------------------------------------------------------------------------
