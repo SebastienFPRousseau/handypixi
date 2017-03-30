@@ -3,7 +3,7 @@ const { ObservablePoint } = require("./geometry/ObservablePoint.js");
 const { AbstractPoint } = require("./geometry/AbstractPoint.js");
 const { Frame } = require("./geometry/Frame.js");
 const { Matrix, Transform, TransformBase, TransformStatic } = require("./geometry/Matrix.js");
-//const { Quad } = require("./geometry/Quad.js");
+const { Quad } = require("./geometry/Quad.js");
 const { GroupD8 } = require("./geometry/GroupD8.js");
 const { Setup } = require("./utils/Setup.js");
 const { Tools } = require("./utils/Tools.js");
@@ -15,7 +15,7 @@ module.exports = {
 	ObservablePoint: ObservablePoint,
     Frame: Frame,
     Matrix: Matrix,
-    //Quad: Quad,
+    Quad: Quad,
     TransformBase: TransformBase,
     Transform: Transform,
     TransformStatic: TransformStatic,

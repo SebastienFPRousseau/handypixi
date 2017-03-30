@@ -13,7 +13,7 @@ module.exports = {
     AbstractPoint: Support.AbstractPoint,
     Frame: Support.Frame,
     Matrix: Support.Matrix,
-    //Quad: Support.Quad,
+    Quad: Support.Quad,
     TransformBase: Support.TransformBase,
     Transform: Support.Transform,
     TransformStatic: Support.TransformStatic,

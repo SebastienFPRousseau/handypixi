@@ -14,6 +14,7 @@ const { Texture } = require("./Texture.js");
 const { ImageTexture } = require("./ImageTexture.js");
 const { VideoTexture } = require("./VideoTexture.js");
 const { RenderTexture } = require("./RenderTexture.js");
+const { Environment } = require("./../../renderingSystem/system/Environment.js");
 
 /**
  * TEXTURE_FACTORY
@@ -120,6 +121,27 @@ class TextureFactory extends AbstractTextureFactory
 			throw new TypeError("options must be an object.");
 
 		return new Videotexture(source, options.scaleMode);
+	}
+
+	/**
+	 * createFromRender
+	 * This function is used in order to build a RenderTexture from a render.
+	 * @param {Environment}  env  The environment of the render.
+	 * @param {Object}  options  The options for building.
+	 * @return {RenderTexture} The RenderTexture built. 
+	 */
+	createFromRender(env, options = {})
+	{
+		if (!(env instanceof Environment))
+			throw new TypeError("env must be a Environment.");
+
+		if (!(typeof options === "object" && {}.toString.call(options) === "[object Object]"))
+			throw new TypeError("options must be an object.");
+
+		let texture = new RenderTexture(options.width, options.height, options.scaleMode, options.resolution);
+		env._renderer.render(env.stage.out.out, texture.out);
+
+		return texture;
 	}
 };
 
