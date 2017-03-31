@@ -31,6 +31,7 @@ class GLSLShader extends Shader
 			throw new TypeError("uniforms must be an object.");
 
 		super();
+		
 		if ((vertexSrc instanceof PIXI.Filter))
 		{
 			this._out = vertexSrc;

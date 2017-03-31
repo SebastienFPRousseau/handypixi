@@ -57,7 +57,6 @@ class AbstractShaderFactory
 		{
 			case SHADER_FACTORY:
 				return new ShaderFactory();
-			break;
 
 			default: 
 				throw new Error("No factory found for this id: "+ id +"!");

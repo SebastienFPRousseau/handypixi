@@ -5,7 +5,7 @@ const { Sprite } = require("./container/mask/sprite/Sprite.js");
 const { AnimatedSprite } = require("./container/mask/sprite/AnimatedSprite.js");
 const { SimpleText } = require("./container/mask/sprite/SimpleText.js");
 const { TilingSprite } = require("./container/mask/sprite/TilingSprite.js");
-const { BitmapText } = require("./container/BitmapText.js");
+const { BitmapText } = require("./container/bitmapText/BitmapText.js");
 const { Mesh } = require("./container/mesh/Mesh.js");
 const { Rope } = require("./container/mesh/Rope.js");
 const { Plane } = require("./container/mesh/Plane.js");
@@ -17,12 +17,7 @@ const { Rectangle } = require("./container/mask/shape/Rectangle.js");
 const { RoundedRectangle } = require("./container/mask/shape/RoundedRectangle.js");
 const { Polygon } = require("./container/mask/shape/Polygon.js");
 const { ShapeData } = require("./container/mask/shape/ShapeData.js");
-const { AbstractContainerFactory, 
-		TextFactory, 
-		BitmapTextFactory, 
-		MeshFactory, 
-		ShapeFactory,
-		SpecialSpriteFactory } = require("./container/AbstractContainerFactory.js");
+const { AbstractContainerFactory, TextFactory, BitmapTextFactory, MeshFactory, ShapeFactory, SpecialSpriteFactory } = require("./container/AbstractContainerFactory.js");
 const { Object2D } = require("./object2D/Object2D.js");
 
 module.exports = {

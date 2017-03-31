@@ -38,6 +38,7 @@ class Polygon extends Shape
 		else 
 		{
 			let pixiPoints = [];
+
 			for(let i = 0, l = points.length; i < l; i++)
 			{
 				if (!(points[i] instanceof Point))
@@ -45,6 +46,7 @@ class Polygon extends Shape
 
 				pixiPoints.push(points[i].out);
 			}
+
 			this._properties = new PIXI.Polygon(pixiPoints);
 		}
 
@@ -63,7 +65,7 @@ class Polygon extends Shape
 	{
 		let outPoints = [];
 
-		for(let i = 0, l = this._properties.points.length; i < l; i+=2)
+		for (let i = 0, l = this._properties.points.length; i < l; i+=2)
 			outPoints.push(new Point(this._properties.points[i],this._properties.points[i+1]));
 
 		return outPoints;
@@ -81,6 +83,7 @@ class Polygon extends Shape
 			throw new TypeError("points must be an array.");
 
 		let pixiPoints = [];
+
 		for(let i = 0, l = points.length; i < l; i++)
 		{
 			if (!(points[i] instanceof Point))
@@ -91,6 +94,7 @@ class Polygon extends Shape
 		}
 
 		this.redraw();
+
 		return this._properties.points = pixiPoints;
 	}
 

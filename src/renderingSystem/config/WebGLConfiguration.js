@@ -30,6 +30,7 @@ class WebGLConfiguration extends Configuration
 			throw new TypeError("maxItemsPerFrame must be a number.");
 
 		super(maxMilliseconds, maxItemsPerFrame);
+		
 		this._out = gl;
 	}
 

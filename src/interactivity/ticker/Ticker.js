@@ -215,7 +215,7 @@ class Ticker
 		if ({}.toString.call(fn) !== "[object Function]")
 			throw new TypeError("fn must be a function.");
 
-		if(context != null)
+		if (context != null)
 		{
 			if (!(typeof context === "object" && {}.toString.call(context) === "[object Object]"))
 				throw new TypeError("context must be an object.");
@@ -241,7 +241,7 @@ class Ticker
 		if ({}.toString.call(fn) !== "[object Function]")
 			throw new TypeError("fn must be a function.");
 
-		if(context != null)
+		if (context != null)
 		{
 			if (!(typeof context === "object" && {}.toString.call(context) === "[object Object]"))
 				throw new TypeError("context must be an object.");
@@ -262,12 +262,12 @@ class Ticker
 	 */
 	remove(fn = null, context = null)
 	{
-		if(fn != null)
+		if (fn != null)
 		{
 			if ({}.toString.call(fn) !== "[object Function]")
 				throw new TypeError("fn must be a function.");
 
-			if(context != null)
+			if (context != null)
 			{
 				if (!(typeof context === "object" && {}.toString.call(context) === "[object Object]"))
 					throw new TypeError("context must be an object.");
@@ -316,7 +316,7 @@ class Ticker
 	 */
 	update(currentTime = null)
 	{
-		if(currentTime != null)
+		if (currentTime != null)
 		{
 			if ({}.toString.call(currentTime) !== "[object Number]")
 				throw new TypeError("currentTime must be a number.");

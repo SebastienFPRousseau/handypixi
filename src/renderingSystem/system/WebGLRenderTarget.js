@@ -280,6 +280,7 @@ class WebGLRenderTarget
 
 		if (this._out.transform !== null)
 			transform = new Matrix(this._out.transform);
+
 		return transform;
 	}
 
@@ -372,7 +373,7 @@ class WebGLRenderTarget
 	 */
 	clear(color = undefined)
 	{
-		if(color === undefined)
+		if (color === undefined)
 		{
 			this._out.clear();
 		}

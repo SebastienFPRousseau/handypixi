@@ -46,6 +46,7 @@ class Matrix
 				if ({}.toString.call(params[i]) !== "[object Number]")
 					throw new TypeError("params must be an array of numbers.");
 			}
+
 			this._out = new PIXI.Matrix(params[0], params[1], params[2], params[3], tx, ty);
 		}
 	}
@@ -275,6 +276,7 @@ class Matrix
 			if ({}.toString.call(params[i]) !== "[object Number]")
 				throw new TypeError("params must be an array of numbers.");
 		}
+
 		this._out.set(params[0], params[1], params[2], params[3], tx, ty);
 
 		return this;
@@ -376,7 +378,6 @@ class Matrix
 
 class TransformBase
 {
-
 	/**
 	 * constructor
 	 * This function is used in order to build a TransformBase.
@@ -495,7 +496,6 @@ class TransformBase
 
 class Transform extends TransformBase
 {
-
 	/**
 	 * constructor
 	 * This function is used in order to build a Transform.
@@ -504,6 +504,7 @@ class Transform extends TransformBase
 	constructor(pixiObj = null)
 	{
 		super();
+
 		if (pixiObj instanceof PIXI.Transform)
 		{
 			this._out = pixiObj;
@@ -688,6 +689,7 @@ class TransformStatic extends TransformBase
 	constructor(pixiObj = null)
 	{
 		super();
+		
 		if (pixiObj instanceof PIXI.TransformStatic)
 		{
 			this._out = pixiObj;

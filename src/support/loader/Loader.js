@@ -3,11 +3,17 @@
 | Loader
 |--------------------------------------------------------------------------
 |
-| This file defines the Point Object.
+| This file defines the Loader Object.
 | This object build a PIXI.loaders.Loader for HandyPixi.
 | This package is based on Pixi.js and should not be externalized.
 | http://www.pixijs.com/
 |
+*/
+
+/**
+* Note: This class inherits from Pixi.loaders.Loader because this base class itself depends on an external library we should not reinclude.
+* @see http://pixijs.download/release/docs/PIXI.loaders.Loader.html
+* @see https://github.com/englercj/resource-loader
 */
 
 class Loader extends PIXI.loaders.Loader

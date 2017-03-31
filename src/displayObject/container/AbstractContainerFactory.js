@@ -12,7 +12,7 @@
 
 const { Container } = require("./Container.js");
 const { SimpleText } = require("./mask/sprite/SimpleText.js");
-const { BitmapText } = require("./BitmapText.js");
+const { BitmapText } = require("./bitmapText/BitmapText.js");
 const { Mesh } = require("./mesh/Mesh.js");
 const { Rope } = require("./mesh/Rope.js");
 const { Plane } = require("./mesh/Plane.js");
@@ -134,23 +134,18 @@ class AbstractContainerFactory
 		{
 			case TEXT_FACTORY:
 				return new TextFactory();
-			break;
 
 			case BITMAPTEXT_FACTORY:
 				return new BitmapTextFactory();
-			break;
 
 			case MESH_FACTORY:
 				return new MeshFactory();
-			break;
 
 			case SHAPE_FACTORY:
 				return new ShapeFactory();
-			break;
 
 			case SPECIAL_SPRITE_FACTORY:
 				return new SpecialSpriteFactory();
-			break;
 
 			default: 
 				throw new Error("No factory found for this id: "+ id +"!");

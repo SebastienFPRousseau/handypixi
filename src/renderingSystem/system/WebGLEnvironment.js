@@ -100,6 +100,7 @@ class WebGLEnvironment extends Environment
 		{
 			this.ticker = new Ticker();
 		}
+
 		this._ticker.start();
 	}
 
@@ -158,6 +159,7 @@ class WebGLEnvironment extends Environment
         {
             this._ticker.remove(this.render, this);
         }
+
         this._ticker = ticker;
 		ticker.add(this.render, this);
     }
@@ -265,12 +267,13 @@ class WebGLEnvironment extends Environment
 	 */
 	destroy(options)
 	{
-		for(let i = 0, l = this._targets.length; i < l; i++)
+		for (let i = 0, l = this._targets.length; i < l; i++)
 			this._targets[i].destroy();
 
 		this._targets = null;
 		this._ticker.out.destroy();
 		this._ticker = null;
+		
 		super.destroy(options);
 	}
 	

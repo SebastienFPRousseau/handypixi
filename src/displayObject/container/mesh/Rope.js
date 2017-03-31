@@ -58,7 +58,7 @@ class Rope extends Mesh
 	{
 		let outPoints = [];
 
-		for(let i = 0, l = this._out.points.length; i < l; i++)
+		for (let i = 0, l = this._out.points.length; i < l; i++)
 			outPoints.push(new Point(this._out.points[i]));
 
 		return outPoints;

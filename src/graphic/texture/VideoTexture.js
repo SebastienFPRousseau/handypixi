@@ -32,7 +32,7 @@ class VideoTexture extends Texture
 		}
 		else if (typeof source === "string" && {}.toString.call(source) === "[object String]")
 		{
-			if(scaleMode !== null)
+			if (scaleMode !== null)
 			{
 				if ({}.toString.call(scaleMode) !== "[object Number]")
 					throw new TypeError("scaleMode must be a number.");
@@ -46,7 +46,7 @@ class VideoTexture extends Texture
 		}
 		else if (source instanceof HTMLVideoElement)
 		{
-			if(scaleMode !== null)
+			if (scaleMode !== null)
 			{
 				if ({}.toString.call(scaleMode) !== "[object Number]")
 					throw new TypeError("scaleMode must be a number.");

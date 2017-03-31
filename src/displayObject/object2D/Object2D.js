@@ -11,7 +11,7 @@
 */
 
 const { Container } = require("./../container/Container.js");
-const { BitmapText } = require("./../container/BitmapText.js");
+const { BitmapText } = require("./../container/bitmapText/BitmapText.js");
 const { Mask } = require("./../container/mask/Mask.js");
 const { Shape } = require("./../container/mask/shape/Shape.js");
 const { Sprite } = require("./../container/mask/sprite/Sprite.js");
@@ -394,12 +394,14 @@ class Object2D
 			for (let i = 0, l = this._looks.length; i < l; i++)
 					this._looks[i].destroy({ destroyBase:options.destroyLooksBases, });
 		}
+
 		this._looks = null;
 
 		if (options.destroyMask && this._mask !== null)
 			this._mask.destroy({});
 
 		this._mask = null;
+
 		if (this._parent !== null)
 		{
 			this._parent.removeChild(this);
@@ -416,6 +418,7 @@ class Object2D
 			for (let i = 0, l = this._children.length; i < l; i++)
 				this.children[i]._parent = null;
 		}
+		
 		this._children = null;
 
 		this._out.destroy({});

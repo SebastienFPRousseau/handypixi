@@ -46,7 +46,7 @@ class RenderTexture extends Texture
 			if ({}.toString.call(width) !== "[object Number]")
 				throw new TypeError("width must be a number.");
 
-			if(scaleMode !== null)
+			if (scaleMode !== null)
 			{
 				if ({}.toString.call(scaleMode) !== "[object Number]")
 					throw new TypeError("scaleMode must be a number.");

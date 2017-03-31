@@ -10,12 +10,17 @@
 |
 */
 
+/**
+* Note: This class inherits from PIXI.ObjectRenderer because this class is internaly used by PIXI.WebGLRenderer and should not be instancied.
+* @see http://pixijs.download/release/docs/PIXI.ObjectRenderer.html
+*/
+
 class ContainerRenderer extends PIXI.ObjectRenderer
 {
 	/**
 	 * constructor
 	 * This function is used in order to build a ContainerRenderer.
-	 * @param {PIXI.WebGLRenderer}  renderer  WebGL renderer the ContainerRenderer is working for.
+	 * @param {PIXI.WebGLRenderer}  renderer  The WebGLRenderer the ContainerRenderer is working for.
 	 */
 	constructor(renderer)
 	{

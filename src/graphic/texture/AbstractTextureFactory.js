@@ -59,7 +59,6 @@ class AbstractTextureFactory
 		{
 			case TEXTURE_FACTORY:
 				return new TextureFactory();
-			break;
 
 			default: 
 				throw new Error("No factory found for this id: "+ id +"!");

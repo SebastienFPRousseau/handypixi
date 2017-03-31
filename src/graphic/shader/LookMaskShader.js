@@ -15,7 +15,6 @@ const { Look } = require("./../look/Look.js");
 
 class LookMaskShader extends Shader
 {
-
 	/**
 	* constructor
 	* This function is used in order to build a LookMaskShader.
@@ -25,6 +24,7 @@ class LookMaskShader extends Shader
 	constructor(look)
 	{
 		super();
+
 		if ((look instanceof PIXI.SpriteMaskFilter))
 		{
 			this._out = look;

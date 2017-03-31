@@ -69,18 +69,14 @@ class System
 		if ({}.toString.call(forceCanvas) !== "[object Boolean]")
 			throw new TypeError("forceCanvas must be a boolean.");
 
-		let env = null;
-
 		if (Setup.isWebGLSupported() && !forceCanvas)
-		{
-			env = WebGLEnvironment.getInstance(dom, options);
-		}
-		else
-		{
-			// Create a CanvasEnvironment
-		}
+			return WebGLEnvironment.getInstance(dom, options);
 
-		return env;
+		/**
+		 * Note: CanvasEnvironment need to be add as else block.
+		 */
+
+		return null;
 	}
 };
 
