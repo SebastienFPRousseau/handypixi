@@ -24,6 +24,10 @@ module.exports = {
     Loader: Support.Loader,
 
     Ticker: Interactivity.Ticker,
+    PixiEventListener: Interactivity.PixiEventListener,
+    PixiPointerEventListener: Interactivity.PixiPointerEventListener,
+    PixiMouseEventListener: Interactivity.PixiMouseEventListener,
+    PixiTouchEventListener: Interactivity.PixiTouchEventListener,
 
     CanvasElement: RenderingSystem.CanvasElement,
     Configuration: RenderingSystem.Configuration,

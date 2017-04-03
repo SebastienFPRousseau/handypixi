@@ -10,7 +10,7 @@
 |
 */
 
-const { Container } = require("./Container.js");
+const { Container } = require("./../Container.js");
 
 class BitmapText extends Container
 {
