@@ -57,6 +57,7 @@ class WebGLEnvironment extends Environment
 			if (!(dom instanceof HTMLCollection))
 				throw new TypeError("dom must be a HTMLCollection.");
 			
+			console.log(dom);
 			// Create the WebGL renderer
 			if (options.viewWidth === undefined)
 				options.viewWidth = 800;

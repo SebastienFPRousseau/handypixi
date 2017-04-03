@@ -21,7 +21,7 @@ class PixiEventListener
 	 * @param {Number}  code  The code of the event.
 	 * @param {Function}  handle The function called when the event is fired.
 	 */
-	constructor(obj, code = 0, handle = function(){})
+	constructor(obj, code, handle)
 	{
 		if (this.constructor === PixiEventListener)
 			throw new TypeError("Cannot construct Abstract instances like PixiEventListener directly.");

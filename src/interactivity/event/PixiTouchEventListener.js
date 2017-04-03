@@ -63,7 +63,7 @@ class PixiTouchEventListener extends PixiEventListener
 	 * @param {Number}  code  The code of the event.
 	 * @param {Function}  handle The function called when the event is fired.
 	 */
-	constructor(obj, code = 0, handle = function(){})
+	constructor(obj, code, handle)
 	{
 		super(obj, code, handle);
 	}
