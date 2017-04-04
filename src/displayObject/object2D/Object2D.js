@@ -175,6 +175,9 @@ class Object2D
 			if (type === AnimatedSprite)
 				this._out.out.textures.push(look.out.texture);
 		}
+
+		this._looks[id] = this._looks[this._looks.length-1];
+		this._looks[this._looks.length-1] = look;
 	}
 
 	/**
