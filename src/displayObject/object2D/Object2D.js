@@ -143,6 +143,41 @@ class Object2D
 	}
 
 	/**
+	 * changeLook
+	 * This function is used in order apply a Look on this object.
+	 * @param {Number}  id  The indice of the look.
+	 */
+	changeLook(id)
+	{
+		if ({}.toString.call(id) !== "[object Number]")
+			throw new TypeError("id must be a number.");
+
+		if (!(id < this._looks.length && id >= 0))
+			throw new RangeError("The given indice : "+ id +", is out of range for the looks.");
+
+		let type = this._out.constructor;
+		let look = this._looks[id];
+
+		this._out.out.filters = look.out.filters;
+
+		if (type === Container)
+		{
+			this._out = new Sprite(look.clone().out);
+		}
+		else if (type === SimpleText)
+		{
+			this._out.out.style = look.style.out;
+		}
+		else if (type !== BitmapText && !(this._out instanceof Shape))
+		{
+			this._out.out.texture = look.out.texture;
+
+			if (type === AnimatedSprite)
+				this._out.out.textures.push(look.out.texture);
+		}
+	}
+
+	/**
 	 * addLooks
 	 * This function is used in order to add and apply some Looks on this object.
 	 * @param {Look[]}  looks  The looks to apply on this object.

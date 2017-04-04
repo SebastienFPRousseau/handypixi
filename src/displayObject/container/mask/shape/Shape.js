@@ -43,7 +43,6 @@ class Shape extends Mask
 				throw new TypeError("options must be an object.");
 			
 			this.options = options;
-
 			this._out = new PIXI.Graphics(nativeLines);
 		}
 	}
