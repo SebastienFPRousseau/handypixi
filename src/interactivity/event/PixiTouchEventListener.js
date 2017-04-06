@@ -66,7 +66,7 @@ class PixiTouchEventListener extends PixiEventListener
 	 */
 	constructor(obj, code, handle, data = {})
 	{
-		super(obj, code, handle);
+		super(obj, code, handle, data);
 	}
 
 	/**
