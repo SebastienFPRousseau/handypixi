@@ -20,8 +20,9 @@ class PixiEventListener
 	 * @param {Object2D}  obj  The object2D to bind with the event.
 	 * @param {Number}  code  The code of the event.
 	 * @param {Function}  handle The function called when the event is fired.
+	 * @param {Object}  data  The data using by the handle function.
 	 */
-	constructor(obj, code, handle)
+	constructor(obj, code, handle, data = {})
 	{
 		if (this.constructor === PixiEventListener)
 			throw new TypeError("Cannot construct Abstract instances like PixiEventListener directly.");
@@ -35,7 +36,15 @@ class PixiEventListener
 		if ({}.toString.call(handle) !== "[object Function]")
 			throw new TypeError("handle must be a function.");
 
+		if (!(typeof data === "object" && {}.toString.call(data) === "[object Object]"))
+            throw new TypeError("data must be an object.");
+
 		this._type = code;
+		this._target = obj;
+		this._data = data;
+
+		handle = handle.bind(this);
+
 		obj.out.out.interactive = true;
 		obj.out.out.buttonMode = true;
 		obj.out.out.on(this.getPixiType(code), handle);
@@ -50,6 +59,28 @@ class PixiEventListener
 	get type()
 	{
 		return this._type;
+	}
+
+	/**
+	 * target
+	 * @getter
+	 * This function is a getter for the member _target.
+	 * @return {Object2D}  The code of this event.
+	 */
+	get target()
+	{
+		return this._target;
+	}
+
+	/**
+	 * data
+	 * @getter
+	 * This function is a getter for the member _data.
+	 * @return {Object}  The code of this event.
+	 */
+	get data()
+	{
+		return this._data;
 	}
 
 	/**

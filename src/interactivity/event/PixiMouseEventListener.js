@@ -97,8 +97,9 @@ class PixiMouseEventListener extends PixiEventListener
 	 * @param {Object2D}  obj  The object2D to bind with the event.
 	 * @param {Number}  code  The code of the event.
 	 * @param {Function}  handle The function called when the event is fired.
+	 * @param {Object}  data  The data using by the handle function.
 	 */
-	constructor(obj, code, handle)
+	constructor(obj, code, handle, data = {})
 	{
 		super(obj, code, handle);
 	}
