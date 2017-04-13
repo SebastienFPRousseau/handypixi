@@ -38,6 +38,7 @@ class Object2D
 		this._mask = null;
 		this._parent = null;
 		this._children = [];
+		this._data = {};
 	}
 
 	/**
@@ -49,6 +50,31 @@ class Object2D
 	get out()
 	{
 		return this._out;
+	}
+
+	/**
+	 * data
+	 * @getter
+	 * This function is a getter for the member _data.
+	 * @return {Object} Some data binded with the Object2D. 
+	 */
+	get data()
+	{
+		return this._data;
+	}
+
+	/**
+	 * data
+	 * @setter
+	 * This function is a setter for the member _data.
+	 * @param {Object}  data  Some data binded with the Object2D.
+	 */
+	set data(data)
+	{
+		if (!(typeof data === "object" && {}.toString.call(data) === "[object Object]"))
+			throw new TypeError("data must be an object.");
+
+		this._data = data;
 	}
 
 	/**

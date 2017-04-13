@@ -12,7 +12,6 @@
 
 class Ticker
 {
-
 	/**
 	* constructor
 	* This function is used in order to build a Ticker.
