@@ -53,6 +53,37 @@ class Object2D
 	}
 
 	/**
+	 * position
+	 * @getter
+	 * This function is a getter for the member _out.position.
+	 * @return {PIXI.Point|Pixi.ObservablePoint} The PIXI Position Object used by this object. 
+	 */
+	get position()
+	{
+		return this._out.position;
+	}
+
+	/**
+	 * position
+	 * @setter
+	 * This function is a setter for the member _out.position.
+	 * @param {Object} An x,y coordinates object 
+	 */
+	set position(coordinates)
+	{
+		if (!(typeof coordinates === "object" && {}.toString.call(coordinates) === "[object Object]"))
+			throw new TypeError("coordinates must be an object.");
+
+		if ({}.toString.call(coordinates.x) !== "[object Number]")
+			throw new TypeError("x must be a number.");
+
+		if ({}.toString.call(coordinates.y) !== "[object Number]")
+			throw new TypeError("y must be a number.");
+
+		this._out.position.set(coordinates.x, coordinates.y);
+	}
+
+	/**
 	 * data
 	 * @getter
 	 * This function is a getter for the member _data.

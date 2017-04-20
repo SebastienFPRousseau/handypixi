@@ -77,6 +77,16 @@ class Sprite extends Mask
 	}
 
 	/**
+	 * centerAnchor
+	 * @getter
+	 * This function is a shortcut for anchor.
+	 */
+	centerAnchor()
+	{
+		this.out.anchor.set(0.5, 0.5);
+	}
+
+	/**
 	 * pluginName
 	 * @getter
 	 * This function is a getter for the member pluginName.

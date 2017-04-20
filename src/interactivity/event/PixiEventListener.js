@@ -22,7 +22,7 @@ class PixiEventListener
 	 * @param {Function}  handle The function called when the event is fired.
 	 * @param {Object}  data  The data using by the handle function.
 	 */
-	constructor(obj, code, handle, data = {})
+	constructor(obj, code, handle, context)
 	{
 		if (this.constructor === PixiEventListener)
 			throw new TypeError("Cannot construct Abstract instances like PixiEventListener directly.");
@@ -36,14 +36,10 @@ class PixiEventListener
 		if ({}.toString.call(handle) !== "[object Function]")
 			throw new TypeError("handle must be a function.");
 
-		if (!(typeof data === "object" && {}.toString.call(data) === "[object Object]"))
-            throw new TypeError("data must be an object.");
-
 		this._type = code;
 		this._target = obj;
-		this._data = data;
 
-		handle = handle.bind(this);
+		handle = handle.bind(this, context);
 
 		obj.out.out.interactive = true;
 		obj.out.out.buttonMode = true;
