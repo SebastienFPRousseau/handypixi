@@ -78,6 +78,15 @@ class System
 
 		return null;
 	}
+
+	/**
+	 * deleteEnvironment
+	 * This function is used in order to reset an environment.
+	 */
+	deleteEnvironment()
+	{
+		WebGLEnvironment.delete();
+	}
 };
 
 module.exports = {

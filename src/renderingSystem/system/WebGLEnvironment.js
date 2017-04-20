@@ -293,6 +293,15 @@ class WebGLEnvironment extends Environment
 
 		PIXI.WebGLRenderer.registerPlugin(pluginName, renderer);
 	}
+
+	/**
+	 * delete
+	 * This function is used in order to unset the local instance in order to force reinstanciation of the WebGLEnvironment.
+	 */
+	static delete()
+	{
+		instance = undefined;
+	}
 };
 
 module.exports = {
