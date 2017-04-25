@@ -67,7 +67,7 @@ class Object2D
 	 * position
 	 * @setter
 	 * This function is a setter for the member _out.position.
-	 * @param {Object} An x,y coordinates object 
+	 * @param {Object} An x,y coordinates object. 
 	 */
 	set position(coordinates)
 	{
@@ -164,6 +164,128 @@ class Object2D
 	get children()
 	{
 		return this._children;
+	}
+
+	/**
+	* x
+	* @getter
+	* This function is a getter for the member _out.position.x.
+	* @return  {Number} Position of the container on the x axis. 
+	*/
+	get x()
+	{
+		return this._out.position.x;
+	}
+
+	/**
+	* x
+	* @setter
+	* This function is a setter for the member _out.position.x.
+	* @param  {Number} 	x 	 A x coordinate. 
+	*/
+	set x(x)
+	{
+		if ({}.toString.call(x) !== "[object Number]")
+			throw new TypeError("x must be a number.");
+
+		this._out.position.x = x;
+	}
+
+	/**
+	* y
+	* @getter
+	* This function is a getter for the member _out.position.y.
+	* @return  {Number} Position of the container on the y axis. 
+	*/
+	get y()
+	{
+		return this._out.position.y;
+	}
+
+	/**
+	* y
+	* @setter
+	* This function is a setter for the member _out.position.y.
+	* @param  {Number}	y 	 An y coordinate. 
+	*/
+	set y(y)
+	{
+		if ({}.toString.call(y) !== "[object Number]")
+			throw new TypeError("y must be a number.");
+
+		this._out.position.y = y;
+	}
+
+	/**
+	 * height
+	 * @getter
+	 * This function is a getter for the member _out.height.
+	 * @return {Number} The height of the Container.
+	 */
+	get height()
+	{
+		return this._out.height;
+	}
+
+	/**
+	 * height
+	 * @setter
+	 * This function is a setter for the member _out.height.
+	 * @param {Number}  height  The height of the Container, setting this will modify the scale to achieve the value set.
+	 */
+	set height(height)
+	{
+		if ({}.toString.call(height) !== "[object Number]")
+			throw new TypeError("height must be a number.");
+
+		this._out.height = height;
+	}
+
+	/**
+	 * width
+	 * @getter
+	 * This function is a getter for the member _out.width.
+	 * @return {Number} The width of the Container.
+	 */
+	get width()
+	{
+		return this._out.width;
+	}
+
+	/**
+	 * width
+	 * @setter
+	 * This function is a setter for the member _out.width.
+	 * @param {Number}  width  The width of the Container, setting this will modify the scale to achieve the value set.
+	 */
+	set width(width)
+	{
+		if ({}.toString.call(width) !== "[object Number]")
+			throw new TypeError("width must be a number.");
+
+		this._out.width = width;
+	}
+
+	/**
+	* worldTx
+	* @getter
+	* This function is a getter for the member _out.worldTransform.out.tx.
+	* @return  {Number} World translation of the container on x. 
+	*/
+	get worldTx()
+	{
+		return this._out.worldTransform.out.tx;
+	}
+
+	/**
+	* worldTy
+	* @getter
+	* This function is a getter for the member _out.worldTransform.out.ty.
+	* @return  {Number} World translation of the container on y. 
+	*/
+	get worldTy()
+	{
+		return this._out.worldTransform.out.ty;
 	}
 
 	/**
