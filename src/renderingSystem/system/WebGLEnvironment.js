@@ -103,24 +103,6 @@ class WebGLEnvironment extends Environment
 
 		this._ticker.start();
 	}
-
-	/**
-	* getInstance
-	* @param {HTMLCollection}  dom  The html DOM the 2D scene belongs. 
-	* @param {Object}  options  Options for the environment.
-	*/
-	static getInstance(dom = undefined, options = undefined)
-	{
-		if (instance === undefined)
-		{
-			if (dom === undefined)
-				throw new TypeError("dom must be a HTMLCollection for the first call.");
-
-        	instance = new WebGLEnvironment(dom, options);
-		}
-        
-		return instance;
-	}
 	
 	/**
 	 * targets

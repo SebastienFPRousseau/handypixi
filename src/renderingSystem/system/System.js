@@ -70,7 +70,7 @@ class System
 			throw new TypeError("forceCanvas must be a boolean.");
 
 		if (Setup.isWebGLSupported() && !forceCanvas)
-			return WebGLEnvironment.getInstance(dom, options);
+			return new WebGLEnvironment(dom, options);
 
 		/**
 		 * Note: CanvasEnvironment need to be add as else block.
