@@ -19,13 +19,6 @@ const { WebGLRenderTarget } = require("./WebGLRenderTarget.js");
 const { ContainerRenderer } = require("./../manager/ContainerRenderer.js");
 const { Ticker } = require("./../../interactivity/ticker/Ticker.js");
 
-/**
- * instance
- * A premade instance of System. 
- * @type {WebGLEnvironment} 
- */
-let instance = undefined;
-
 class WebGLEnvironment extends Environment
 {
 	/**
@@ -274,15 +267,6 @@ class WebGLEnvironment extends Environment
 			throw new TypeError("renderer must be a class which inherits of ContainerRenderer.");
 
 		PIXI.WebGLRenderer.registerPlugin(pluginName, renderer);
-	}
-
-	/**
-	 * delete
-	 * This function is used in order to unset the local instance in order to force reinstanciation of the WebGLEnvironment.
-	 */
-	static delete()
-	{
-		instance = undefined;
 	}
 };
 

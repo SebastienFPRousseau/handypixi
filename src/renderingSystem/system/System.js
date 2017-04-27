@@ -12,6 +12,7 @@
 
 const { Settings } = require("./../config/Settings.js");
 const { WebGLEnvironment } = require("./WebGLEnvironment.js");
+const { CanvasEnvironment } = require("./CanvasEnvironment.js");
 const { Setup } = require("./../../support/utils/Setup.js");
 
 /**
@@ -71,21 +72,8 @@ class System
 
 		if (Setup.isWebGLSupported() && !forceCanvas)
 			return new WebGLEnvironment(dom, options);
-
-		/**
-		 * Note: CanvasEnvironment need to be add as else block.
-		 */
-
-		return null;
-	}
-
-	/**
-	 * deleteEnvironment
-	 * This function is used in order to reset an environment.
-	 */
-	deleteEnvironment()
-	{
-		WebGLEnvironment.delete();
+		else
+			return new CanvasEnvironment(dom, options);
 	}
 };
 
