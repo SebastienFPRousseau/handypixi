@@ -80,4 +80,6 @@ module.exports = {
     ShapeFactory: DisplayObject.ShapeFactory,
     SpecialSpriteFactory: DisplayObject.SpecialSpriteFactory,
     Object2D: DisplayObject.Object2D,
+    Particle: DisplayObject.Particle,
+    Emitter: DisplayObject.Emitter,
 };

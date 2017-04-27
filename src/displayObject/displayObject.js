@@ -19,6 +19,7 @@ const { Polygon } = require("./container/mask/shape/Polygon.js");
 const { ShapeData } = require("./container/mask/shape/ShapeData.js");
 const { AbstractContainerFactory, TextFactory, BitmapTextFactory, MeshFactory, ShapeFactory, SpecialSpriteFactory } = require("./container/AbstractContainerFactory.js");
 const { Object2D } = require("./object2D/Object2D.js");
+const { Particle, Emitter } = require("./container/mask/sprite/particle/Particle.js");
 
 module.exports = {
 	Bounds: Bounds,
@@ -47,4 +48,6 @@ module.exports = {
 	ShapeFactory: ShapeFactory,
 	SpecialSpriteFactory: SpecialSpriteFactory,
 	Object2D: Object2D,
+	Particle: Particle,
+	Emitter: Emitter,
 };
