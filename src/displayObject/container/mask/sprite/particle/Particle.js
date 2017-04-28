@@ -27,6 +27,9 @@ class Particle extends Sprite
 	{
 		super();
 
+		if (this.constructor !== Particle)
+     		return ;
+
 		if (emitter instanceof PIXI.particles.Particle)
 		{
 			this._out = emitter;
@@ -532,20 +535,16 @@ class Emitter
 				throw new TypeError("config must be an object.");
 
 			if (!Array.isArray(textures))
-			{
 				throw new TypeError("textures must be an array.");
-			}
-			else
+
+			let outTextures = [];
+
+			for(let i = 0, l = textures.length; i < l; i++)
 			{
-				outTextures = [];
+				if (!(textures[i] instanceof Texture))
+					throw new TypeError("Can't apply the "+ i +" element, it must be a Texture");
 
-				for(let i = 0, l = textures.length; i < l; i++)
-				{
-					if (!(textures[i] instanceof Texture))
-						throw new TypeError("Can't apply the "+ i +" element, it must be a Texture");
-
-					outTextures = textures[i].out;
-				}
+				outTextures = textures[i].out;
 			}
 
 			this._out = new PIXI.particles.Emitter(parent.out, outTextures, config);

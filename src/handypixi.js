@@ -82,4 +82,5 @@ module.exports = {
     Object2D: DisplayObject.Object2D,
     Particle: DisplayObject.Particle,
     Emitter: DisplayObject.Emitter,
+    PathParticle: DisplayObject.PathParticle,
 };
