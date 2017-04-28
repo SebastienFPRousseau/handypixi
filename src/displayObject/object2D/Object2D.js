@@ -16,6 +16,7 @@ const { Mask } = require("./../container/mask/Mask.js");
 const { Shape } = require("./../container/mask/shape/Shape.js");
 const { Sprite } = require("./../container/mask/sprite/Sprite.js");
 const { AnimatedSprite } = require("./../container/mask/sprite/AnimatedSprite.js");
+const { AnimatedParticle } = require("./../container/mask/sprite/particle/AnimatedParticle.js");
 const { TilingSprite } = require("./../container/mask/sprite/TilingSprite.js");
 const { SimpleText } = require("./../container/mask/sprite/SimpleText.js");
 const { Mesh } = require("./../container/mesh/Mesh.js");
@@ -351,8 +352,13 @@ class Object2D
 		{
 			this._out.out.texture = look.out.texture;
 
-			if (type === AnimatedSprite)
-				this._out.out.textures.push(look.out.texture);
+			if (type === AnimatedSprite || type === AnimatedParticle)
+			{
+				if (this._out.out.textures === null)
+					this._out.out.textures = [look.out.texture];
+				else
+					this._out.out.textures.push(look.out.texture);
+			}
 		}
 
 		this._looks[id] = this._looks[this._looks.length-1];

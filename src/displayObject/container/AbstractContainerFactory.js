@@ -26,6 +26,9 @@ const { Polygon } = require("./mask/shape/Polygon.js");
 const { Sprite } = require("./mask/sprite/Sprite.js");
 const { AnimatedSprite } = require("./mask/sprite/AnimatedSprite.js");
 const { TilingSprite } = require("./mask/sprite/TilingSprite.js");
+const { Particle } = require("./mask/sprite/particle/Particle.js");
+const { PathParticle } = require("./mask/sprite/particle/PathParticle.js");
+const { AnimatedParticle } = require("./mask/sprite/particle/AnimatedParticle.js");
 
 /**
  * TEXT_FACTORY
@@ -450,6 +453,39 @@ class SpecialSpriteFactory extends AbstractContainerFactory
 	createTilingSprite(width = undefined, height = undefined)
 	{
 		return new TilingSprite(width, height);
+	}
+
+	/**
+	 * createParticle
+	 * This function is used in order to build a Particle.
+	 * @param {Emitter}  emitter  The emitter that controls this particle.
+	 * @return {Particle} The Particle built. 
+	 */
+	createParticle(emitter)
+	{
+		return new Particle(emitter);
+	}
+
+	/**
+	 * createAnimatedParticle
+	 * This function is used in order to build a AnimatedParticle.
+	 * @param {Emitter}  emitter  The emitter that controls this particle.
+	 * @return {AnimatedParticle} The AnimatedParticle built. 
+	 */
+	createAnimatedParticle(emitter)
+	{
+		return new AnimatedParticle(emitter);
+	}
+
+	/**
+	 * createPathParticle
+	 * This function is used in order to build a PathParticle.
+	 * @param {Emitter}  emitter  The emitter that controls this particle.
+	 * @return {PathParticle} The PathParticle built. 
+	 */
+	createPathParticle(emitter)
+	{
+		return new PathParticle(emitter);
 	}
 };
 
