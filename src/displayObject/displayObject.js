@@ -21,6 +21,7 @@ const { AbstractContainerFactory, TextFactory, BitmapTextFactory, MeshFactory, S
 const { Object2D } = require("./object2D/Object2D.js");
 const { Particle, Emitter } = require("./container/mask/sprite/particle/Particle.js");
 const { PathParticle } = require("./container/mask/sprite/particle/PathParticle.js");
+const { AnimatedParticle } = require("./container/mask/sprite/particle/AnimatedParticle.js");
 
 module.exports = {
 	Bounds: Bounds,
@@ -52,4 +53,5 @@ module.exports = {
 	Particle: Particle,
 	Emitter: Emitter,
 	PathParticle: PathParticle,
+	AnimatedParticle: AnimatedParticle,
 };
