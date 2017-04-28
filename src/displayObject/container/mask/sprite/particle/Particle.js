@@ -517,7 +517,7 @@ class Emitter
 	 * @param {Object}  config  A configuration object containing settings for the emitter.
 	 * @param {PIXI.particles.Emitter}  parent  The Pixi object to build the HandyPixi object.
 	 */
-	constructor(parent, textures = undefined, config = undefined)
+	constructor(parent, textures, config = undefined)
 	{
 		if (parent instanceof PIXI.particles.Emitter)
 		{
@@ -531,25 +531,20 @@ class Emitter
 			if (!(typeof config === "object" && {}.toString.call(config) === "[object Object]" || config === undefined))
 				throw new TypeError("config must be an object.");
 
-			let outTextures = undefined;
+			if (!Array.isArray(textures))
+			{
+				throw new TypeError("textures must be an array.");
+			}
+			else
+			{
+				outTextures = [];
 
-			if(textures !== undefined)
-			{			
-				if (!Array.isArray(textures))
+				for(let i = 0, l = textures.length; i < l; i++)
 				{
-					throw new TypeError("textures must be an array.");
-				}
-				else
-				{
-					outTextures = [];
+					if (!(textures[i] instanceof Texture))
+						throw new TypeError("Can't apply the "+ i +" element, it must be a Texture");
 
-					for(let i = 0, l = textures.length; i < l; i++)
-					{
-						if (!(textures[i] instanceof Texture))
-							throw new TypeError("Can't apply the "+ i +" element, it must be a Texture");
-
-						outTextures = textures[i].out;
-					}
+					outTextures = textures[i].out;
 				}
 			}
 
@@ -1185,7 +1180,7 @@ class Emitter
 	{
 		if (this._out.ownerPos === null)
 			return null;
-		
+
 		return new Point(this._out.ownerPos);
 	}
 
@@ -1454,6 +1449,97 @@ class Emitter
 
 		this._out.startSpeed = startSpeed;
 	}
+
+	/**
+	 * cleanup
+	 * This function is used in order to kill all active particles immediately.
+	 */
+	cleanup()
+	{
+		this._out.cleanup();
+	}
+	
+	/**
+	 * destroy
+	 * This function is used in order to destroy the emitter and all of its particles.
+	 */
+	destroy()
+	{
+		this._out.destroy();
+	}
+
+	/**
+	 * playOnceAndDestroy
+	 * This function is used in order to start emitting particles, set autoUpdate to true, and set up the Emitter to destroy itself when particle emission is complete.
+	 */
+	playOnceAndDestroy()
+	{
+		this._out.playOnceAndDestroy();
+	}
+	
+	/**
+	 * resetPositionTracking
+	 * This function is used in order to prevent emitter position interpolation in the next update. 
+	 * This should be used if you made a major position change of your emitter's owner that was not normal movement.
+	 */
+	resetPositionTracking()
+	{
+		this._out.resetPositionTracking();
+	}
+	
+	/**
+	 * rotate
+	 * This function is used in order to set the rotation of the emitter to a new value.
+	 * @param {Number}  rotation  The new rotation, in degrees.
+	 */
+	rotate(rotation)
+	{
+		if ({}.toString.call(rotation) !== "[object Number]")
+			throw new TypeError("rotation must be a number.");
+
+		this._out.rotate(rotation);
+	}
+
+	/**
+	 * update
+	 * This function is used in order to update all particles spawned by this emitter and emit new ones.
+	 * @param {Number}  delta  Time elapsed since the previous frame, in second.
+	 */
+	update(delta)
+	{
+		if ({}.toString.call(delta) !== "[object Number]")
+			throw new TypeError("delta must be a number.");
+
+		this._out.update(delta);
+	}
+
+	/**
+	 * updateOwnerPos
+	 * This function is used in order to change the position of the emitter's owner. 
+	 * You should call this if you are adding particles to the world display object that your emitter's owner is moving around in.
+	 * @param {Point}  position  The new position.
+	 */
+	updateOwnerPos(position)
+	{
+		if (!(position instanceof Point))
+			throw new TypeError("position must be a Point.");
+
+		this._out.updateOwnerPos(position.x, position.y);
+	}
+
+	/**
+	 * updateSpawnPos
+	 * This function is used in order to change the spawn position of the emitter.
+	 * @param {Point}  position  The new position.
+	 */
+	updateSpawnPos(position)
+	{
+		if (!(position instanceof Point))
+			throw new TypeError("position must be a Point.");
+
+		this._out.updateSpawnPos(position.x, position.y);
+	}
+
 };
 
 module.exports = {
