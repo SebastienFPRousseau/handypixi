@@ -10,6 +10,10 @@
 |
 */
 
+const { Point } = require("./../../support/geometry/Point.js");
+const { Object2D } = require("./../../displayObject/object2D/Object2D.js");
+const { Bounds } = require("./../../displayObject/bounds/Bounds.js");
+
 class EventManager
 {
 	/**
@@ -165,45 +169,74 @@ class EventManager
 
 	/**
 	 * mouse
+	 * @getter
 	 * This function is a getter for the member mouse.
-	 * @param { } [varname] [description]
+	 * @return {PIXI.interaction.interactionData}  The data concerning the mouse.
 	 */
+	get mouse()
+	{
+		return this._interactionManager.mouse;
+	}
 
 	/**
 	 * mapPositionToPoint
-	 * This function is used in order to 
-	 * @param {Point} 
-	 * @param {Point}
+	 * This function is used in order to map x and y coords from a DOM object and maps them correctly to the pixi view.
+	 * @param {Point}  point  The point that the result will be stored in.  
+	 * @param {Point}  position  The position to map.
 	 */
-	
-	/**
-	 * processInteractive
-	 * This function is used in order to
-	 * @param {Point} 
-	 * @param {Object2D} 
-	 * @param {Object} 
-	 * @return {Boolean}
-	 */
+	mapPositionToPoint(point, position)
+	{
+		if (!(point instanceof Point))
+			throw new TypeError("point must be a Point.");
+
+		if (!(position instanceof Point))
+			throw new TypeError("position must be a Point.");
+
+		this._interactionManager.mapPositionToPoint(point.out, position.x, position.y);
+	}
 	
 	/**
 	 * update
-	 * This function is used in order to
-	 * @param {Number}
+	 * This function is used in order to update the state of interactive objects.
+	 * @param {Number}  deltaTime  The time delta since last tick.
 	 */
-	
+	update(deltaTime)
+	{
+		if ({}.toString.call(deltaTime) !== "[object Number]")
+			throw new TypeError("deltaTime must be a number.");
+
+		this._interactionManager.update(deltaTime);
+	}
+
 	/**
 	 * capHitArea
-	 * This function is used in order to
-	 * @param {Number} 
-	 * @param {Number} 
+	 * This function is used in order to define a hit area for the events.
+	 * @param {Bounds}  hitArea  The bounds of the event hit area.
 	 */
-	
+	capHitArea(hitArea)
+	{
+		if (!(hitArea instanceof Bounds))
+			throw new TypeError("hitArea must be a Bounds.");
+
+		this._accessibilityManager.capHitArea(hitArea.out);
+	}
+
 	/**
 	 * notify
-	 * This function is used in order to
-	 * @param {Event} 
+	 * This function is used in order to call the handle methods of the listeners.
+	 * @param {Event}  event  The event fired.
 	 */
+	notify(event)
+	{
+		if (!(event instanceof Event))
+			throw new TypeError("event must be a Event.");
 
+		for (let i = 0, l = this._listeners.length; i < l; i++)
+		{
+			if (event === this._listeners[i].event)
+				this._listeners[i].handle(event);
+		}
+	}
 };
 
 /*
@@ -224,10 +257,10 @@ class EventListener
 	/**
 	 * constructor
 	 * This function is used in order to forbidden the built of an EventListener
-	 * @param {EventListenerManager}  dispatcher  The dispatcher to notify.
+	 * @param {EventManager}  dispatcher  The dispatcher to notify.
 	 * @param {String}  name  The name of the event listener.
 	 */
-	constructor(dispatcher, code)
+	constructor(dispatcher, name)
 	{
 		if (this.constructor === EventListener)
 			throw new TypeError("Cannot construct Abstract instances like EventListener directly.");
@@ -242,6 +275,19 @@ class EventListener
 			throw new TypeError("code must be a number.");
 
 		this._dispatcher = dispatcher;
+
+		this._event = null;
+	}
+
+	/**
+	 * event
+	 * @getter
+	 * This function is a getter for the member _listeners.
+	 * @return {Event} The event listened by this listener.
+	 */
+	get event()
+	{
+		return this._event;
 	}
 
 	/**
