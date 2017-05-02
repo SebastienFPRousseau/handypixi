@@ -162,8 +162,99 @@ class EventManager
 
 		this._interactionManager.moveWhenInside = value;
 	}
+
+	/**
+	 * mouse
+	 * This function is a getter for the member mouse.
+	 * @param { } [varname] [description]
+	 */
+
+	/**
+	 * mapPositionToPoint
+	 * This function is used in order to 
+	 * @param {Point} 
+	 * @param {Point}
+	 */
+	
+	/**
+	 * processInteractive
+	 * This function is used in order to
+	 * @param {Point} 
+	 * @param {Object2D} 
+	 * @param {Object} 
+	 * @return {Boolean}
+	 */
+	
+	/**
+	 * update
+	 * This function is used in order to
+	 * @param {Number}
+	 */
+	
+	/**
+	 * capHitArea
+	 * This function is used in order to
+	 * @param {Number} 
+	 * @param {Number} 
+	 */
+	
+	/**
+	 * notify
+	 * This function is used in order to
+	 * @param {Event} 
+	 */
+
+};
+
+/*
+|--------------------------------------------------------------------------
+| EventListener
+|--------------------------------------------------------------------------
+|
+| This file defines the EventListener Object.
+| This object is the EventListener for the handypixi events.
+| This package is based on Pixi.js and should not be externalized.
+| http://www.pixijs.com/
+|
+*/
+
+
+class EventListener
+{
+	/**
+	 * constructor
+	 * This function is used in order to forbidden the built of an EventListener
+	 * @param {EventListenerManager}  dispatcher  The dispatcher to notify.
+	 * @param {String}  name  The name of the event listener.
+	 */
+	constructor(dispatcher, code)
+	{
+		if (this.constructor === EventListener)
+			throw new TypeError("Cannot construct Abstract instances like EventListener directly.");
+
+		if (!_.isFunction(this.handle))
+			throw new TypeError(this.constructor.name + " must override the handle method.");
+
+		if (!(obj instanceof EventListenerManager))
+			throw new TypeError("obj must be a EventListenerManager.");
+
+		if ({}.toString.call(code) !== "[object Number]")
+			throw new TypeError("code must be a number.");
+
+		this._dispatcher = dispatcher;
+	}
+
+	/**
+	 * register
+	 * This function is used in order to register this listener in the dispatcher
+	 */
+	register()
+	{
+		this._dispatcher.addListener(this);
+	}
 };
 
 module.exports = {
 	EventManager: EventManager,
+	EventListener: EventListener,
 };

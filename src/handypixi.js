@@ -28,6 +28,7 @@ module.exports = {
     PixiPointerEventListener: Interactivity.PixiPointerEventListener,
     PixiMouseEventListener: Interactivity.PixiMouseEventListener,
     PixiTouchEventListener: Interactivity.PixiTouchEventListener,
+    EventListener: Interactivity.EventListener,
 
     CanvasElement: RenderingSystem.CanvasElement,
     Configuration: RenderingSystem.Configuration,
