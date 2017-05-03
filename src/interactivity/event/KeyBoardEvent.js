@@ -33,7 +33,7 @@ const KEY_PRESS = 1;
  */
 const KEY_UP = 2;
 
-class KeyBoardEvent
+class KeyBoardEvent extends Event
 {
 	/**
 	 * constructor

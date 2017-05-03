@@ -32,6 +32,7 @@ module.exports = {
     Event: Interactivity.Event,
     KeyBoardEvent: Interactivity.KeyBoardEvent,
     MouseEvent: Interactivity.MouseEvent,
+    Dispatcher: Interactivity.Dispatcher,
 
     CanvasElement: RenderingSystem.CanvasElement,
     Configuration: RenderingSystem.Configuration,

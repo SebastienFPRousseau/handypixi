@@ -10,14 +10,14 @@
 |
 */
 
-const { EventManager } = require("./../manager/EventManager.js");
+const { Dispatcher } = require("./../manager/Dispatcher.js");
 
 class Event
 {
 	/**
 	 * constructor
 	 * This function is used in order to forbidden the built of an Event
-	 * @param {EventManager}  dispatcher  The dispatcher to notify.
+	 * @param {Dispatcher}  dispatcher  The dispatcher to notify.
 	 * @param {Number}  code  The code of the event.
 	 */
 	constructor(dispatcher, code)
@@ -25,8 +25,8 @@ class Event
 		if (this.constructor === Event)
 			throw new TypeError("Cannot construct Abstract instances like Event directly.");
 
-		if (!(obj instanceof EventManager))
-			throw new TypeError("obj must be a EventManager.");
+		if (!(dispatcher instanceof Dispatcher))
+			throw new TypeError("dispatcher must be a Dispatcher.");
 
 		if ({}.toString.call(code) !== "[object Number]")
 			throw new TypeError("code must be a number.");

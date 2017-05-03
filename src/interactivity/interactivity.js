@@ -6,7 +6,7 @@ const { PixiTouchEventListener } = require("./event/PixiTouchEventListener.js");
 const { Event } = require("./event/Event.js");
 const { KeyBoardEvent } = require("./event/KeyBoardEvent.js");
 const { MouseEvent } = require("./event/MouseEvent.js");
-const { EventListener } = require("./manager/EventManager.js");
+const { Dispatcher, EventListener } = require("./manager/Dispatcher.js");
 
 module.exports = {
 	Ticker : Ticker,
@@ -18,4 +18,5 @@ module.exports = {
 	Event: Event,
 	KeyBoardEvent: KeyBoardEvent,
 	MouseEvent: MouseEvent,
+	Dispatcher: Dispatcher,
 };

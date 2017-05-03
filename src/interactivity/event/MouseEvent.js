@@ -33,7 +33,7 @@ const WHEEL_PRESS = 1;
  */
 const WHEEL_UP = 2;
 
-class MouseEvent
+class MouseEvent extends Event
 {
 	/**
 	 * constructor
