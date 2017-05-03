@@ -44,6 +44,7 @@ class Dispatcher
 		if (!(listener instanceof EventListener))
 			throw new TypeError("listener must be a EventListener.");
 
+		this._listeners.push(listener);
 	}
 
 	/**
