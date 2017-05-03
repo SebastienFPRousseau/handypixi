@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/M4dNation/handypixi#readme",
   "dependencies": {
-    "pixi.js": "4.4.4",
+    "pixi.js": "4.5.1",
     "pixi-particles" :  "^2.1.5"
   }
 }
