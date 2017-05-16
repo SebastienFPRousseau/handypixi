@@ -24,10 +24,9 @@ class Look
 	{
 		this._texture = new Texture();
 		this._style = new TextStyle();
-		this._shaders = [new Shader()];
+		this._shaders = [];
 
 		this._out = new PIXI.Sprite(this._texture.out);
-		this._out.filters = [this._shaders[0].out];
 	}
 
 	/**
@@ -158,7 +157,7 @@ class Look
 			throw new TypeError("texture must be a Texture.");
 
 		this._texture = texture;
-		this._out.texture = this._texture.out;
+		this._out.texture = texture.out;
 	}
 
 	/**
@@ -180,7 +179,10 @@ class Look
 					throw new TypeError("Can't apply the "+ i +" element, it must be a Shader");
 
 				this._shaders.push(filters[i]);
-				outFilters = this._out.filters;
+
+				if(this._out.filters !== null)
+					outFilters = this._out.filters;
+				
 				outFilters.push(filters[i].out);
 				this._out.filters = outFilters;
 			}
