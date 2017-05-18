@@ -1,10 +1,12 @@
 {
   "name": "handypixi",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "main": "src/handypixi.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "babel -d lib/ src/",
+    "prepublish": "npm run compile"
   },
   "repository": {
     "type": "git",
@@ -19,5 +21,8 @@
   "dependencies": {
     "pixi.js": "4.4.4",
     "pixi-particles" :  "^2.1.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.0.0"
   }
 }
