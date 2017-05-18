@@ -30,8 +30,6 @@ module.exports = {
     PixiTouchEventListener: Interactivity.PixiTouchEventListener,
     EventListener: Interactivity.EventListener,
     Event: Interactivity.Event,
-    KeyBoardEvent: Interactivity.KeyBoardEvent,
-    MouseEvent: Interactivity.MouseEvent,
     Dispatcher: Interactivity.Dispatcher,
 
     CanvasElement: RenderingSystem.CanvasElement,

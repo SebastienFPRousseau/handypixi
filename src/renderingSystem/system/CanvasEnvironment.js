@@ -74,7 +74,7 @@ class CanvasEnvironment extends Environment
 		// Create the usefull managers
 		this._prepare = new PIXI.prepare.canvas(this._renderer);
 		this._config = new Configuration(options.maxMilliseconds, options.maxItemsPerFrame);
-		this._eventManager = null;
+		this._eventManager = new EventManager(this._renderer);
 
 		// Create a Ticker for render updates
 		this._ticker = null;

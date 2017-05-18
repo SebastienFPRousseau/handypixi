@@ -41,7 +41,7 @@ class Matrix
 		}
 		else 
 		{
-			for(let i = 0, l = params.length; i < l; i++)
+			for (let i = 0, l = params.length; i < l; i++)
 			{
 				if ({}.toString.call(params[i]) !== "[object Number]")
 					throw new TypeError("params must be an array of numbers.");
@@ -271,7 +271,7 @@ class Matrix
 		if (!Array.isArray(params) || params.length != 4)
 			throw new TypeError("params must be an array, its length must be four.");
 
-		for(let i = 0, l = params.length; i < l; i++)
+		for (let i = 0, l = params.length; i < l; i++)
 		{
 			if ({}.toString.call(params[i]) !== "[object Number]")
 				throw new TypeError("params must be an array of numbers.");

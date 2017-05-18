@@ -3,10 +3,7 @@ const { PixiEventListener } = require("./event/PixiEventListener.js");
 const { PixiPointerEventListener } = require("./event/PixiPointerEventListener.js");
 const { PixiMouseEventListener } = require("./event/PixiMouseEventListener.js");
 const { PixiTouchEventListener } = require("./event/PixiTouchEventListener.js");
-const { Event } = require("./event/Event.js");
-const { KeyBoardEvent } = require("./event/KeyBoardEvent.js");
-const { MouseEvent } = require("./event/MouseEvent.js");
-const { Dispatcher, EventListener } = require("./manager/Dispatcher.js");
+const { Dispatcher, EventListener, Event } = require("./manager/Dispatcher.js");
 
 module.exports = {
 	Ticker : Ticker,
@@ -16,7 +13,5 @@ module.exports = {
 	PixiPointerEventListener: PixiPointerEventListener,
 	EventListener: EventListener,
 	Event: Event,
-	KeyBoardEvent: KeyBoardEvent,
-	MouseEvent: MouseEvent,
 	Dispatcher: Dispatcher,
 };

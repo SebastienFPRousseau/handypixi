@@ -18,6 +18,7 @@ const { Matrix } = require("./../../support/geometry/Matrix.js");
 const { WebGLRenderTarget } = require("./WebGLRenderTarget.js");
 const { ContainerRenderer } = require("./../manager/ContainerRenderer.js");
 const { Ticker } = require("./../../interactivity/ticker/Ticker.js");
+const { EventManager } = require("./../../interactivity/manager/EventManager.js");
 
 class WebGLEnvironment extends Environment
 {
@@ -79,8 +80,8 @@ class WebGLEnvironment extends Environment
 
 		// Create the usefull managers
 		this._prepare = new PIXI.prepare.webgl(this._renderer);
-		this._config = new WebGLConfiguration( this._renderer.state, options.maxMilliseconds, options.maxItemsPerFrame);
-		this._eventManager = null;
+		this._config = new WebGLConfiguration(this._renderer.state, options.maxMilliseconds, options.maxItemsPerFrame);
+		this._eventManager = new EventManager(this._renderer);
 
 		// Create a Ticker for render updates
 		this._ticker = null;
@@ -97,6 +98,17 @@ class WebGLEnvironment extends Environment
 		this._ticker.start();
 	}
 	
+	/**
+	 * eventDispatcher
+	 * @getter
+	 * This function is a getter for the member dispatcher of the _eventManager.
+	 * @return {Dispatcher} The render targets binded on this environment.
+	 */
+	get eventDispatcher()
+	{
+		return this._eventManager.dispatcher;
+	}
+
 	/**
 	 * targets
 	 * @getter

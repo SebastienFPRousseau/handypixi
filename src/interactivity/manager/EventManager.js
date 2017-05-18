@@ -13,21 +13,34 @@
 const { Point } = require("./../../support/geometry/Point.js");
 const { Object2D } = require("./../../displayObject/object2D/Object2D.js");
 const { Bounds } = require("./../../displayObject/bounds/Bounds.js");
+const { Dispatcher } = require("./Dispatcher.js");
 
 class EventManager
 {
 	/**
 	 * constructor
 	 * This function is used in order to build a EventManager.
-	 * @param {PIXI.WebGLRenderer}  renderer  The WebGLRenderer the EventManager is working for.
+	 * @param {PIXI.WebGLRenderer|PIXI.CanvasRenderer} renderer The renderer the EventManager is working for.
 	 */
 	constructor(renderer)
 	{
-		if (!(renderer instanceof PIXI.WebGLRenderer))
-			throw new TypeError("renderer must be a PIXI.WebGLRenderer.");
+		if (!(renderer instanceof PIXI.WebGLRenderer || renderer instanceof PIXI.CanvasRenderer)) 
+			throw new TypeError("renderer must be either a PIXI.WebGLRenderer or a PIXI.CanvasRenderer .");
 		
 		this._interactionManager = renderer.plugins.interaction;
 		this._accessibilityManager = renderer.plugins.accessibility;
+		this._dispatcher = new Dispatcher();
+	}
+
+	/**
+	 * dispatcher
+	 * @getter
+	 * This function is a getter for the member dispatcher.
+	 * @return {Dispatcher}  A dispatcher instance.
+	 */
+	get dispatcher()
+	{
+		return this._dispatcher;
 	}
 
 	/**

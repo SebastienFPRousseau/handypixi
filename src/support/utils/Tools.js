@@ -41,7 +41,7 @@ class Tools
 			throw new TypeError("hex must be a number.");
 
 		if (!Array.isArray(out))
-			throw new TypeError("array must be an Array.");
+			throw new TypeError("out must be an Array.");
 
 		PIXI.utils.hex2rgb(hex, out);
 		return out;
@@ -77,7 +77,7 @@ class Tools
 		}
 		else 
 		{
-			for(let i = 0, l = rgb.length; i < l; i++)
+			for (let i = 0, l = rgb.length; i < l; i++)
 			{
 				if ({}.toString.call(rgb[i]) !== "[object Number]")
 					throw new TypeError("rgb must be an Array of Numbers.");
