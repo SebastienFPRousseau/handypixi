@@ -1,3 +1,9 @@
+"use strict";
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 /*
 |--------------------------------------------------------------------------
 | Frame
@@ -10,93 +16,101 @@
 |
 */
 
-const { Texture } = require("./../../graphic/texture/Texture.js");
+var _require = require("./../../graphic/texture/Texture.js"),
+    Texture = _require.Texture;
 
-class Frame
-{
+var Frame = function () {
 	/**
-	* constructor
-	* This function is used in order to build a Frame.
-	* @param   {Texture}   texture         The Texture of the frame.
-	* @param   {Number}   time         The duration of the frame in ms.
-	*/
-	constructor(texture, time)
-	{
-		if (!(texture instanceof Texture))
-			throw new TypeError("texture must be a Texture.");
+ * constructor
+ * This function is used in order to build a Frame.
+ * @param   {Texture}   texture         The Texture of the frame.
+ * @param   {Number}   time         The duration of the frame in ms.
+ */
+	function Frame(texture, time) {
+		_classCallCheck(this, Frame);
 
-		if ({}.toString.call(time) !== "[object Number]")
-			throw new TypeError("time must be a number.");
+		if (!(texture instanceof Texture)) throw new TypeError("texture must be a Texture.");
 
-		this._out = 
-		{
+		if ({}.toString.call(time) !== "[object Number]") throw new TypeError("time must be a number.");
+
+		this._out = {
 			texture: texture,
-			time: time,
+			time: time
+		};
+	}
+
+	/**
+ * out
+ * @getter
+ * This function is a getter for the member _out.
+ * @return  {Object}  The Object used. 
+ */
+
+
+	_createClass(Frame, [{
+		key: "out",
+		get: function get() {
+			return this._out;
 		}
-	}
 
-	/**
-	* out
-	* @getter
-	* This function is a getter for the member _out.
-	* @return  {Object}  The Object used. 
-	*/
-	get out()
-	{
-		return this._out;
-	}
+		/**
+  * texture
+  * @getter
+  * This function is a getter for the member texture.
+  * @return  {Texture} The Texture of the frame. 
+  */
 
-	/**
-	* texture
-	* @getter
-	* This function is a getter for the member texture.
-	* @return  {Texture} The Texture of the frame. 
-	*/
-	get texture()
-	{
-		return this._out.texture;
-	}
+	}, {
+		key: "texture",
+		get: function get() {
+			return this._out.texture;
+		}
 
-	/**
-	* texture
-	* @setter
-	* This function is a setter for the member texture.
-	* @param  {Texture} 	texture 	 The Texture of the frame. 
-	*/
-	set texture(texture)
-	{
-		if (!(point instanceof Texture))
-			throw new TypeError("texture must be a Texture.");
+		/**
+  * texture
+  * @setter
+  * This function is a setter for the member texture.
+  * @param  {Texture} 	texture 	 The Texture of the frame. 
+  */
+		,
+		set: function set(texture) {
+			if (!(point instanceof Texture)) throw new TypeError("texture must be a Texture.");
 
-		this._out.texture = texture;
-	}
+			this._out.texture = texture;
+		}
 
-	/**
-	* time
-	* @getter
-	* This function is a getter for the member time.
-	* @return  {Number} The duration of the frame in ms. 
-	*/
-	get time()
-	{
-		return this._out.time;
-	}
+		/**
+  * time
+  * @getter
+  * This function is a getter for the member time.
+  * @return  {Number} The duration of the frame in ms. 
+  */
 
-	/**
-	* time
-	* @setter
-	* This function is a setter for the member time.
-	* @param  {Number}	time 	 The duration of the frame in ms. 
-	*/
-	set time(time)
-	{
-		if ({}.toString.call(time) !== "[object Number]")
-			throw new TypeError("time must be a number.");
+	}, {
+		key: "time",
+		get: function get() {
+			return this._out.time;
+		}
 
-		this._out.time = time;
-	}
-};
+		/**
+  * time
+  * @setter
+  * This function is a setter for the member time.
+  * @param  {Number}	time 	 The duration of the frame in ms. 
+  */
+		,
+		set: function set(time) {
+			if ({}.toString.call(time) !== "[object Number]") throw new TypeError("time must be a number.");
+
+			this._out.time = time;
+		}
+	}]);
+
+	return Frame;
+}();
+
+;
 
 module.exports = {
-	Frame: Frame,
+	Frame: Frame
 };
