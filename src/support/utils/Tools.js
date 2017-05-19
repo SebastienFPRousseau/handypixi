@@ -175,6 +175,58 @@ class Tools
 
 		return PIXI.particles.ParticleUtils.generateEase(segments);
 	}
+
+	/**
+	 * measureFont
+	 * This function is used in order to calculate the ascent, descent and fontSize of a given font-style.
+	 * @param {String}  font  String representing the style of the font.
+	 * @return {Object} Font properties object.
+	 */
+	static measureFont(font)
+	{
+		if (!(typeof font === "string" && {}.toString.call(font) === "[object String]"))
+			throw new TypeError("font must be a string.");
+
+		return PIXI.TextMetrics.measureFont(font);
+	}
+
+	/**
+	 * measureText
+	 * This function is used in order to measure the supplied string of text.
+	 * @param {String}  text  The text to measure.
+	 * @param {TextStyle}  style  The text style to use for measuring.
+	 * @param {Boolean}  wordWrap  Override for if word-wrap should be applied to the text.
+	 * @param {HTMLCanvasElement}  canvas  Specification of the canvas to use for measuring.
+	 */
+	static measureText(text, style, wordWrap = undefined, canvas = undefined)
+	{
+		if (!(typeof text === "string" && {}.toString.call(text) === "[object String]"))
+			throw new TypeError("text must be a string.");
+
+		if (!(style instanceof TextStyle))
+			throw new TypeError("style must be a TextStyle.");
+
+		if ({}.toString.call(wordWrap) !== "[object Boolean]" && wordWrap !== undefined)
+			throw new TypeError("wordWrap must be a boolean.");
+
+		if (!(canvas instanceof HTMLCanvasElement) && canvas !== undefined)
+			throw new TypeError("canvas must be a HTMLCanvasElement.");
+
+		let metrics = PIXI.TextMetrics.measureText(text, style.out, wordWrap, canvas);
+
+		let metricsObj = {};
+		metricsObj.text = text;
+		metricsObj.style = style;
+		metricsObj.width = metrics.width;
+		metricsObj.height = metrics.height;
+		metricsObj.lines = metrics.lines;
+		metricsObj.lineWidths = metrics.lineWidths;
+		metricsObj.lineHeight = metrics.lineHeight;
+		metricsObj.maxLineWidth = metrics.maxLineWidth;
+		metricsObj.fontProperties = metrics.fontProperties;
+
+		return metricsObj;
+	}
 };
 
 module.exports = {

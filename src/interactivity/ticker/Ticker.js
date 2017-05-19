@@ -208,25 +208,20 @@ class Ticker
 	 * This function is used in order to request a new animation frame at this point.
 	 * @param {Function}  fn  The listener function to be added for updates.
 	 * @param {Object}  context  The listener context.
+	 * @param {Number}  priority  The priority for emitting. See Settings.UPDATE_PRIORITY
 	 */
-	add(fn, context = null)
+	add(fn, context = undefined, priority = undefined)
 	{
 		if ({}.toString.call(fn) !== "[object Function]")
 			throw new TypeError("fn must be a function.");
 
-		if (context != null)
-		{
-			if (!(typeof context === "object" && {}.toString.call(context) === "[object Object]"))
-				throw new TypeError("context must be an object.");
+		if ({}.toString.call(context) !== "[object Object]" && context !== undefined)
+			throw new TypeError("context must be an Object.");
 
-			this._out.add(fn, context);
-		}
-		else
-		{
-			this._out.add(fn);
-		}
+		if ({}.toString.call(priority) !== "[object Number]" && priority !== undefined)
+			throw new TypeError("priority must be a number.");
 
-		this._listenersFunctions.push(fn);
+		this._out.add(fn, context, priority);
 	}
 
 	/**
@@ -234,23 +229,20 @@ class Ticker
 	 * This function is used in order to request a new animation frame at this point.
 	 * @param {Function}  fn  The listener function to be added for ONE update.
 	 * @param {Object}  context  The listener context.
+	 * @param {Number}  priority  The priority for emitting. See Settings.UPDATE_PRIORITY
 	 */
-	addOnce(fn, context = null)
+	addOnce(fn, context = undefined, priority = undefined)
 	{
 		if ({}.toString.call(fn) !== "[object Function]")
 			throw new TypeError("fn must be a function.");
 
-		if (context != null)
-		{
-			if (!(typeof context === "object" && {}.toString.call(context) === "[object Object]"))
-				throw new TypeError("context must be an object.");
+		if ({}.toString.call(context) !== "[object Object]" && context !== undefined)
+			throw new TypeError("context must be an Object.");
 
-			this._out.addOnce(fn, context);
-		}
-		else
-		{
-			this._out.addOnce(fn);
-		}
+		if ({}.toString.call(priority) !== "[object Number]" && priority !== undefined)
+			throw new TypeError("priority must be a number.");
+
+		this._out.addOnce(fn, context, priority);
 	}
 
 	/**

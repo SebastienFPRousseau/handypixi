@@ -683,6 +683,19 @@ class Object2D
 
 		return sprite;
 	}
+
+	/**
+	 * interactiveChildren
+	 * This function is used in order to determine if the children of the object can be clicked/touched.
+	 * @param {Boolean}  value  If the children must be interactives or not.
+	 */
+	interactiveChildren(value = true)
+	{
+		if ({}.toString.call(value) !== "[object Boolean]")
+			throw new TypeError("value must be a boolean.");
+
+		this._out.out.interactiveChildren = value;
+	}
 };
 
 module.exports = {

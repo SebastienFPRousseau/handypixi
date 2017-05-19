@@ -366,6 +366,17 @@ class Texture
 	}
 
 	/**
+	 * textureCacheIds
+	 * @getter
+	 * This function is a getter for the member textureCacheIds.
+	 * @return {String[]}  The ids under which this Texture has been added to the texture cache.
+	 */
+	get textureCacheIds()
+	{
+		return this._out.textureCacheIds;
+	}
+
+	/**
 	 * hasFrame
 	 * This function is used in order to know if this Texture have any frame data assigned to it.
 	 * @return {Boolean} Has a frame or not.
@@ -525,7 +536,7 @@ class Texture
 			throw new TypeError("id must be a string.");
 
 		this._cacheId = id;
-		PIXI.Texture.addTextureToCache(this._out, id);
+		PIXI.Texture.addToCache(this._out, id);
 	} 
 
 	/**
@@ -534,7 +545,7 @@ class Texture
 	 */
 	removeFromCache()
 	{
-		PIXI.Texture.removeTextureFromCache(this._out, this._cacheId);
+		PIXI.Texture.removeFromCache(this._out);
 		this._cacheId = "";
 	} 
 };

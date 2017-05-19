@@ -62,6 +62,16 @@ class TextStyle
 	{
 		this._out.reset();
 	}
+
+	/**
+	 * toFontString
+	 * This function is used in order to generate a font style string.
+	 * @return {String}  The font style as a string.
+	 */
+	toFontString()
+	{
+		return this._out.toFontString();
+	}
 };
 
 module.exports = {

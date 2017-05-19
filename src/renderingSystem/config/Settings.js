@@ -11,6 +11,18 @@
 */
 
 /**
+ * UPDATE_PRIORITY
+ * Various blend modes supported by HandyPixi.
+ * @type {Object} 
+ * @property {Number} INTERACTION
+ * @property {Number} HIGH
+ * @property {Number} NORMAL
+ * @property {Number} LOW
+ * @property {Number} UTILITY
+ */
+const UPDATE_PRIORITY = PIXI.UPDATE_PRIORITY;
+
+/**
  * BLEND_MODES
  * Various blend modes supported by HandyPixi.
  * @type {Object} 
@@ -158,6 +170,15 @@ const WRAP_MODES = PIXI.WRAP_MODES;
 
 class Settings
 {
+	/**
+	 * UPDATE_PRIORITY
+	 * @getter
+	 */
+	static get UPDATE_PRIORITY()
+	{
+		return UPDATE_PRIORITY;
+	}
+
 	/**
 	 * BLEND_MODES
 	 * @getter
