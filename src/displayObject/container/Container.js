@@ -15,6 +15,7 @@ const { AbstractPoint } = require("./../../support/geometry/AbstractPoint.js");
 const { ObservablePoint } = require("./../../support/geometry/ObservablePoint.js");
 const { Point } = require("./../../support/geometry/Point.js");
 const { Bounds } = require("./../bounds/Bounds.js");
+const { ShapeData } = require("./mask/shape/ShapeData.js");
 
 class Container
 {
@@ -364,6 +365,51 @@ class Container
 			throw new TypeError("width must be a number.");
 
 		this._out.width = width;
+	}
+
+	/**
+	 * cursor
+	 * @getter
+	 * This function is a getter for the member cursor.
+	 * @return {String} The cursor mode used when the mouse cursor is hovered over the Container.
+	 * See https://developer.mozilla.org/en/docs/Web/CSS/cursor
+	 */
+	get cursor()
+	{
+		return this._out.cursor;
+	}
+
+	/**
+	 * cursor
+	 * @setter
+	 * This function is a setter for the member cursor.
+	 * @param {String}  cursor  The cursor mode used when the mouse cursor is hovered over the Container.
+	 * See https://developer.mozilla.org/en/docs/Web/CSS/cursor
+	 */
+	set cursor(cursor)
+	{
+		if (!(typeof cursor === "string" && {}.toString.call(cursor) === "[object String]"))
+			throw new TypeError("cursor must be a string.");
+
+		this._out.cursor = cursor;
+	}
+
+	/**
+	 * hitArea
+	 * @setter
+	 * This function is a setter for the member hitArea.
+	 * @param {Bound}  hitArea  Interaction shape. Children will be hit first, then this shape will be checked.
+	 * @param {ShapeData}  hitArea  Interaction shape. Children will be hit first, then this shape will be checked.
+	 */
+	set hitArea(hitArea)
+	{
+		if (!(hitArea instanceof Bounds || hitArea instanceof ShapeData))
+			throw new TypeError("hitArea must be a Bounds or a ShapeData.");
+
+		if(hitArea instanceof Bounds)
+			this._out.hitArea = hitArea.out;
+		else
+			this._out.hitArea = hitArea.shape;
 	}
 
 	/**

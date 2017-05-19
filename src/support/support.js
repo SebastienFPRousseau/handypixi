@@ -1,6 +1,5 @@
 const { Point } = require("./geometry/Point.js");
 const { ObservablePoint } = require("./geometry/ObservablePoint.js");
-const { AbstractPoint } = require("./geometry/AbstractPoint.js");
 const { Frame } = require("./geometry/Frame.js");
 const { Matrix, Transform, TransformBase, TransformStatic } = require("./geometry/Matrix.js");
 const { Quad } = require("./geometry/Quad.js");
@@ -24,5 +23,4 @@ module.exports = {
     Tools: Tools,
     CanvasTinter: CanvasTinter,
     Loader: Loader,
-    AbstractPoint: AbstractPoint,
 };

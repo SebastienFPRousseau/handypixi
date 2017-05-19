@@ -18,6 +18,7 @@ const { Matrix } = require("./../../support/geometry/Matrix.js");
 const { WebGLRenderTarget } = require("./WebGLRenderTarget.js");
 const { ContainerRenderer } = require("./../manager/ContainerRenderer.js");
 const { Ticker } = require("./../../interactivity/ticker/Ticker.js");
+const { Settings } = require("./../config/Settings.js");
 
 class WebGLEnvironment extends Environment
 {
@@ -136,7 +137,7 @@ class WebGLEnvironment extends Environment
         }
 
         this._ticker = ticker;
-		ticker.add(this.render, this);
+		ticker.add(this.render, this, Settings.UPDATE_PRIORITY.LOW);
     }
 
 	/**

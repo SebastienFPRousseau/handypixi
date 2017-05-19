@@ -207,7 +207,7 @@ class Ticker
 	 * add
 	 * This function is used in order to request a new animation frame at this point.
 	 * @param {Function}  fn  The listener function to be added for updates.
-	 * @param {Function}  context  The listener context.
+	 * @param {Object}  context  The listener context.
 	 * @param {Number}  priority  The priority for emitting. See Settings.UPDATE_PRIORITY
 	 */
 	add(fn, context = undefined, priority = undefined)
@@ -215,8 +215,8 @@ class Ticker
 		if ({}.toString.call(fn) !== "[object Function]")
 			throw new TypeError("fn must be a function.");
 
-		if ({}.toString.call(context) !== "[object Function]" && context !== undefined)
-			throw new TypeError("context must be a function.");
+		if ({}.toString.call(context) !== "[object Object]" && context !== undefined)
+			throw new TypeError("context must be an Object.");
 
 		if ({}.toString.call(priority) !== "[object Number]" && priority !== undefined)
 			throw new TypeError("priority must be a number.");
@@ -228,7 +228,7 @@ class Ticker
 	 * addOnce
 	 * This function is used in order to request a new animation frame at this point.
 	 * @param {Function}  fn  The listener function to be added for ONE update.
-	 * @param {Function}  context  The listener context.
+	 * @param {Object}  context  The listener context.
 	 * @param {Number}  priority  The priority for emitting. See Settings.UPDATE_PRIORITY
 	 */
 	addOnce(fn, context = undefined, priority = undefined)
@@ -236,8 +236,8 @@ class Ticker
 		if ({}.toString.call(fn) !== "[object Function]")
 			throw new TypeError("fn must be a function.");
 
-		if ({}.toString.call(context) !== "[object Function]" && context !== undefined)
-			throw new TypeError("context must be a function.");
+		if ({}.toString.call(context) !== "[object Object]" && context !== undefined)
+			throw new TypeError("context must be an Object.");
 
 		if ({}.toString.call(priority) !== "[object Number]" && priority !== undefined)
 			throw new TypeError("priority must be a number.");
