@@ -37,6 +37,9 @@ var _require4 = require("./../../displayObject/object2D/Object2D.js"),
 var _require5 = require("./../../interactivity/ticker/Ticker.js"),
     Ticker = _require5.Ticker;
 
+var _require6 = require("./../../interactivity/manager/EventManager.js"),
+    EventManager = _require6.EventManager;
+
 var CanvasEnvironment = function (_Environment) {
 	_inherits(CanvasEnvironment, _Environment);
 
@@ -65,7 +68,7 @@ var CanvasEnvironment = function (_Environment) {
 			_this._canvas.out.canvas = _this._renderer.view;
 			_this._canvas.out.context = _this._renderer.view.getContext('2d');
 		} else {
-			if (!(dom instanceof HTMLCollection)) throw new TypeError("dom must be a HTMLCollection.");
+			if (!(dom instanceof HTMLCollection || dom instanceof NodeList)) throw new TypeError("dom must be a HTMLCollection.");
 
 			// Create the canvas renderer
 			if (options.viewWidth === undefined) options.viewWidth = 800;

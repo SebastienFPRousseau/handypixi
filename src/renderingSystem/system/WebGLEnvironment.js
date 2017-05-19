@@ -79,7 +79,7 @@ var WebGLEnvironment = function (_Environment) {
 			_this._canvas.out.canvas = _this._renderer.view;
 			_this._canvas.out.context = _this._renderer.view.getContext('2d');
 		} else {
-			if (!(dom instanceof HTMLCollection)) throw new TypeError("dom must be a HTMLCollection.");
+			if (!(dom instanceof HTMLCollection || dom instanceof NodeList)) throw new TypeError("dom must be a HTMLCollection or a NodeList.");
 
 			// Create the WebGL renderer
 			if (options.viewWidth === undefined) options.viewWidth = 800;
