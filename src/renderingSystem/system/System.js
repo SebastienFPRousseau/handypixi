@@ -1,9 +1,3 @@
-"use strict";
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 /*
 |--------------------------------------------------------------------------
 | System
@@ -16,92 +10,73 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 |
 */
 
-var _require = require("./../config/Settings.js"),
-    Settings = _require.Settings;
-
-var _require2 = require("./WebGLEnvironment.js"),
-    WebGLEnvironment = _require2.WebGLEnvironment;
-
-var _require3 = require("./CanvasEnvironment.js"),
-    CanvasEnvironment = _require3.CanvasEnvironment;
-
-var _require4 = require("./../../support/utils/Setup.js"),
-    Setup = _require4.Setup;
+const { Settings } = require("./../config/Settings.js");
+const { WebGLEnvironment } = require("./WebGLEnvironment.js");
+const { CanvasEnvironment } = require("./CanvasEnvironment.js");
+const { Setup } = require("./../../support/utils/Setup.js");
 
 /**
  * instance
  * A premade instance of System. 
  * @type {System} 
  */
+let instance = undefined;
 
-
-var instance = undefined;
-
-var System = function () {
+class System
+{
 	/**
-  * constructor
-  * This function is used in order to build a System.
-  */
-	function System() {
-		_classCallCheck(this, System);
-
+	 * constructor
+	 * This function is used in order to build a System.
+	 */
+	constructor()
+	{
 		this._settings = Settings;
 		Setup.skipHello();
 	}
+	
+	/**
+	* getInstance
+	* @getter
+	*/
+	static getInstance()
+	{
+		if (instance === undefined)
+        	instance = new System();
+
+		return instance;
+	}
 
 	/**
- * getInstance
- * @getter
- */
+	 * settings
+	 * @getter
+	 * This function is a getter for the member _settings.
+	 * @return {Settings} The static class Settings.
+	 */
+	get settings()
+	{
+		return this._settings;
+	}
 
+	/**
+	 * getEnvironment
+	 * This function is used in order to build an Environment.
+	 * @param {HTMLCollection}  dom  The html DOM the 2D scene belongs. 
+	 * @param {Object}  options  Options for the environment.
+	 * @param {Boolean}  forceCanvas  Force a CanvasEnvironment build or not.
+	 * @return {Environment} The Environment built. 
+	 */
+	getEnvironment(dom, options = undefined, forceCanvas = false)
+	{
+		if ({}.toString.call(forceCanvas) !== "[object Boolean]")
+			throw new TypeError("forceCanvas must be a boolean.");
 
-	_createClass(System, [{
-		key: "getEnvironment",
-
-
-		/**
-   * getEnvironment
-   * This function is used in order to build an Environment.
-   * @param {HTMLCollection}  dom  The html DOM the 2D scene belongs. 
-   * @param {Object}  options  Options for the environment.
-   * @param {Boolean}  forceCanvas  Force a CanvasEnvironment build or not.
-   * @return {Environment} The Environment built. 
-   */
-		value: function getEnvironment(dom) {
-			var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
-			var forceCanvas = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-			if ({}.toString.call(forceCanvas) !== "[object Boolean]") throw new TypeError("forceCanvas must be a boolean.");
-
-			if (Setup.isWebGLSupported() && !forceCanvas) return new WebGLEnvironment(dom, options);else return new CanvasEnvironment(dom, options);
-		}
-	}, {
-		key: "settings",
-
-
-		/**
-   * settings
-   * @getter
-   * This function is a getter for the member _settings.
-   * @return {Settings} The static class Settings.
-   */
-		get: function get() {
-			return this._settings;
-		}
-	}], [{
-		key: "getInstance",
-		value: function getInstance() {
-			if (instance === undefined) instance = new System();
-
-			return instance;
-		}
-	}]);
-
-	return System;
-}();
-
-;
+		if (Setup.isWebGLSupported() && !forceCanvas)
+			return new WebGLEnvironment(dom, options);
+		else
+			return new CanvasEnvironment(dom, options);
+	}
+};
 
 module.exports = {
-	System: System
+	System: System,
 };

@@ -1,13 +1,3 @@
-"use strict";
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 /*
 |--------------------------------------------------------------------------
 | RenderTexture
@@ -20,90 +10,85 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 |
 */
 
-var _require = require("./Texture.js"),
-    Texture = _require.Texture;
+const { Texture } = require("./Texture.js");
 
-var RenderTexture = function (_Texture) {
-	_inherits(RenderTexture, _Texture);
-
+class RenderTexture extends Texture
+{
 	/**
-  * constructor
-  * This function is used in order to build a RenderTexture
-  * @param {Number}  width  The width of the base render texture.
-  * @param {Number}  height  The height of the base render texture.
-  * @param {Number}  scaleMode  See Settings.SCALE_MODES for possible values.
-  * @param {Number}  resolution  The resolution / device pixel ratio of the texture being generated.
-  * @param {PIXI.RenderTexture | PIXI.BaseRenderTexture}  width  The Pixi object to build the HandyPixi object.
-  */
-	function RenderTexture() {
-		var width = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 100;
-		var height = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100;
-		var scaleMode = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-		var resolution = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
+	 * constructor
+	 * This function is used in order to build a RenderTexture
+	 * @param {Number}  width  The width of the base render texture.
+	 * @param {Number}  height  The height of the base render texture.
+	 * @param {Number}  scaleMode  See Settings.SCALE_MODES for possible values.
+	 * @param {Number}  resolution  The resolution / device pixel ratio of the texture being generated.
+	 * @param {PIXI.RenderTexture | PIXI.BaseRenderTexture}  width  The Pixi object to build the HandyPixi object.
+	 */
+	constructor(width = 100, height = 100, scaleMode = null, resolution = 1)
+	{
+		if ({}.toString.call(height) !== "[object Number]")
+			throw new TypeError("height must be a number.");
 
-		_classCallCheck(this, RenderTexture);
+		if ({}.toString.call(resolution) !== "[object Number]")
+			throw new TypeError("resolution must be a number.");
 
-		if ({}.toString.call(height) !== "[object Number]") throw new TypeError("height must be a number.");
+		super();
 
-		if ({}.toString.call(resolution) !== "[object Number]") throw new TypeError("resolution must be a number.");
-
-		var _this = _possibleConstructorReturn(this, (RenderTexture.__proto__ || Object.getPrototypeOf(RenderTexture)).call(this));
-
-		if (width instanceof PIXI.RenderTexture) {
-			_this._out = pixiObj;
-		} else if (width instanceof PIXI.BaseRenderTexture) {
-			_this._out = new PIXI.RenderTexture(pixiObj);
-		} else {
-			if ({}.toString.call(width) !== "[object Number]") throw new TypeError("width must be a number.");
-
-			if (scaleMode !== null) {
-				if ({}.toString.call(scaleMode) !== "[object Number]") throw new TypeError("scaleMode must be a number.");
-
-				_this._out = PIXI.RenderTexture.create(width, height, scaleMode, resolution);
-			} else {
-				_this._out = PIXI.RenderTexture.create(width, height);
-			}
+		if (width instanceof PIXI.RenderTexture)
+		{
+			this._out = pixiObj;
 		}
-		return _this;
+		else if (width instanceof PIXI.BaseRenderTexture)
+		{
+			this._out = new PIXI.RenderTexture(pixiObj);
+		}
+		else
+		{
+			if ({}.toString.call(width) !== "[object Number]")
+				throw new TypeError("width must be a number.");
+
+			if (scaleMode !== null)
+			{
+				if ({}.toString.call(scaleMode) !== "[object Number]")
+					throw new TypeError("scaleMode must be a number.");
+
+				this._out = PIXI.RenderTexture.create(width, height, scaleMode, resolution);
+			}
+			else 
+			{
+				this._out = PIXI.RenderTexture.create(width, height);
+			}
+		}	
 	}
 
 	/**
- * out
- * @getter
- * This function is a getter for the member _out.
- * @return  {PIXI.RenderTexture} The PIXI Object used by this object. 
- */
+	* out
+	* @getter
+	* This function is a getter for the member _out.
+	* @return  {PIXI.RenderTexture} The PIXI Object used by this object. 
+	*/
+	get out()
+	{
+		return this._out;
+	}
 
+	/**
+	 * resize
+	 * This function is used in order to resize the RenderTexture
+	 * @param {Number}  width  The new width to use.
+	 * @param {Number}  height  The new height to use.
+	 */
+	resize(width, height)
+	{
+		if ({}.toString.call(width) !== "[object Number]")
+			throw new TypeError("width must be a number.");
 
-	_createClass(RenderTexture, [{
-		key: "resize",
+		if ({}.toString.call(height) !== "[object Number]")
+			throw new TypeError("height must be a number.");
 
-
-		/**
-   * resize
-   * This function is used in order to resize the RenderTexture
-   * @param {Number}  width  The new width to use.
-   * @param {Number}  height  The new height to use.
-   */
-		value: function resize(width, height) {
-			if ({}.toString.call(width) !== "[object Number]") throw new TypeError("width must be a number.");
-
-			if ({}.toString.call(height) !== "[object Number]") throw new TypeError("height must be a number.");
-
-			this._out.baseTexture.resize(width, height);
-		}
-	}, {
-		key: "out",
-		get: function get() {
-			return this._out;
-		}
-	}]);
-
-	return RenderTexture;
-}(Texture);
-
-;
+		this._out.baseTexture.resize(width, height);
+	}
+};
 
 module.exports = {
-	RenderTexture: RenderTexture
+	RenderTexture: RenderTexture,
 };

@@ -1,14 +1,12 @@
-"use strict";
-
 require("babel-polyfill");
 require("pixi.js");
 require("pixi-particles");
 
-var Support = require("./support/support.js");
-var Interactivity = require("./interactivity/interactivity.js");
-var RenderingSystem = require("./renderingSystem/renderingSystem.js");
-var Graphic = require("./graphic/graphic.js");
-var DisplayObject = require("./displayObject/displayObject.js");
+const Support = require("./support/support.js");
+const Interactivity = require("./interactivity/interactivity.js");
+const RenderingSystem = require("./renderingSystem/renderingSystem.js");
+const Graphic = require("./graphic/graphic.js");
+const DisplayObject = require("./displayObject/displayObject.js");
 
 module.exports = {
     Point: Support.Point,
@@ -89,5 +87,5 @@ module.exports = {
     Particle: DisplayObject.Particle,
     Emitter: DisplayObject.Emitter,
     PathParticle: DisplayObject.PathParticle,
-    AnimatedParticle: DisplayObject.AnimatedParticle
+    AnimatedParticle: DisplayObject.AnimatedParticle,
 };
