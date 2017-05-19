@@ -167,14 +167,13 @@ var Tools = function () {
    * @param {Point}  point  The point to measure length.
    * @return {Number} The length of this point.
    */
-
-	}, {
-		key: "length",
-		value: function length(point) {
-			if (!(point instanceof Point)) throw new TypeError("point must be a Point.");
-
-			return PIXI.particles.ParticleUtils.length(point.out);
-		}
+		/*static length(point)
+  {
+  	if (!(point instanceof Point))
+  		throw new TypeError("point must be a Point.");
+  
+  	return PIXI.particles.ParticleUtils.length(point.out);
+  }*/
 
 		/**
    * generateEase

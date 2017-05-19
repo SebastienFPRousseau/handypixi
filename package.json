@@ -1,10 +1,10 @@
 {
   "name": "handypixi",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "",
   "main": "src/handypixi.js",
   "scripts": {
-    "compile": "babel --presets env lib/ -d src/",
+    "compile": "babel --presets es2015 lib/ -d src/",
     "prepublish": "npm run compile"
   },
   "repository": {

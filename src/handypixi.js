@@ -1,5 +1,6 @@
 "use strict";
 
+require("babel-polyfill");
 require("pixi.js");
 require("pixi-particles");
 
