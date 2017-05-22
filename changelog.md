@@ -1,5 +1,19 @@
 # CHANGE LOG
 
+## [v.1.2.1](https://github.com/M4dNation/handypixi/tree/v1.2.1)
+[Full Changelog](https://github.com/M4dNation/handypixi/compare/v1.2.0...v1.2.1)
+
+**Implemented features:**
+
+No implemented features.
+
+**Implemented enhancements:**
+
+No implemented enhancements.
+
+**Closed Issues:**
+
+- Fix critical bug due to wrong test in constructor in ObservablePoint & Point.
 
 ## [v.1.2.0](https://github.com/M4dNation/handypixi/tree/v1.2.0)
 [Full Changelog](https://github.com/M4dNation/handypixi/compare/v1.0.0...v1.2.0)
