@@ -2,7 +2,7 @@
 
 ## ABOUT
 
-handypixi is a javascript library meant to simplify the development with the PIXI.js library.
+A easy to use package container for pixi.js.
 
 ## AUTHORS
 
