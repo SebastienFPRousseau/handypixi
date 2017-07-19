@@ -1,4 +1,19 @@
-# CHANGE LOG
+# CHANGELOG
+
+## [v.1.2.2](https://github.com/M4dNation/handypixi/tree/v1.2.2)
+[Full Changelog](https://github.com/M4dNation/handypixi/compare/v1.2.1...v1.2.2)
+
+**Implemented features:**
+
+Bump package version to use Pixi v4.5.3.
+
+**Implemented enhancements:**
+
+No implemented enhancements.
+
+**Closed Issues:**
+
+No closed issues.
 
 ## [v.1.2.1](https://github.com/M4dNation/handypixi/tree/v1.2.1)
 [Full Changelog](https://github.com/M4dNation/handypixi/compare/v1.2.0...v1.2.1)
