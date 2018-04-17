@@ -1,6 +1,6 @@
 {
   "name": "handypixi",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "",
   "main": "src/handypixi.js",
   "scripts": {
@@ -20,8 +20,8 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
-    "pixi-particles": "^2.1.5",
-    "pixi.js": "4.5.3"
+    "pixi-particles": "^3.0.0",
+    "pixi.js": "^4.7.1"
   },
   "devDependencies": {
     "babel-cli": "^6.0.0"
