@@ -2,10 +2,12 @@
   "name": "handypixi",
   "version": "1.4.0",
   "description": "",
-  "main": "src/handypixi.js",
+  "main": "src/index.js",
   "scripts": {
     "compile": "babel lib -d src",
-    "prepublishOnly": "npm run compile"
+    "prepublishOnly": "npm run compile",
+    "lint": "xo",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,67 @@
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-preset-env": "1.7.0",
-    "uglify-js": "3.4.9"
+    "uglify-js": "3.4.9",
+    "xo": "0.24.0",
+    "jest": "24.1.0"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "singleQuote": false,
+    "trailingComma": "es5",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": true,
+    "endOfLine": "lf"
+  },
+  "xo": {
+    "space": 2,
+    "prettier": true,
+    "rules": {
+      "promise/prefer-await-to-then": "warn",
+      "valid-jsdoc": "warn",
+      "capitalized-comments": "warn",
+      "curly": "warn"
+    },
+    "ignores": [
+      "node_modules"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "tests/**"
+        ],
+        "globals": [
+          "describe",
+          "test",
+          "expect",
+          "afterEach",
+          "beforeEach",
+          "beforeAll",
+          "jest",
+          "jasmine"
+        ]
+      },
+      {
+        "files": [
+          "lib/**"
+        ],
+        "globals": [
+          "PIXI",
+          "HTMLVideoElement",
+          "HTMLCanvasElement",
+          "HTMLCollection",
+          "NodeList",
+          "window",
+          "WebGLRenderingContext"
+        ]
+      }
+    ]
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "setupFiles": [
+      "./tests/utils/client.js"
+    ]
   }
 }
