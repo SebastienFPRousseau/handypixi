@@ -1,6 +1,6 @@
 {
   "name": "handypixi",
-  "version": "1.4.0",
+  "version": "1.4.1-rc1",
   "description": "",
   "main": "src/index.js",
   "scripts": {
