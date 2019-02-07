@@ -44,9 +44,9 @@
     "prettier": true,
     "rules": {
       "promise/prefer-await-to-then": "warn",
-      "valid-jsdoc": "warn",
-      "capitalized-comments": "warn",
-      "curly": "warn"
+      "valid-jsdoc": "off",
+      "capitalized-comments": "off",
+      "curly": "off"
     },
     "ignores": [
       "node_modules"
