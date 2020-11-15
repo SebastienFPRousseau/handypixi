@@ -23,7 +23,7 @@
   "dependencies": {
     "babel-polyfill": "6.26.0",
     "pixi-particles": "4.3.0",
-    "pixi.js": "4.8.6"
+    "pixi.js": "4.8.9"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
