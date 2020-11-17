@@ -1,6 +1,6 @@
 {
-  "name": "handypixi",
-  "version": "1.6.0",
+  "name": "@sebastienfprousseau/handypixi",
+  "version": "1.6.1",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "url": "https://github.com/SebastienFPRousseau/handypixi/issues"
   },
   "publishConfig": { 
-    "registry": "https://npm.pkg.github.com/@sebastienfprousseau"
+    "registry": "https://registry.npmjs.org"
   },
   "homepage": "https://github.com/SebastienFPRousseau/handypixi#readme",
   "dependencies": {
