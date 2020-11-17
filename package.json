@@ -12,14 +12,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/M4dNation/handypixi.git"
+    "url": "git+https://github.com/SebastienFPRousseau/handypixi.git"
   },
   "author": "m4dnation",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/M4dNation/handypixi/issues"
+    "url": "https://github.com/SebastienFPRousseau/handypixi/issues"
   },
-  "homepage": "https://github.com/M4dNation/handypixi#readme",
+  "publishConfig": { 
+    "registry": "https://npm.pkg.github.com/@sebastienfprousseau"
+  },
+  "homepage": "https://github.com/SebastienFPRousseau/handypixi#readme",
   "dependencies": {
     "babel-polyfill": "6.26.0",
     "pixi-particles": "4.3.0",
